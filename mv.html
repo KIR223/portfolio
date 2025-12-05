@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дизайн-портфолио для МВД России</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Основные стили и сброс */
+:root {
+--primary: #0d2b68;
+--secondary: #1e3a8a;
+--accent: #d32f2f;
+--accent-light: #ff5252;
+--light: #f8f9fa;
+--dark: #212529;
+--gray: #6c757d;
+--light-gray: #e9ecef;
+--border: #bdbdbd;
+--shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+--transition: all 0.3s ease;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html {
+scroll-behavior: smooth;
+font-size: 16px;
+}
+
+body {
+font-family: 'Roboto', sans-serif;
+line-height: 1.6;
+color: var(--dark);
+background-color: var(--light);
+overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+font-family: 'PT Serif', serif;
+font-weight: 700;
+line-height: 1.2;
+margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.8rem; }
+h2 {
+font-size: 2.2rem;
+color: var(--primary);
+position: relative;
+padding-bottom: 15px;
+margin-bottom: 2rem;
+}
+h2:after {
+content: '';
+position: absolute;
+left: 0;
+bottom: 0;
+width: 70px;
+height: 4px;
+background-color: var(--accent);
+}
+h3 { font-size: 1.6rem; }
+p { margin-bottom: 1rem; font-size: 1.1rem; }
+
+a {
+text-decoration: none;
+color: inherit;
+transition: var(--transition);
+}
+
+.container {
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+}
+
+.section {
+padding: 80px 0;
+}
+
+.section-dark {
+background-color: var(--primary);
+color: white;
+}
+.section-dark h2 { color: white; }
+.section-dark h2:after { background-color: var(--accent-light); }
+
+.btn {
+display: inline-block;
+padding: 12px 30px;
+background-color: var(--accent);
+color: white;
+border: none;
+border-radius: 4px;
+font-weight: 500;
+font-size: 1rem;
+cursor: pointer;
+transition: var(--transition);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+.btn:hover {
+background-color: var(--accent-light);
+transform: translateY(-3px);
+box-shadow: var(--shadow);
+}
+.btn-outline {
+background-color: transparent;
+border: 2px solid white;
+color: white;
+}
+.btn-outline:hover {
+background-color: white;
+color: var(--primary);
+}
+
+.text-center { text-align: center; }
+.text-center h2:after { left: 50%; transform: translateX(-50%); }
+
+/* Header */
+header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+background-color: var(--primary);
+padding: 15px 0;
+transition: var(--transition);
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 1.5rem;
+font-weight: 700;
+color: white;
+font-family: 'PT Serif', serif;
+}
+.logo i { color: var(--accent); }
+
+.nav-links {
+display: flex;
+list-style: none;
+gap: 30px;
+}
+.nav-links a {
+color: white;
+font-weight: 500;
+position: relative;
+padding: 5px 0;
+}
+.nav-links a:after {
+content: '';
+position: absolute;
+left: 0;
+bottom: 0;
+width: 0;
+height: 2px;
+background-color: var(--accent);
+transition: var(--transition);
+}
+.nav-links a:hover:after { width: 100%; }
+
+.mobile-menu-btn {
+display: none;
+background: none;
+border: none;
+font-size: 1.5rem;
+color: white;
+cursor: pointer;
+}
+
+/* Hero */
+.hero {
+height: 100vh;
+background: linear-gradient(rgba(13, 43, 104, 0.9), rgba(13, 43, 104, 0.8)), url('https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+background-size: cover;
+background-position: center;
+color: white;
+display: flex;
+align-items: center;
+}
+
+.hero-content {
+max-width: 800px;
+}
+.hero h1 { margin-bottom: 20px; animation: fadeInDown 1s ease; }
+.hero p {
+font-size: 1.2rem;
+margin-bottom: 30px;
+animation: fadeInUp 1s ease 0.3s both;
+}
+.hero-btns {
+display: flex;
+gap: 20px;
+animation: fadeInUp 1s ease 0.6s both;
+}
+
+/* About */
+.about-content {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 50px;
+align-items: center;
+}
+.about-img {
+border-radius: 10px;
+overflow: hidden;
+box-shadow: var(--shadow);
+}
+.about-img img {
+width: 100%;
+height: auto;
+display: block;
+transition: var(--transition);
+}
+.about-img:hover img { transform: scale(1.05); }
+
+.stats {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+margin-top: 40px;
+}
+.stat-item {
+text-align: center;
+padding: 20px;
+background-color: var(--light-gray);
+border-radius: 8px;
+transition: var(--transition);
+}
+.stat-item:hover {
+transform: translateY(-10px);
+box-shadow: var(--shadow);
+}
+.stat-number {
+font-size: 2.2rem;
+font-weight: 700;
+color: var(--primary);
+margin-bottom: 5px;
+}
+
+/* Portfolio */
+.portfolio-filters {
+display: flex;
+justify-content: center;
+gap: 15px;
+margin-bottom: 40px;
+flex-wrap: wrap;
+}
+.filter-btn {
+padding: 10px 25px;
+background-color: white;
+border: 2px solid var(--border);
+border-radius: 30px;
+font-weight: 500;
+cursor: pointer;
+transition: var(--transition);
+}
+.filter-btn.active, .filter-btn:hover {
+background-color: var(--primary);
+color: white;
+border-color: var(--primary);
+}
+
+.portfolio-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+gap: 30px;
+}
+.portfolio-item {
+border-radius: 10px;
+overflow: hidden;
+box-shadow: var(--shadow);
+background-color: white;
+transition: var(--transition);
+}
+.portfolio-item:hover {
+transform: translateY(-10px);
+box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+.portfolio-img {
+height: 220px;
+overflow: hidden;
+}
+.portfolio-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: var(--transition);
+}
+.portfolio-item:hover .portfolio-img img { transform: scale(1.1); }
+.portfolio-content { padding: 25px; }
+
+/* Services */
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 30px;
+margin-top: 50px;
+}
+.service-card {
+background-color: white;
+border-radius: 10px;
+padding: 30px;
+text-align: center;
+box-shadow: var(--shadow);
+transition: var(--transition);
+border-top: 5px solid var(--primary);
+}
+.service-card:hover {
+transform: translateY(-10px);
+border-top-color: var(--accent);
+}
+.service-icon {
+font-size: 2.5rem;
+color: var(--primary);
+margin-bottom: 20px;
+}
+
+/* Contact */
+.contact-container {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 50px;
+}
+.contact-info { display: flex; flex-direction: column; gap: 30px; }
+.contact-item {
+display: flex;
+align-items: flex-start;
+gap: 15px;
+}
+.contact-icon {
+font-size: 1.3rem;
+color: var(--accent);
+min-width: 25px;
+}
+
+.contact-form {
+background-color: white;
+padding: 30px;
+border-radius: 10px;
+box-shadow: var(--shadow);
+}
+.form-group { margin-bottom: 20px; }
+.form-control {
+width: 100%;
+padding: 15px;
+border: 1px solid var(--border);
+border-radius: 5px;
+font-family: 'Roboto', sans-serif;
+font-size: 1rem;
+transition: var(--transition);
+}
+.form-control:focus {
+outline: none;
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(13, 43, 104, 0.2);
+}
+textarea.form-control { min-height: 150px; resize: vertical; }
+
+/* Footer */
+footer {
+background-color: #0a1f4d;
+color: white;
+padding: 60px 0 20px;
+}
+.footer-content {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 40px;
+margin-bottom: 40px;
+}
+.footer-logo {
+font-size: 1.8rem;
+font-weight: 700;
+margin-bottom: 20px;
+font-family: 'PT Serif', serif;
+}
+.social-links {
+display: flex;
+gap: 15px;
+margin-top: 20px;
+}
+.social-link {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background-color: rgba(255, 255, 255, 0.1);
+display: flex;
+align-items: center;
+justify-content: center;
+transition: var(--transition);
+}
+.social-link:hover {
+background-color: var(--accent);
+transform: translateY(-5px);
+}
+.footer-links h3, .footer-contact h3 {
+font-size: 1.3rem;
+margin-bottom: 20px;
+position: relative;
+padding-bottom: 10px;
+}
+.footer-links h3:after, .footer-contact h3:after {
+content: '';
+position: absolute;
+left: 0;
+bottom: 0;
+width: 40px;
+height: 3px;
+background-color: var(--accent);
+}
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a:hover { color: var(--accent-light); padding-left: 5px; }
+.copyright {
+text-align: center;
+padding-top: 20px;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+font-size: 0.9rem;
+color: rgba(255, 255, 255, 0.7);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+from { opacity: 0; transform: translateY(-30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+h1 { font-size: 2.4rem; }
+h2 { font-size: 2rem; }
+.about-content, .contact-container { grid-template-columns: 1fr; }
+.footer-content { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+.mobile-menu-btn { display: block; }
+.nav-links {
+position: fixed;
+top: 70px;
+left: 0;
+width: 100%;
+background-color: var(--primary);
+flex-direction: column;
+align-items: center;
+padding: 20px 0;
+gap: 0;
+transform: translateY(-100%);
+opacity: 0;
+visibility: hidden;
+transition: var(--transition);
+box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+z-index: 999;
+}
+.nav-links.active {
+transform: translateY(0);
+opacity: 1;
+visibility: visible;
+}
+.nav-links li { width: 100%; text-align: center; }
+.nav-links a {
+display: block;
+padding: 15px 0;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-links a:after { display: none; }
+
+.hero h1 { font-size: 2rem; }
+.hero p { font-size: 1.1rem; }
+.hero-btns { flex-direction: column; align-items: flex-start; }
+
+.stats { grid-template-columns: repeat(2, 1fr); }
+.portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.services-grid { grid-template-columns: 1fr; }
+.footer-content { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+.section { padding: 60px 0; }
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.6rem; }
+.stats { grid-template-columns: 1fr; }
+.portfolio-grid { grid-template-columns: 1fr; }
+.portfolio-filters { justify-content: flex-start; overflow-x: auto; padding-bottom: 10px; }
+.contact-form { padding: 20px; }
+.hero-btns .btn { width: 100%; text-align: center; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--light-gray); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
+</style>
+</head>
+<body>
+<!-- Header -->
+<header id="header">
+<div class="container header-container">
+<a href="#home" class="logo">
+<i class="fas fa-shield-alt"></i>
+<span>МВД Дизайн</span>
+</a>
+
+<button class="mobile-menu-btn" id="mobileMenuBtn">
+<i class="fas fa-bars"></i>
+</button>
+
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Главная</a></li>
+<li><a href="#about">Обо мне</a></li>
+<li><a href="#portfolio">Портфолио</a></li>
+<li><a href="#services">Услуги</a></li>
+<li><a href="#contact">Контакты</a></li>
+</ul>
+</div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-content">
+<h1>Профессиональный дизайн для МВД России</h1>
+<p>Создание современных интерфейсов для ведомственных систем с учетом специфики правоохранительной деятельности и государственных стандартов.</p>
+<div class="hero-btns">
+<a href="#portfolio" class="btn">Мои работы</a>
+<a href="#contact" class="btn btn-outline">Связаться</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+<div class="container">
+<h2 class="text-center">Обо мне</h2>
+
+<div class="about-content">
+<div class="about-img">
+<img src="F-16_Fighting_Falcon_Artifacts.jpg" alt="Дизайнер">
+</div>
+
+<div class="about-text">
+<h3>Специализация на ведомственном дизайне</h3>
+<p>Более 3 лет создаю дизайн для государственных структур, в том числе для МВД России. Мои проекты соответствуют требованиям безопасности, функциональности и эргономики.</p>
+<p>Работа включает создание интерфейсов для внутренних систем, публичных сайтов и мобильных приложений для правоохранительных органов.</p>
+
+<div class="stats">
+<div class="stat-item">
+<div class="stat-number">50+</div>
+<div>Проектов</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">5+</div>
+<div>Лет опыта</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">100%</div>
+<div>Соответствие стандартам</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Portfolio -->
+<section class="section" id="portfolio">
+<div class="container">
+<h2 class="text-center">Портфолио</h2>
+
+<div class="portfolio-filters">
+<button class="filter-btn active" data-filter="all">Все</button>
+<button class="filter-btn" data-filter="website">Сайты</button>
+<button class="filter-btn" data-filter="system">Системы</button>
+<button class="filter-btn" data-filter="mobile">Приложения</button>
+</div>
+
+<div class="portfolio-grid">
+<div class="portfolio-item" data-category="website">
+<div class="portfolio-img">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Портал МВД">
+</div>
+<div class="portfolio-content">
+<h3>Главный портал МВД</h3>
+<p>Редизайн главного сайта с улучшенной навигацией и адаптацией.</p>
+</div>
+</div>
+
+<div class="portfolio-item" data-category="system">
+<div class="portfolio-img">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Система учета">
+</div>
+<div class="portfolio-content">
+<h3>Система учета правонарушений</h3>
+<p>Интерфейс для внутренней системы учета и анализа.</p>
+</div>
+</div>
+
+<div class="portfolio-item" data-category="mobile">
+<div class="portfolio-img">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Мобильное приложение">
+</div>
+<div class="portfolio-content">
+<h3>Приложение "Безопасный город"</h3>
+<p>Дизайн мобильного приложения для информирования граждан.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Services -->
+<section class="section section-dark" id="services">
+<div class="container">
+<h2 class="text-center">Услуги</h2>
+
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-desktop"></i>
+</div>
+<h3>Дизайн сайтов</h3>
+<p>Создание адаптивных и безопасных сайтов для подразделений МВД.</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-mobile-alt"></i>
+</div>
+<h3>Мобильные приложения</h3>
+<p>Дизайн приложений для сотрудников и граждан с акцентом на безопасность.</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-chart-line"></i>
+</div>
+<h3>Интерфейсы систем</h3>
+<p>Создание интуитивных интерфейсов для внутренних ведомственных систем.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+<div class="container">
+<h2 class="text-center">Контакты</h2>
+
+<div class="contact-container">
+<div class="contact-info">
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fas fa-map-marker-alt"></i>
+</div>
+<div>
+<h3>Адрес</h3>
+<p>г. Москва, ул. Большая Лубянка, 12</p>
+</div>
+</div>
+
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fas fa-phone"></i>
+</div>
+<div>
+<h3>Телефон</h3>
+<p>+7 (495) 123-45-67</p>
+</div>
+</div>
+
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fas fa-envelope"></i>
+</div>
+<div>
+<h3>Email</h3>
+<p>design@mvd-portfolio.ru</p>
+</div>
+</div>
+</div>
+
+<div class="contact-form">
+<form id="contactForm">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Ваше имя" required>
+</div>
+
+<div class="form-group">
+<input type="email" class="form-control" placeholder="Ваш email" required>
+</div>
+
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Тема" required>
+</div>
+
+<div class="form-group">
+<textarea class="form-control" placeholder="Сообщение" required></textarea>
+</div>
+
+<button type="submit" class="btn">Отправить</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-about">
+<div class="footer-logo">МВД Дизайн</div>
+<p>Профессиональный дизайн для нужд Министерства внутренних дел РФ.</p>
+
+<div class="social-links">
+<a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+<a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+<a href="#" class="social-link"><i class="fab fa-github"></i></a>
+</div>
+</div>
+
+<div class="footer-links">
+<h3>Ссылки</h3>
+<ul>
+<li><a href="#home">Главная</a></li>
+<li><a href="#about">Обо мне</a></li>
+<li><a href="#portfolio">Портфолио</a></li>
+<li><a href="#services">Услуги</a></li>
+<li><a href="#contact">Контакты</a></li>
+</ul>
+</div>
+
+<div class="footer-contact">
+<h3>Контакты</h3>
+<p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Большая Лубянка, 12</p>
+<p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+<p><i class="fas fa-envelope"></i> design@mvd-portfolio.ru</p>
+</div>
+</div>
+
+<div class="copyright">
+<p>&copy; 2025 Дизайн-портфолио для МВД России</p>
+</div>
+</div>
+</footer>
+
+<script>
+// Мобильное меню
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+const nav = document.getElementById('navLinks');
+nav.classList.toggle('active');
+this.innerHTML = nav.classList.contains('active')
+? '<i class="fas fa-times"></i>'
+: '<i class="fas fa-bars"></i>';
+});
+
+// Закрытие меню при клике на ссылку
+document.querySelectorAll('.nav-links a').forEach(link => {
+link.addEventListener('click', () => {
+document.getElementById('navLinks').classList.remove('active');
+document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
+});
+});
+
+// Фильтрация портфолио
+document.querySelectorAll('.filter-btn').forEach(button => {
+button.addEventListener('click', function() {
+// Активная кнопка
+document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+this.classList.add('active');
+
+// Фильтрация элементов
+const filter = this.getAttribute('data-filter');
+document.querySelectorAll('.portfolio-item').forEach(item => {
+if (filter === 'all' || item.getAttribute('data-category') === filter) {
+item.style.display = 'block';
+} else {
+item.style.display = 'none';
+}
+});
+});
+});
+
+// Обработка формы
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+e.preventDefault();
+alert('Сообщение отправлено! Я свяжусь с вами в ближайшее время.');
+this.reset();
+});
+
+// Плавная прокрутка
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 70,
+behavior: 'smooth'
+});
+}
+});
+});
+
+// Фиксация хедера при прокрутке
+window.addEventListener('scroll', function() {
+const header = document.getElementById('header');
+if (window.scrollY > 50) {
+header.style.padding = '10px 0';
+header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+} else {
+header.style.padding = '15px 0';
+header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+}
+});
+</script>
+</body>
+</html>

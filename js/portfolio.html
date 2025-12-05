@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио - DigitalStudio</title>
+<meta name="description" content="Наши проекты: веб-разработка, дизайн, мобильные приложения. Примеры работ с реальными кейсами и результатами.">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+<header class="header" role="banner">
+<div class="container">
+<div class="header__inner">
+<a href="sas.html" class="logo" aria-label="DigitalStudio - вернуться на главную">
+<svg class="logo__icon" width="40" height="40" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+
+<nav class="nav" aria-label="Основная навигация">
+<button class="nav__toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+</button>
+
+<ul class="nav__list" id="nav-menu" role="menu">
+<li class="nav__item" role="none">
+<a href="sas.html" class="nav__link" role="menuitem">Главная</a>
+</li>
+<li class="nav__item" role="none">
+<a href="about.html" class="nav__link" role="menuitem">О нас</a>
+</li>
+<li class="nav__item" role="none">
+<a href="portfolio.html" class="nav__link nav__link--active" role="menuitem" aria-current="page">Портфолио</a>
+</li>
+<li class="nav__item" role="none">
+<a href="services.html" class="nav__link" role="menuitem">Услуги</a></li>
+<li class="nav__item" role="none">
+<a href="blog.html" class="nav__link" role="menuitem">Блог</a>
+</li>
+<li class="nav__item" role="none">
+<a href="contacts.html" class="nav__link" role="menuitem">Контакты</a>
+</li>
+</ul>
+</nav>
+
+<a href="contacts.html#contact-form" class="btn btn--primary btn--small">Обсудить проект</a>
+</div>
+</div>
+</header>
+
+<main id="main-content" class="main" role="main">
+<!-- Хлебные крошки -->
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<div class="container">
+<ol class="breadcrumbs__list">
+<li class="breadcrumbs__item">
+<a href="sas.html" class="breadcrumbs__link">Главная</a>
+</li>
+<li class="breadcrumbs__item" aria-current="page">
+<span class="breadcrumbs__current">Портфолио</span>
+</li>
+</ol>
+</div>
+</nav>
+
+<!-- Герой-секция -->
+<section class="page-hero" aria-labelledby="page-title">
+<div class="container">
+<h1 id="page-title" class="page-hero__title">Наши проекты</h1>
+<p class="page-hero__subtitle">Реализованные кейсы и успешные проекты в различных сферах бизнеса</p>
+</div>
+</section>
+
+<!-- Фильтры портфолио -->
+<section class="portfolio-filters" aria-label="Фильтры проектов">
+<div class="container">
+<div class="portfolio-filters__wrapper">
+<h2 class="visually-hidden">Категории проектов</h2>
+<div class="portfolio-filters__list">
+<button class="portfolio-filter active" data-filter="all" aria-pressed="true">
+Все проекты
+</button>
+<button class="portfolio-filter" data-filter="web" aria-pressed="false">
+Веб-разработка
+</button>
+<button class="portfolio-filter" data-filter="design" aria-pressed="false">
+Дизайн
+</button>
+<button class="portfolio-filter" data-filter="ecommerce" aria-pressed="false">
+E-commerce
+</button>
+<button class="portfolio-filter" data-filter="mobile" aria-pressed="false">
+Мобильные приложения
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Сетка проектов -->
+<section class="portfolio-grid" aria-label="Галерея проектов">
+<div class="container">
+<div class="portfolio-items" data-portfolio>
+<!-- Проект 1 -->
+<article class="portfolio-item" data-category="web ecommerce">
+<div class="portfolio-item__image">
+<picture>
+<source srcset="project-1-cover.webp" type="image/webp">
+<img src="project-1-cover.jpg" alt="Главная страница интернет-магазина электроники" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="portfolio-item__content">
+<h3 class="portfolio-item__title">
+<a href="project-1.html">Интернет-магазин электроники</a>
+</h3>
+<p class="portfolio-item__description">Полный цикл разработки интернет-магазина с каталогом на 5000+ товаров и интеграцией с 1С</p>
+<div class="portfolio-item__meta">
+<span class="portfolio-item__category">E-commerce</span>
+<span class="portfolio-item__year">2024</span>
+</div>
+<a href="project-1.html" class="portfolio-item__link" aria-label="Подробнее о проекте Интернет-магазин электроники">Подробнее →</a>
+</div>
+</article>
+
+<!-- Проект 2 -->
+<article class="portfolio-item" data-category="web design">
+<div class="portfolio-item__image">
+<picture>
+<source srcset="project-2-cover.webp" type="image/webp">
+<img src="project-2-cover.jpg" alt="Корпоративный портал компании" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="portfolio-item__content">
+<h3 class="portfolio-item__title">
+<a href="project-2.html">Корпоративный портал</a>
+</h3>
+<p class="portfolio-item__description">Разработка внутренней системы управления для крупной производственной компании с 1000+ сотрудников</p>
+<div class="portfolio-item__meta">
+<span class="portfolio-item__category">Корпоративные решения</span>
+<span class="portfolio-item__year">2024</span>
+</div>
+<a href="project-2.html" class="portfolio-item__link" aria-label="Подробнее о проекте Корпоративный портал">Подробнее →</a>
+</div>
+</article>
+
+<!-- Проект 3 -->
+<article class="portfolio-item" data-category="web">
+<div class="portfolio-item__image">
+<picture>
+<source srcset="project-3-cover.webp" type="image/webp">
+<img src="project-3-cover.jpg" alt="Платформа онлайн-обучения" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="portfolio-item__content">
+<h3 class="portfolio-item__title">
+<a href="project-3.html">Образовательная платформа</a>
+</h3>
+<p class="portfolio-item__description">Создание платформы для онлайн-обучения с видеокурсами, тестированием и системой сертификации</p>
+<div class="portfolio-item__meta">
+<span class="portfolio-item__category">Образование</span>
+<span class="portfolio-item__year">2023</span>
+</div>
+<a href="project-3.html" class="portfolio-item__link" aria-label="Подробнее о проекте Образовательная платформа">Подробнее →</a>
+</div>
+</article>
+
+<!-- Проект 4 -->
+<article class="portfolio-item" data-category="mobile">
+<div class="portfolio-item__image">
+<picture>
+<source srcset="project-4-cover.webp" type="image/webp">
+<img src="project-4-cover.jpg" alt="Мобильное приложение для доставки еды" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="portfolio-item__content">
+<h3 class="portfolio-item__title">
+<a href="project-4.html">Приложение доставки еды</a>
+</h3>
+<p class="portfolio-item__description">Разработка кроссплатформенного мобильного приложения для службы доставки еды</p>
+<div class="portfolio-item__meta">
+<span class="portfolio-item__category">Мобильные приложения</span>
+<span class="portfolio-item__year">2023</span>
+</div>
+<a href="project-4.html" class="portfolio-item__link" aria-label="Подробнее о проекте Приложение доставки еды">Подробнее →</a>
+</div>
+</article>
+
+<!-- Проект 5 -->
+<article class="portfolio-item" data-category="design web">
+<div class="portfolio-item__image">
+<picture>
+<source srcset="project-5-cover.webp" type="image/webp">
+<img src="project-5-cover.jpg" alt="Корпоративный сайт для юридической фирмы" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="portfolio-item__content">
+<h3 class="portfolio-item__title">
+<a href="project-5.html">Сайт юридической фирмы</a>
+</h3>
+<p class="portfolio-item__description">Дизайн и разработка корпоративного сайта для международной юридической компании</p>
+<div class="portfolio-item__meta">
+<span class="portfolio-item__category">Корпоративные сайты</span>
+<span class="portfolio-item__year">2023</span>
+</div>
+<a href="project-5.html" class="portfolio-item__link" aria-label="Подробнее о проекте Сайт юридической фирмы">Подробнее →</a>
+</div>
+</article>
+
+<!-- Проект 6 -->
+<article class="portfolio-item" data-category="ecommerce web">
+<div class="portfolio-item__image">
+<picture>
+<source srcset="project-6-cover.webp" type="image/webp">
+<img src="project-6-cover.jpg" alt="Интернет-магазин одежды" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="portfolio-item__content">
+<h3 class="portfolio-item__title">
+<a href="project-6.html">Онлайн-бутик одежды</a>
+</h3>
+<p class="portfolio-item__description">Создание премиального интернет-магазина одежды с виртуальной примерочной</p>
+<div class="portfolio-item__meta">
+<span class="portfolio-item__category">E-commerce</span>
+<span class="portfolio-item__year">2022</span>
+</div>
+<a href="project-6.html" class="portfolio-item__link" aria-label="Подробнее о проекте Онлайн-бутик одежды">Подробнее →</a>
+</div>
+</article>
+</div>
+
+<!-- Пагинация (для отключенного JS) -->
+<nav class="pagination" aria-label="Навигация по страницам портфолио">
+<ol class="pagination__list">
+<li class="pagination__item pagination__item--active">
+<span class="pagination__link" aria-current="page">1</span>
+</li>
+<li class="pagination__item">
+<a href="portfolio-page-2.html" class="pagination__link">2</a>
+</li>
+<li class="pagination__item">
+<a href="portfolio-page-3.html" class="pagination__link">3</a>
+</li>
+<li class="pagination__item pagination__item--next">
+<a href="portfolio-page-2.html" class="pagination__link">Следующая →</a>
+</li>
+</ol>
+</nav>
+</div>
+</section>
+
+<!-- CTA секция -->
+<section class="cta-section" aria-labelledby="cta-title">
+<div class="container">
+<h2 id="cta-title" class="cta-section__title">Хотите такой же проект?</h2>
+<p class="cta-section__description">Расскажите о вашей задаче и мы предложим решение</p>
+<a href="contacts.html" class="btn btn--primary btn--large">Обсудить проект</a>
+</div>
+</section>
+</main>
+
+<footer class="footer" role="contentinfo">
+<div class="container">
+<div class="footer__grid">
+<div class="footer__brand">
+<a href="sas.html" class="logo logo--footer">
+<svg class="logo__icon" width="32" height="32" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+<p class="footer__description">Создаем цифровые решения для вашего бизнеса</p>
+</div>
+
+<div class="footer__nav">
+<h3 class="footer__title">Навигация</h3>
+<ul class="footer__list">
+<li><a href="sas.html">Главная</a></li>
+<li><a href="about.html">О нас</a></li>
+<li><a href="portfolio.html">Портфолио</a></li>
+<li><a href="services.html">Услуги</a></li>
+<li><a href="blog.html">Блог</a></li>
+<li><a href="contacts.html">Контакты</a></li>
+</ul>
+</div>
+
+<div class="footer__services">
+<h3 class="footer__title">Услуги</h3>
+<ul class="footer__list">
+<li><a href="service-1.html">Веб-разработка</a></li>
+<li><a href="service-2.html">Дизайн интерфейсов</a></li>
+<li><a href="service-3.html">Мобильные приложения</a></li>
+<li><a href="service-4.html">Техническая поддержка</a></li>
+</ul>
+</div>
+</div>
+
+<div class="footer__bottom">
+<p class="footer__copyright">&copy; 2024 DigitalStudio. Все права защищены.</p>
+<nav class="footer__legal" aria-label="Юридическая информация">
+<a href="privacy.html">Политика конфиденциальности</a>
+<a href="terms.html">Условия использования</a>
+</nav>
+</div>
+</div>
+</footer>
+
+<!-- SVG спрайт -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<!-- Иконки из index.html -->
+</svg>
+</body>
+</html>

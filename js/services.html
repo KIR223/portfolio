@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Услуги - DigitalStudio</title>
+<meta name="description" content="Профессиональные услуги по веб-разработке, дизайну, SEO и мобильной разработке. Полный цикл создания digital-продуктов.">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+<header class="header" role="banner">
+<div class="container">
+<div class="header__inner">
+<a href="sas.html" class="logo" aria-label="DigitalStudio - вернуться на главную">
+<svg class="logo__icon" width="40" height="40" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+
+<nav class="nav" aria-label="Основная навигация">
+<button class="nav__toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+</button>
+
+<ul class="nav__list" id="nav-menu" role="menu">
+<li class="nav__item" role="none">
+<a href="sas.html" class="nav__link" role="menuitem">Главная</a>
+</li>
+<li class="nav__item" role="none">
+<a href="about.html" class="nav__link" role="menuitem">О нас</a>
+</li>
+<li class="nav__item" role="none">
+<a href="portfolio.html" class="nav__link" role="menuitem">Портфолио</a>
+</li>
+<li class="nav__item" role="none">
+<a href="services.html" class="nav__link nav__link--active" role="menuitem" aria-current="page">Услуги</a>
+</li>
+<li class="nav__item" role="none">
+<a href="blog.html" class="nav__link" role="menuitem">Блог</a>
+</li>
+<li class="nav__item" role="none">
+<a href="contacts.html" class="nav__link" role="menuitem">Контакты</a>
+</li>
+</ul>
+</nav>
+
+<a href="contacts.html#contact-form" class="btn btn--primary btn--small">Заказать услугу</a>
+</div>
+</div>
+</header>
+
+<main id="main-content" class="main" role="main">
+<!-- Хлебные крошки -->
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<div class="container">
+<ol class="breadcrumbs__list">
+<li class="breadcrumbs__item">
+<a href="sas.html" class="breadcrumbs__link">Главная</a>
+</li>
+<li class="breadcrumbs__item" aria-current="page">
+<span class="breadcrumbs__current">Услуги</span>
+</li>
+</ol>
+</div>
+</nav>
+
+<!-- Герой-секция -->
+<section class="page-hero" aria-labelledby="page-title">
+<div class="container">
+<h1 id="page-title" class="page-hero__title">Наши услуги</h1>
+<p class="page-hero__subtitle">Полный спектр услуг по созданию и поддержке digital-продуктов</p>
+</div>
+</section>
+
+<!-- Услуги -->
+<section class="services-list" aria-label="Список услуг">
+<div class="container">
+<div class="services-list__grid">
+<!-- Веб-разработка -->
+<article class="service-card">
+<div class="service-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-web"></use>
+</svg>
+</div>
+<div class="service-card__content">
+<h2 class="service-card__title">
+<a href="service-1.html">Веб-разработка</a>
+</h2>
+<p class="service-card__description">Создание современных, быстрых и безопасных веб-сайтов и веб-приложений</p>
+<ul class="service-card__features">
+<li>Корпоративные сайты</li>
+<li>Интернет-магазины</li>
+<li>Веб-приложения</li>
+<li>Порталы и CRM</li>
+</ul>
+<a href="service-1.html" class="service-card__link">Подробнее →</a>
+</div>
+</article>
+
+<!-- Дизайн -->
+<article class="service-card">
+<div class="service-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-design"></use>
+</svg>
+</div>
+<div class="service-card__content">
+<h2 class="service-card__title">
+<a href="service-2.html">UI/UX дизайн</a>
+</h2>
+<p class="service-card__description">Создание удобных и красивых интерфейсов, которые решают бизнес-задачи</p>
+<ul class="service-card__features">
+<li>Дизайн сайтов</li>
+<li>Мобильные интерфейсы</li>
+<li>Прототипирование</li>
+<li>Дизайн-системы</li>
+</ul>
+<a href="service-2.html" class="service-card__link">Подробнее →</a>
+</div>
+</article>
+
+<!-- Мобильная разработка -->
+<article class="service-card">
+<div class="service-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-mobile"></use>
+</svg>
+</div>
+<div class="service-card__content">
+<h2 class="service-card__title">
+<a href="service-3.html">Мобильные приложения</a>
+</h2>
+<p class="service-card__description">Разработка нативных и кроссплатформенных приложений для iOS и Android</p>
+<ul class="service-card__features">
+<li>iOS приложения</li>
+<li>Android приложения</li>
+<li>React Native</li>
+<li>Flutter</li>
+</ul>
+<a href="service-3.html" class="service-card__link">Подробнее →</a>
+</div>
+</article>
+
+<!-- SEO -->
+<article class="service-card">
+<div class="service-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-seo"></use>
+</svg>
+</div>
+<div class="service-card__content">
+<h2 class="service-card__title">
+<a href="service-4.html">SEO-оптимизация</a>
+</h2>
+<p class="service-card__description">Повышение видимости сайта в поисковых системах и привлечение целевого трафика</p>
+<ul class="service-card__features">
+<li>Технический SEO</li>
+<li>Контент-маркетинг</li>
+<li>Аналитика</li>
+<li>Внешняя оптимизация</li>
+</ul>
+<a href="service-4.html" class="service-card__link">Подробнее →</a>
+</div>
+</article>
+
+<!-- Поддержка -->
+<article class="service-card">
+<div class="service-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-support"></use>
+</svg>
+</div>
+<div class="service-card__content">
+<h2 class="service-card__title">
+<a href="service-5.html">Техническая поддержка</a>
+</h2>
+<p class="service-card__description">Обслуживание и развитие существующих проектов, исправление ошибок, доработки</p>
+<ul class="service-card__features">
+<li>Хостинг и домены</li>
+<li>Мониторинг</li>
+<li>Резервное копирование</li>
+<li>Обновления</li>
+</ul>
+<a href="service-5.html" class="service-card__link">Подробнее →</a>
+</div>
+</article>
+
+<!-- Консалтинг -->
+<article class="service-card">
+<div class="service-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-consulting"></use>
+</svg>
+</div>
+<div class="service-card__content">
+<h2 class="service-card__title">
+<a href="service-6.html">Digital-консалтинг</a>
+</h2>
+<p class="service-card__description">Стратегическое планирование цифровой трансформации бизнеса</p>
+<ul class="service-card__features">
+<li>Аудит проектов</li>
+<li>Digital-стратегия</li>
+<li>Внедрение технологий</li>
+<li>Обучение команд</li>
+</ul>
+<a href="service-6.html" class="service-card__link">Подробнее →</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- Процесс работы -->
+<section class="work-process" aria-labelledby="process-title">
+<div class="container">
+<div class="section-header">
+<h2 id="process-title" class="section-header__title">Как мы работаем</h2>
+<p class="section-header__subtitle">Прозрачный процесс от обсуждения до запуска проекта</p>
+</div>
+
+<div class="process-steps">
+<div class="process-step">
+<div class="process-step__number">01</div>
+<h3 class="process-step__title">Анализ</h3>
+<p class="process-step__description">Изучаем ваш бизнес, цели и задачи. Проводим анализ конкурентов и ЦА.</p>
+</div>
+
+<div class="process-step">
+<div class="process-step__number">02</div>
+<h3 class="process-step__title">Планирование</h3>
+<p class="process-step__description">Составляем ТЗ, прототипы, дизайн-концепцию и план разработки.</p>
+</div>
+
+<div class="process-step">
+<div class="process-step__number">03</div>
+<h3 class="process-step__title">Разработка</h3>
+<p class="process-step__description">Создаем продукт по согласованному плану с регулярными демо.</p>
+</div>
+
+<div class="process-step">
+<div class="process-step__number">04</div>
+<h3 class="process-step__title">Запуск</h3>
+<p class="process-step__description">Тестируем, готовим к продакшену, запускаем и обучаем вашу команду.</p>
+</div>
+
+<div class="process-step">
+<div class="process-step__number">05</div>
+<h3 class="process-step__title">Поддержка</h3>
+<p class="process-step__description">Сопровождаем проект после запуска, вносим улучшения и доработки.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="services-faq" aria-labelledby="faq-title">
+<div class="container">
+<div class="services-faq__grid">
+<div class="services-faq__content">
+<h2 id="faq-title" class="services-faq__title">Частые вопросы</h2>
+<p class="services-faq__description">Ответы на популярные вопросы о наших услугах</p>
+<a href="faq.html" class="btn btn--secondary">Все вопросы</a>
+</div>
+
+<div class="services-faq__questions">
+<div class="accordion" data-accordion>
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Сколько времени занимает разработка сайта?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Сроки зависят от сложности проекта. Лендинг — 1-2 недели, корпоративный сайт — 1-2 месяца, интернет-магазин — 2-4 месяца. Точные сроки определяем после анализа требований.</p>
+</div>
+</div>
+
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Что входит в стоимость разработки?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>В стоимость входит: анализ, проектирование, дизайн, верстка, программирование, тестирование, запуск и обучение. Хостинг и домен оплачиваются отдельно.</p>
+</div>
+</div>
+
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Можно ли изменить проект в процессе работы?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Да, мы работаем по гибкой методологии. Изменения возможны на любом этапе. Крупные изменения обсуждаются отдельно и могут повлиять на сроки и бюджет.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA секция -->
+<section class="cta-section" aria-labelledby="cta-title">
+<div class="container">
+<h2 id="cta-title" class="cta-section__title">Готовы обсудить проект?</h2>
+<p class="cta-section__description">Оставьте заявку и мы подготовим коммерческое предложение</p>
+<a href="contacts.html" class="btn btn--primary btn--large">Обсудить проект</a>
+</div>
+</section>
+</main>
+
+<footer class="footer" role="contentinfo">
+<div class="container">
+<div class="footer__grid">
+<div class="footer__brand">
+<a href="sas.html" class="logo logo--footer">
+<svg class="logo__icon" width="32" height="32" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+<p class="footer__description">Комплексные digital-решения для бизнеса</p>
+</div>
+
+<div class="footer__nav">
+<h3 class="footer__title">Навигация</h3>
+<ul class="footer__list">
+<li><a href="sas.html">Главная</a></li>
+<li><a href="about.html">О нас</a></li>
+<li><a href="portfolio.html">Портфолио</a></li>
+<li><a href="services.html">Услуги</a></li>
+<li><a href="blog.html">Блог</a></li>
+<li><a href="contacts.html">Контакты</a></li>
+</ul>
+</div>
+
+<div class="footer__services">
+<h3 class="footer__title">Услуги</h3>
+<ul class="footer__list">
+<li><a href="service-1.html">Веб-разработка</a></li>
+<li><a href="service-2.html">Дизайн</a></li>
+<li><a href="service-3.html">Мобильные приложения</a></li>
+<li><a href="service-4.html">SEO</a></li>
+</ul>
+</div>
+</div>
+
+<div class="footer__bottom">
+<p class="footer__copyright">&copy; 2024 DigitalStudio. Все права защищены.</p>
+<nav class="footer__legal" aria-label="Юридическая информация">
+<a href="privacy.html">Политика конфиденциальности</a>
+<a href="terms.html">Условия использования</a>
+</nav>
+</div>
+</div>
+</footer>
+
+<!-- SVG спрайт с дополнительными иконками -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<symbol id="icon-web" viewBox="0 0 48 48">
+<path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zM8 24c0-2.85.63-5.55 1.76-7.98L18 24l-8.24 7.98C8.63 29.55 8 26.85 8 24zm16 14c-3.18 0-6.06-1.22-8.24-3.22L24 24l8.24-7.98C34.06 18.22 37 21.02 37 24c0 3.98-2.22 7.44-5.48 9.22L30 24l-5.48 4.22c.56.22 1.14.38 1.74.48L30 30l4.52 3.48C32.96 36.24 28.98 38 24 38z"/>
+</symbol>
+
+<symbol id="icon-design" viewBox="0 0 48 48">
+<path d="M42 6H6c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h36c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zM12 38H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm24 16H16v-24h20v24zm8-8h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4z"/>
+</symbol>
+
+<symbol id="icon-mobile" viewBox="0 0 48 48">
+<path d="M34 2H14c-2.21 0-4 1.79-4 4v36c0 2.21 1.79 4 4 4h20c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 36H14V10h20v28zm-10-2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+</symbol>
+
+<symbol id="icon-support" viewBox="0 0 48 48">
+<path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm2 34h-4v-4h4v4zm4.13-15.49l-1.79 1.84C26.9 25.79 26 27 26 30h-4c0-2.21.9-4.21 2.34-5.66l2.49-2.52C27.55 20.1 28 18.1 28 16c0-2.21-1.79-4-4-4s-4 1.79-4 4h-4c0-4.42 3.58-8 8-8s8 3.58 8 8c0 2.76-1.12 5.26-2.87 7.51z"/>
+</symbol>
+
+<symbol id="icon-consulting" viewBox="0 0 48 48">
+<path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-4 29v-4h8v4h-8zm8.2-12.2l-2.8 2.8C24.3 24.3 24 25.1 24 26v4h-4v-4c0-1.1.3-2.1.8-2.8l3.2-3.2c.8-.8 1.2-1.9 1.2-3 0-2.21-1.79-4-4-4s-4 1.79-4 4h-4c0-4.42 3.58-8 8-8s8 3.58 8 8c0 1.76-.71 3.35-1.8 4.8z"/>
+</symbol>
+</svg>
+</body>
+</html>

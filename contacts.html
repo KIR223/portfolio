@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакты | Самурайские Катаны</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="samurai.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Дополнительные стили для страницы контактов */
+.contacts-hero {
+text-align: center;
+margin-bottom: 60px;
+padding: 40px 0;
+background: linear-gradient(135deg, rgba(44, 62, 80, 0.05) 0%, rgba(192, 57, 43, 0.05) 100%);
+border-radius: 8px;
+}
+
+.contacts-hero h1 {
+margin-bottom: 20px;
+}
+
+.contacts-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 40px;
+margin-bottom: 80px;
+}
+
+.contact-card {
+background-color: white;
+padding: 30px;
+border-radius: 8px;
+box-shadow: var(--shadow);
+text-align: center;
+transition: transform 0.3s ease;
+border-top: 4px solid var(--primary-red);
+}
+
+.contact-card:hover {
+transform: translateY(-10px);
+}
+
+.contact-icon {
+width: 70px;
+height: 70px;
+background-color: rgba(192, 57, 43, 0.1);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 20px;
+font-size: 1.8rem;
+color: var(--primary-red);
+}
+
+.contact-card h3 {
+margin-bottom: 15px;
+color: var(--primary-dark);
+}
+
+.contact-info {
+color: #555;
+line-height: 1.8;
+}
+
+.contact-info a {
+color: var(--primary-red);
+text-decoration: none;
+transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+color: var(--primary-dark);
+text-decoration: underline;
+}
+
+.stores-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 30px;
+margin-bottom: 80px;
+}
+
+.store-card {
+background-color: white;
+border-radius: 8px;
+overflow: hidden;
+box-shadow: var(--shadow);
+transition: transform 0.3s ease;
+}
+
+.store-card:hover {
+transform: translateY(-10px);
+}
+
+.store-image {
+height: 200px;
+overflow: hidden;
+}
+
+.store-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.5s ease;
+}
+
+.store-card:hover .store-image img {
+transform: scale(1.05);
+}
+
+.store-info {
+padding: 25px;
+}
+
+.store-header {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+margin-bottom: 15px;
+}
+
+.store-name {
+font-size: 1.3rem;
+color: var(--primary-dark);
+margin-bottom: 5px;
+}
+
+.store-status {
+background-color: var(--primary-green);
+color: white;
+padding: 5px 10px;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 600;
+}
+
+.store-status.closed {
+background-color: var(--primary-red);
+}
+
+.store-details {
+color: #555;
+margin-bottom: 20px;
+}
+
+.store-details p {
+margin: 8px 0;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.store-details i {
+color: var(--primary-red);
+width: 20px;
+}
+
+.contact-form-section {
+background-color: white;
+padding: 50px;
+border-radius: 8px;
+box-shadow: var(--shadow);
+margin-bottom: 80px;
+}
+
+.form-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+.form-row {
+grid-template-columns: 1fr;
+}
+
+.contact-form-section {
+padding: 30px 20px;
+}
+
+.stores-grid {
+grid-template-columns: 1fr;
+}
+}
+
+.form-group label {
+display: block;
+margin-bottom: 8px;
+font-weight: 600;
+color: var(--primary-dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+width: 100%;
+padding: 12px 15px;
+border: 1px solid var(--border-color);
+border-radius: 4px;
+font-family: inherit;
+font-size: 1rem;
+transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+outline: none;
+border-color: var(--primary-red);
+}
+
+.form-group textarea {
+min-height: 150px;
+resize: vertical;
+}
+
+.form-submit {
+text-align: center;
+margin-top: 30px;
+}
+
+.map-container {
+margin-bottom: 80px;
+border-radius: 8px;
+overflow: hidden;
+box-shadow: var(--shadow);
+height: 400px;
+}
+
+.map-placeholder {
+width: 100%;
+height: 100%;
+background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+color: white;
+text-align: center;
+padding: 20px;
+}
+
+.map-placeholder i {
+font-size: 4rem;
+margin-bottom: 20px;
+color: rgba(255, 255, 255, 0.8);
+}
+
+.faq-section {
+background-color: #f9f9f9;
+padding: 50px;
+border-radius: 8px;
+margin-bottom: 80px;
+}
+
+.faq-item {
+margin-bottom: 25px;
+border-bottom: 1px solid #eee;
+padding-bottom: 25px;
+}
+
+.faq-item:last-child {
+border-bottom: none;
+margin-bottom: 0;
+padding-bottom: 0;
+}
+
+.faq-question {
+font-weight: 600;
+color: var(--primary-dark);
+margin-bottom: 10px;
+font-size: 1.1rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+cursor: pointer;
+}
+
+.faq-answer {
+color: #555;
+line-height: 1.7;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease;
+}
+
+.faq-answer.active {
+max-height: 500px;
+}
+
+.faq-question i {
+color: var(--primary-red);
+transition: transform 0.3s ease;
+}
+
+.faq-question.active i {
+transform: rotate(180deg);
+}
+</style>
+</head>
+<body>
+<!-- Самурайский декор верхний -->
+<div class="samurai-border top">
+<div class="mon">連</div>
+<div class="mon">絡</div>
+<div class="mon">先</div>
+</div>
+
+<!-- Главный контейнер -->
+<div class="container">
+<!-- Хедер с навигацией -->
+<header class="main-header">
+<div class="logo">
+<h1><i class="fas fa-gem"></i> 刀屋</h1>
+<p class="subtitle">Katana House | 侍の魂</p>
+</div>
+
+<nav class="main-nav">
+<ul>
+<li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+<li><a href="catalog.html"><i class="fas fa-swords"></i> Каталог</a></li>
+<li><a href="about.html"><i class="fas fa-landmark"></i> О нас</a></li>
+<li><a href="contacts.html" class="active"><i class="fas fa-map-marked-alt"></i> Контакты</a></li>
+<li><a href="cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Корзина <span class="cart-count">0</span></a></li>
+</ul>
+</nav>
+
+<button class="menu-toggle" aria-label="Меню">
+<i class="fas fa-bars"></i>
+</button>
+</header>
+
+<!-- Хлебные крошки -->
+<nav class="breadcrumbs">
+<a href="index.html">Главная</a> <i class="fas fa-chevron-right"></i>
+<span>Контакты</span>
+</nav>
+
+<!-- Герой-секция -->
+<section class="contacts-hero">
+<h1><i class="fas fa-map-marked-alt"></i> Контакты</h1>
+<p>Свяжитесь с нами любым удобным способом. Мы всегда рады помочь!</p>
+</section>
+
+<!-- Контактная информация -->
+<div class="contacts-grid">
+<div class="contact-card">
+<div class="contact-icon">
+<i class="fas fa-phone-alt"></i>
+</div>
+<h3>Телефоны</h3>
+<div class="contact-info">
+<p><strong>Бесплатный по России:</strong><br>
+<a href="tel:88005553535">8 (800) 555-35-35</a></p>
+<p><strong>Москва:</strong><br>
+<a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
+<p><strong>Техническая поддержка:</strong><br>
+<a href="tel:+74957654321">+7 (495) 765-43-21</a></p>
+</div>
+</div>
+
+<div class="contact-card">
+<div class="contact-icon">
+<i class="fas fa-envelope"></i>
+</div>
+<h3>Электронная почта</h3>
+<div class="contact-info">
+<p><strong>Общие вопросы:</strong><br>
+<a href="mailto:info@katanahouse.ru">info@katanahouse.ru</a></p>
+<p><strong>Заказы и доставка:</strong><br>
+<a href="mailto:orders@katanahouse.ru">orders@katanahouse.ru</a></p>
+<p><strong>Сотрудничество:</strong><br>
+<a href="mailto:partners@katanahouse.ru">partners@katanahouse.ru</a></p>
+</div>
+</div>
+
+<div class="contact-card">
+<div class="contact-icon">
+<i class="fas fa-clock"></i>
+</div>
+<h3>Время работы</h3>
+<div class="contact-info">
+<p><strong>Магазины:</strong><br>
+Пн-Пт: 10:00 - 21:00<br>
+Сб-Вс: 11:00 - 20:00</p>
+<p><strong>Онлайн-поддержка:</strong><br>
+Круглосуточно, 24/7</p>
+<p><strong>Доставка заказов:</strong><br>
+Ежедневно 9:00 - 22:00</p>
+</div>
+</div>
+</div>
+
+<!-- Наши магазины -->
+<section class="our-stores">
+<div class="section-header">
+<h2><i class="fas fa-store"></i> Наши магазины</h2>
+<p>Посетите наши шоу-румы и лично оцените качество катан</p>
+</div>
+
+<div class="stores-grid">
+<div class="store-card">
+<div class="store-image">
+<img src="https://via.placeholder.com/600x400/2c3e50/c0392b?text=Москва+Центр" alt="Магазин в Москве">
+</div>
+<div class="store-info">
+<div class="store-header">
+<div>
+<h3 class="store-name">Москва, Центр</h3>
+<p>Флагманский магазин</p>
+</div>
+<div class="store-status">Открыто</div>
+</div>
+<div class="store-details">
+<p><i class="fas fa-map-marker-alt"></i> ул. Самурайская, 47</p>
+<p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+<p><i class="fas fa-subway"></i> м. Самурайская, выход 3</p>
+<p><i class="fas fa-car"></i> Парковка на 20 мест</p>
+</div>
+<a href="#" class="btn btn-primary">
+<i class="fas fa-directions"></i> Построить маршрут
+</a>
+</div>
+</div>
+
+<div class="store-card">
+<div class="store-image">
+<img src="https://via.placeholder.com/600x400/2c3e50/27ae60?text=Санкт-Петербург" alt="Магазин в Санкт-Петербурге">
+</div>
+<div class="store-info">
+<div class="store-header">
+<div>
+<h3 class="store-name">Санкт-Петербург</h3>
+<p>Шоу-рум на Невском</p>
+</div>
+<div class="store-status">Открыто</div>
+</div>
+<div class="store-details">
+<p><i class="fas fa-map-marker-alt"></i> Невский пр., 128</p>
+<p><i class="fas fa-phone"></i> +7 (812) 987-65-43</p>
+<p><i class="fas fa-subway"></i> м. Невский проспект</p>
+<p><i class="fas fa-car"></i> Парковка платная</p>
+</div>
+<a href="#" class="btn btn-primary">
+<i class="fas fa-directions"></i> Построить маршрут
+</a>
+</div>
+</div>
+
+<div class="store-card">
+<div class="store-image">
+<img src="https://via.placeholder.com/600x400/2c3e50/f39c12?text=Казань" alt="Магазин в Казани">
+</div>
+<div class="store-info">
+<div class="store-header">
+<div>
+<h3 class="store-name">Казань</h3>
+<p>Магазин в историческом центре</p>
+</div>
+<div class="store-status">Открыто</div>
+</div>
+<div class="store-details">
+<p><i class="fas fa-map-marker-alt"></i> ул. Баумана, 15</p>
+<p><i class="fas fa-phone"></i> +7 (843) 456-78-90</p>
+<p><i class="fas fa-subway"></i> м. Кремлевская</p>
+<p><i class="fas fa-car"></i> Парковка во дворе</p>
+</div>
+<a href="#" class="btn btn-primary">
+<i class="fas fa-directions"></i> Построить маршрут
+</a>
+</div>
+</div>
+
+<div class="store-card">
+<div class="store-image">
+<img src="https://via.placeholder.com/600x400/2c3e50/3498db?text=Екатеринбург" alt="Магазин в Екатеринбурге">
+</div>
+<div class="store-info">
+<div class="store-header">
+<div>
+<h3 class="store-name">Екатеринбург</h3>
+<p>Новый шоу-рум</p>
+</div>
+<div class="store-status closed">Закрыто до 10:00</div>
+</div>
+<div class="store-details">
+<p><i class="fas fa-map-marker-alt"></i> ул. Вайнера, 10</p>
+<p><i class="fas fa-phone"></i> +7 (343) 234-56-78</p>
+<p><i class="fas fa-subway"></i> м. Геологическая</p>
+<p><i class="fas fa-car"></i> Подземная парковка</p>
+</div>
+<a href="#" class="btn btn-primary">
+<i class="fas fa-directions"></i> Построить маршрут
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Карта -->
+<div class="map-container">
+<div class="map-placeholder">
+<i class="fas fa-map-marked-alt"></i>
+<h3>Интерактивная карта</h3>
+<p>Здесь будет отображаться карта с нашими магазинами</p>
+<p style="font-size: 0.9rem; opacity: 0.8;">Для реального сайта подключите Яндекс.Карты или Google Maps</p>
+</div>
+</div>
+
+<!-- Форма обратной связи -->
+<section class="contact-form-section">
+<div class="section-header">
+<h2><i class="fas fa-comment-dots"></i> Форма обратной связи</h2>
+<p>Отправьте нам сообщение, и мы ответим в течение 2 часов</p>
+</div>
+
+<form id="contactForm">
+<div class="form-row">
+<div class="form-group">
+<label for="name">Имя *</label>
+<input type="text" id="name" name="name" required>
+</div>
+
+<div class="form-group">
+<label for="phone">Телефон *</label>
+<input type="tel" id="phone" name="phone" required>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="email">Email</label>
+<input type="email" id="email" name="email">
+</div>
+
+<div class="form-group">
+<label for="subject">Тема</label>
+<select id="subject" name="subject">
+<option value="">Выберите тему</option>
+<option value="order">Вопрос по заказу</option>
+<option value="product">Вопрос по товару</option>
+<option value="delivery">Доставка и оплата</option>
+<option value="warranty">Гарантия и возврат</option>
+<option value="cooperation">Сотрудничество</option>
+<option value="other">Другое</option>
+</select>
+</div>
+</div>
+
+<div class="form-group">
+<label for="message">Сообщение *</label>
+<textarea id="message" name="message" required></textarea>
+</div>
+
+<div class="form-group">
+<label class="checkbox-label">
+<input type="checkbox" required>
+<span>Я согласен с <a href="#">политикой конфиденциальности</a> и даю согласие на обработку персональных данных</span>
+</label>
+</div>
+
+<div class="form-submit">
+<button type="submit" class="btn btn-primary btn-large">
+<i class="fas fa-paper-plane"></i> Отправить сообщение
+</button>
+</div>
+</form>
+</section>
+
+<!-- Частые вопросы -->
+<section class="faq-section">
+<div class="section-header">
+<h2><i class="fas fa-question-circle"></i> Частые вопросы</h2>
+<p>Ответы на популярные вопросы о доставке, оплате и гарантии</p>
+</div>
+
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-question">
+Какой срок доставки по России?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Доставка по России занимает 3-7 рабочих дней в зависимости от региона. В Москве и Санкт-Петербурге возможна доставка на следующий день при заказе до 18:00. Точный срок доставки рассчитывается при оформлении заказа.</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Можно ли примерить катану перед покупкой?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Да, во всех наших магазинах вы можете не только посмотреть, но и подержать в руках любую катану. Наши консультанты помогут вам подобрать оптимальный размер и вес. Для тренировочных катан доступно тестирование баланса.</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Есть ли гарантия на катаны?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>На все катаны предоставляется гарантия 3 года. Гарантия покрывает дефекты материалов и изготовления. На боевые катаны дополнительно предоставляется гарантия на геометрию клинка. Подробные условия гарантии указаны в сертификате, который прилагается к каждой катане.</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Можно ли вернуть катану?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Да, в соответствии с законом о защите прав потребителей, вы можете вернуть катану в течение 14 дней с момента покупки, если она не была в употреблении, сохранен товарный вид и упаковка. Декоративные и коллекционные катаны можно вернуть в течение 30 дней.</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Делаете ли вы индивидуальные заказы?
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Да, наша мастерская принимает индивидуальные заказы на изготовление катан по вашим эскизам. Срок изготовления - от 3 до 12 месяцев в зависимости от сложности. Для обсуждения деталей свяжитесь с нами по телефону или через форму обратной связи.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Футер -->
+<footer class="main-footer">
+<div class="footer-content">
+<div class="footer-section">
+<h4>刀屋 Katana House</h4>
+<p>Магазин японских катан с 2010 года. Член ассоциации "Ниппон-то".</p>
+<div class="social-links">
+<a href="#"><i class="fab fa-vk"></i></a>
+<a href="#"><i class="fab fa-telegram"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+</div>
+</div>
+
+<div class="footer-section">
+<h4>Категории</h4>
+<ul>
+<li><a href="#">Боевые катаны</a></li>
+<li><a href="#">Декоративные</a></li>
+<li><a href="#">Коллекционные</a></li>
+<li><a href="#">Аксессуары</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h4>Контакты</h4>
+<p><i class="fas fa-phone"></i> 8 (800) 555-35-35</p>
+<p><i class="fas fa-envelope"></i> info@katanahouse.ru</p>
+<p><i class="fas fa-map-marker-alt"></i> Москва, ул. Самурайская, 47</p>
+</div>
+</div>
+
+<div class="footer-bottom">
+<p>&copy; <span class="current-year">2023</span> Katana House. Все права защищены. | <a href="#">Политика конфиденциальности</a></p>
+<p class="japanese-text">侍の道は誠実さと忠誠にある</p>
+</div>
+</footer>
+</div>
+
+<!-- Самурайский декор нижний -->
+<div class="samurai-border bottom">
+<div class="mon">武</div>
+<div class="mon">勇</div>
+<div class="mon">誠</div>
+</div>
+
+<!-- Мобильная навигация -->
+<div class="mobile-nav" id="mobileNav">
+<button class="close-nav"><i class="fas fa-times"></i></button>
+<nav>
+<ul>
+<li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+<li><a href="catalog.html"><i class="fas fa-swords"></i> Каталог</a></li>
+<li><a href="about.html"><i class="fas fa-landmark"></i> О нас</a></li>
+<li><a href="contacts.html"><i class="fas fa-map-marked-alt"></i> Контакты</a></li>
+<li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Корзина</a></li>
+</ul>
+</nav>
+</div>
+
+<script src="main.js"></script>
+<script>
+// Инициализация FAQ на странице контактов
+document.addEventListener('DOMContentLoaded', function() {
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+question.addEventListener('click', function() {
+const answer = this.nextElementSibling;
+const icon = this.querySelector('i');
+
+// Переключаем активный класс
+this.classList.toggle('active');
+answer.classList.toggle('active');
+
+// Анимируем иконку
+if (icon) {
+icon.style.transform = this.classList.contains('active')
+? 'rotate(180deg)'
+: 'rotate(0deg)';
+}
+});
+});
+
+// Обработка формы обратной связи
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+
+// В реальном приложении здесь был бы AJAX запрос
+alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+this.reset();
+});
+}
+
+// Обновление статуса магазинов в реальном времени
+updateStoreStatus();
+
+function updateStoreStatus() {
+const now = new Date();
+const hours = now.getHours();
+const day = now.getDay(); // 0 - воскресенье, 1 - понедельник, ...
+
+const stores = document.querySelectorAll('.store-status');
+
+stores.forEach(store => {
+const card = store.closest('.store-card');
+const storeName = card.querySelector('.store-name').textContent;
+
+// Определяем время работы для каждого магазина
+let isOpen = false;
+
+if (storeName.includes('Москва') || storeName.includes('Санкт-Петербург')) {
+// Москва и СПб: Пн-Пт 10-21, Сб-Вс 11-20
+if (day >= 1 && day <= 5) { // Пн-Пт
+isOpen = hours >= 10 && hours < 21;
+} else { // Сб-Вс
+isOpen = hours >= 11 && hours < 20;
+}
+} else if (storeName.includes('Казань')) {
+// Казань: Пн-Вс 10-20
+isOpen = hours >= 10 && hours < 20;
+} else if (storeName.includes('Екатеринбург')) {
+// Екатеринбург: Пн-Сб 11-19, Вс 12-18
+if (day >= 1 && day <= 6) { // Пн-Сб
+isOpen = hours >= 11 && hours < 19;
+} else { // Вс
+isOpen = hours >= 12 && hours < 18;
+}
+}
+
+// Обновляем статус
+if (isOpen) {
+store.textContent = 'Открыто';
+store.className = 'store-status';
+} else {
+store.textContent = 'Закрыто';
+store.className = 'store-status closed';
+}
+});
+}
+
+// Обновляем статус каждую минуту
+setInterval(updateStoreStatus, 60000);
+});
+</script>
+</body>
+</html>

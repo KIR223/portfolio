@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iron Shield Defense - Военные решения 2025</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Основные стили */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary: #0a192f;
+--secondary: #112240;
+--accent: #00d4ff;
+--accent-dark: #0099cc;
+--text: #e6f1ff;
+--text-secondary: #8892b0;
+--danger: #ff4757;
+--success: #2ed573;
+--border: #1e3a5f;
+--card-bg: rgba(17, 34, 64, 0.8);
+}
+
+body {
+font-family: 'Exo 2', sans-serif;
+background-color: var(--primary);
+color: var(--text);
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+font-family: 'Orbitron', sans-serif;
+font-weight: 700;
+}
+
+h1 {
+font-size: clamp(2.5rem, 5vw, 4rem);
+background: linear-gradient(90deg, var(--accent), #ffffff);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+margin-bottom: 1.5rem;
+}
+
+h2 {
+font-size: clamp(2rem, 4vw, 3rem);
+text-align: center;
+margin-bottom: 3rem;
+position: relative;
+padding-bottom: 1rem;
+}
+
+h2::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 100px;
+height: 4px;
+background: var(--accent);
+}
+
+h3 {
+font-size: 1.5rem;
+color: var(--accent);
+margin-bottom: 1rem;
+}
+
+p {
+margin-bottom: 1.5rem;
+color: var(--text-secondary);
+font-size: 1.1rem;
+}
+
+.container {
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+}
+
+section {
+padding: 80px 0;
+}
+
+.btn {
+display: inline-block;
+padding: 12px 30px;
+background: transparent;
+border: 2px solid var(--accent);
+color: var(--accent);
+font-family: 'Orbitron', sans-serif;
+font-weight: 500;
+text-transform: uppercase;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+.btn:hover {
+background: rgba(0, 212, 255, 0.1);
+transform: translateY(-3px);
+box-shadow: 0 5px 15px rgba(0, 212, 255, 0.2);
+}
+
+.btn-primary {
+background: var(--accent);
+color: var(--primary);
+}
+
+.btn-primary:hover {
+background: var(--accent-dark);
+}
+
+/* Шапка */
+header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+padding: 20px 0;
+background: rgba(10, 25, 47, 0.95);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--border);
+z-index: 1000;
+transition: all 0.3s ease;
+}
+
+.header-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 10px;
+font-family: 'Orbitron', sans-serif;
+font-size: 1.5rem;
+font-weight: 700;
+color: var(--accent);
+}
+
+.logo i {
+font-size: 1.8rem;
+}
+
+nav ul {
+display: flex;
+list-style: none;
+gap: 2rem;
+}
+
+nav a {
+color: var(--text);
+text-decoration: none;
+font-weight: 500;
+position: relative;
+padding: 5px 0;
+}
+
+nav a::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 0;
+height: 2px;
+background: var(--accent);
+transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+width: 100%;
+}
+
+.mobile-menu-btn {
+display: none;
+background: none;
+border: none;
+color: var(--accent);
+font-size: 1.5rem;
+cursor: pointer;
+}
+
+/* Hero секция */
+.hero {
+min-height: 100vh;
+display: flex;
+align-items: center;
+background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.7)),
+url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+position: relative;
+}
+
+.hero-content {
+max-width: 800px;
+}
+
+.hero-stats {
+display: flex;
+flex-wrap: wrap;
+gap: 2rem;
+margin-top: 3rem;
+}
+
+.stat-item {
+text-align: center;
+}
+
+.stat-number {
+font-family: 'Orbitron', sans-serif;
+font-size: 2.5rem;
+color: var(--accent);
+display: block;
+}
+
+.stat-text {
+font-size: 1rem;
+color: var(--text-secondary);
+}
+
+/* О компании */
+.about {
+background: var(--secondary);
+}
+
+.about-content {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 3rem;
+align-items: center;
+}
+
+.about-image {
+border-radius: 10px;
+overflow: hidden;
+border: 1px solid var(--border);
+}
+
+.about-image img {
+width: 100%;
+height: auto;
+display: block;
+}
+
+/* Услуги */
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+}
+
+.service-card {
+background: var(--card-bg);
+padding: 2rem;
+border-radius: 10px;
+border: 1px solid var(--border);
+transition: all 0.3s ease;
+}
+
+.service-card:hover {
+transform: translateY(-10px);
+border-color: var(--accent);
+}
+
+.service-icon {
+font-size: 2.5rem;
+color: var(--accent);
+margin-bottom: 1.5rem;
+}
+
+/* Технологии */
+.technologies {
+background: var(--secondary);
+}
+
+.tech-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 1.5rem;
+}
+
+.tech-item {
+background: var(--card-bg);
+padding: 1.5rem;
+border-radius: 10px;
+text-align: center;
+border: 1px solid var(--border);
+transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+transform: translateY(-5px);
+border-color: var(--accent);
+}
+
+.tech-icon {
+font-size: 2rem;
+color: var(--accent);
+margin-bottom: 1rem;
+}
+
+/* Проекты */
+.projects-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+}
+
+.project-card {
+background: var(--card-bg);
+border-radius: 10px;
+overflow: hidden;
+border: 1px solid var(--border);
+transition: all 0.3s ease;
+}
+
+.project-card:hover {
+transform: translateY(-10px);
+border-color: var(--accent);
+}
+
+.project-image {
+height: 200px;
+overflow: hidden;
+}
+
+.project-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+transform: scale(1.05);
+}
+
+.project-content {
+padding: 1.5rem;
+}
+
+/* Контакты */
+.contact-container {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 3rem;
+}
+
+.contact-info {
+margin-bottom: 2rem;
+}
+
+.contact-item {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 1.5rem;
+}
+
+.contact-icon {
+width: 50px;
+height: 50px;
+background: var(--card-bg);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--accent);
+font-size: 1.2rem;
+border: 1px solid var(--border);
+}
+
+.contact-form {
+background: var(--card-bg);
+padding: 2rem;
+border-radius: 10px;
+border: 1px solid var(--border);
+}
+
+.form-group {
+margin-bottom: 1.5rem;
+}
+
+.form-control {
+width: 100%;
+padding: 15px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--border);
+border-radius: 5px;
+color: var(--text);
+font-family: 'Exo 2', sans-serif;
+font-size: 1rem;
+}
+
+.form-control:focus {
+outline: none;
+border-color: var(--accent);
+}
+
+textarea.form-control {
+min-height: 150px;
+resize: vertical;
+}
+
+/* Футер */
+footer {
+background: #0a1520;
+padding: 3rem 0 1.5rem;
+border-top: 1px solid var(--border);
+}
+
+.footer-content {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+margin-bottom: 2rem;
+}
+
+.footer-logo {
+font-family: 'Orbitron', sans-serif;
+font-size: 1.8rem;
+color: var(--accent);
+margin-bottom: 1rem;
+}
+
+.social-links {
+display: flex;
+gap: 1rem;
+margin-top: 1.5rem;
+}
+
+.social-link {
+width: 40px;
+height: 40px;
+background: var(--card-bg);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--text);
+transition: all 0.3s ease;
+}
+
+.social-link:hover {
+background: var(--accent);
+color: var(--primary);
+transform: translateY(-3px);
+}
+
+.copyright {
+text-align: center;
+padding-top: 1.5rem;
+border-top: 1px solid var(--border);
+color: var(--text-secondary);
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+.about-content {
+grid-template-columns: 1fr;
+}
+
+.contact-container {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 768px) {
+nav {
+position: fixed;
+top: 80px;
+left: 0;
+width: 100%;
+background: rgba(10, 25, 47, 0.98);
+padding: 2rem;
+transform: translateY(-100%);
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+
+nav.active {
+transform: translateY(0);
+opacity: 1;
+visibility: visible;
+}
+
+nav ul {
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.mobile-menu-btn {
+display: block;
+}
+
+.hero-stats {
+justify-content: center;
+}
+
+section {
+padding: 60px 0;
+}
+}
+
+@media (max-width: 576px) {
+.hero-stats {
+flex-direction: column;
+align-items: center;
+}
+
+.services-grid,
+.projects-grid {
+grid-template-columns: 1fr;
+}
+
+.contact-form {
+padding: 1.5rem;
+}
+}
+
+/* Анимации */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+animation: fadeIn 0.6s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+</style>
+</head>
+<body>
+<!-- Шапка -->
+<header>
+<div class="container header-container">
+<div class="logo">
+<i class="fas fa-shield-alt"></i>
+<span>IRON SHIELD 2025</span>
+</div>
+
+<button class="mobile-menu-btn" id="menuBtn">
+<i class="fas fa-bars"></i>
+</button>
+
+<nav id="mainNav">
+<ul>
+<li><a href="#home">Главная</a></li>
+<li><a href="#about">О компании</a></li>
+<li><a href="#services">Услуги</a></li>
+<li><a href="#technologies">Технологии</a></li>
+<li><a href="#projects">Проекты</a></li>
+<li><a href="#contact">Контакты</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<!-- Hero секция -->
+<section id="home" class="hero">
+<div class="container">
+<div class="hero-content">
+<h1 class="fade-in">БУДУЩЕЕ ОБОРОНЫ УЖЕ ЗДЕСЬ 2025</h1>
+<p class="fade-in delay-1">Iron Shield Defense - ведущий мировой поставщик инновационных военных решений. Мы создаем технологии безопасности нового поколения.</p>
+<div class="fade-in delay-2">
+<a href="#projects" class="btn btn-primary">Наши проекты</a>
+<a href="#contact" class="btn">Консультация</a>
+</div>
+
+<div class="hero-stats fade-in delay-3">
+<div class="stat-item">
+<span class="stat-number">180+</span>
+<span class="stat-text">Проектов в 2025</span>
+</div>
+<div class="stat-item">
+<span class="stat-number">45</span>
+<span class="stat-text">Стран-партнеров</span>
+</div>
+<div class="stat-item">
+<span class="stat-number">28</span>
+<span class="stat-text">Лет опыта</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- О компании -->
+<section id="about" class="about">
+<div class="container">
+<h2>О КОМПАНИИ 2025</h2>
+<div class="about-content">
+<div class="about-image fade-in">
+<img src="https://images.unsplash.com/photo-1531315630201-bb15abeb1653?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Военные технологии">
+</div>
+<div class="about-text fade-in delay-1">
+<h3>Миссия Iron Shield</h3>
+<p>В 2025 году мы переопределяем стандарты безопасности. Наша цель - создание интегрированных систем защиты, которые предотвращают конфликты до их возникновения.</p>
+<p>С фокусом на искусственный интеллект, кибербезопасность и автономные системы, мы строим будущее, где технологии служат миру и стабильности.</p>
+<p>Наши решения уже защищают более 5 миллионов человек по всему миру и продолжают развиваться с каждым днем.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Услуги -->
+<section id="services" class="services">
+<div class="container">
+<h2>НАШИ УСЛУГИ 2025</h2>
+<div class="services-grid">
+<div class="service-card fade-in">
+<div class="service-icon">
+<i class="fas fa-robot"></i>
+</div>
+<h3>Автономные системы</h3>
+<p>Боевые роботы и дроны с ИИ для разведки и защиты. Технологии 2025 года.</p>
+</div>
+
+<div class="service-card fade-in delay-1">
+<div class="service-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h3>Киберзащита</h3>
+<p>Продвинутые системы кибербезопасности для государственных и частных структур.</p>
+</div>
+
+<div class="service-card fade-in delay-2">
+<div class="service-icon">
+<i class="fas fa-satellite"></i>
+</div>
+<h3>Космические технологии</h3>
+<p>Спутниковые системы наблюдения и связи нового поколения.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Технологии -->
+<section id="technologies" class="technologies">
+<div class="container">
+<h2>ТЕХНОЛОГИИ 2025</h2>
+<div class="tech-grid">
+<div class="tech-item fade-in">
+<div class="tech-icon">
+<i class="fas fa-brain"></i>
+</div>
+<h4>Искусственный интеллект</h4>
+</div>
+
+<div class="tech-item fade-in delay-1">
+<div class="tech-icon">
+<i class="fas fa-bolt"></i>
+</div>
+<h4>Энергетическое оружие</h4>
+</div>
+
+<div class="tech-item fade-in delay-2">
+<div class="tech-icon">
+<i class="fas fa-eye"></i>
+</div>
+<h4>Расширенная реальность</h4>
+</div>
+
+<div class="tech-item fade-in">
+<div class="tech-icon">
+<i class="fas fa-code"></i>
+</div>
+<h4>Квантовые вычисления</h4>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Проекты -->
+<section id="projects" class="projects">
+<div class="container">
+<h2>ПРОЕКТЫ 2025</h2>
+<div class="projects-grid">
+<div class="project-card fade-in">
+<div class="project-image">
+<img src="https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Проект">
+</div>
+<div class="project-content">
+<h3>Проект "Страж"</h3>
+<p>Автономная система защиты границ с использованием ИИ и дронов. Запуск: 2025 год.</p>
+</div>
+</div>
+
+<div class="project-card fade-in delay-1">
+<div class="project-image">
+<img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Проект">
+</div>
+<div class="project-content">
+<h3>КиберЩит v4.0</h3>
+<p>Новейшая система киберзащиты с квантовым шифрованием. Обновление: 2025 год.</p>
+</div>
+</div>
+
+<div class="project-card fade-in delay-2">
+<div class="project-image">
+<img src="https://images.unsplash.com/photo-1531315630201-bb15abeb1653?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Проект">
+</div>
+<div class="project-content">
+<h3>Спутниковая сеть "Орбита"</h3>
+<p>Глобальная сеть спутников для наблюдения и связи. Развертывание: 2025 год.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Контакты -->
+<section id="contact" class="contact">
+<div class="container">
+<h2>КОНТАКТЫ 2025</h2>
+<div class="contact-container">
+<div class="contact-info fade-in">
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fas fa-map-marker-alt"></i>
+</div>
+<div>
+<h4>Адрес</h4>
+<p>ул. Защитная, 25, Москва</p>
+</div>
+</div>
+
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fas fa-phone"></i>
+</div>
+<div>
+<h4>Телефон</h4>
+<p>+7 (495) 202-20-25</p>
+</div>
+</div>
+
+<div class="contact-item">
+<div class="contact-icon">
+<i class="fas fa-envelope"></i>
+</div>
+<div>
+<h4>Email</h4>
+<p>contact2025@ironshield.com</p>
+</div>
+</div>
+
+<div class="social-links">
+<a href="#" class="social-link">
+<i class="fab fa-linkedin-in"></i>
+</a>
+<a href="#" class="social-link">
+<i class="fab fa-telegram"></i>
+</a>
+<a href="#" class="social-link">
+<i class="fab fa-twitter"></i>
+</a>
+</div>
+</div>
+
+<div class="contact-form fade-in delay-1">
+<form id="contactForm">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Ваше имя" required>
+</div>
+
+<div class="form-group">
+<input type="email" class="form-control" placeholder="Ваш Email" required>
+</div>
+
+<div class="form-group">
+<textarea class="form-control" placeholder="Ваше сообщение" required></textarea>
+</div>
+
+<button type="submit" class="btn btn-primary">Отправить сообщение</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Футер -->
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-about">
+<div class="footer-logo">
+<i class="fas fa-shield-alt"></i> IRON SHIELD
+</div>
+<p>Лидер в области военных технологий 2025. Создаем безопасное будущее с помощью инноваций.</p>
+</div>
+
+<div class="footer-links">
+<h4>Быстрые ссылки</h4>
+<ul>
+<li><a href="#home">Главная</a></li>
+<li><a href="#services">Услуги</a></li>
+<li><a href="#projects">Проекты</a></li>
+<li><a href="#contact">Контакты</a></li>
+</ul>
+</div>
+
+<div class="footer-news">
+<h4>Новости 2025</h4>
+<p>Следите за нашими новыми разработками и технологическими прорывами этого года.</p>
+</div>
+</div>
+
+<div class="copyright">
+<p>&copy; 2025 Iron Shield Defense. Все права защищены.</p>
+</div>
+</div>
+</footer>
+
+<script>
+// Мобильное меню
+const menuBtn = document.getElementById('menuBtn');
+const mainNav = document.getElementById('mainNav');
+
+menuBtn.addEventListener('click', () => {
+mainNav.classList.toggle('active');
+menuBtn.innerHTML = mainNav.classList.contains('active')
+? '<i class="fas fa-times"></i>'
+: '<i class="fas fa-bars"></i>';
+});
+
+// Закрытие меню при клике на ссылку
+document.querySelectorAll('nav a').forEach(link => {
+link.addEventListener('click', () => {
+mainNav.classList.remove('active');
+menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+});
+});
+
+// Плавная прокрутка
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+
+// Обработка формы
+const contactForm = document.getElementById('contactForm');
+
+contactForm.addEventListener('submit', (e) => {
+e.preventDefault();
+
+// Простая валидация
+const inputs = contactForm.querySelectorAll('input, textarea');
+let isValid = true;
+
+inputs.forEach(input => {
+if (!input.value.trim()) {
+input.style.borderColor = 'var(--danger)';
+isValid = false;
+} else {
+input.style.borderColor = 'var(--border)';
+}
+});
+
+if (isValid) {
+alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+contactForm.reset();
+} else {
+alert('Пожалуйста, заполните все поля.');
+}
+});
+
+// Анимация появления при скролле
+const fadeElements = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.opacity = '1';
+entry.target.style.transform = 'translateY(0)';
+}
+});
+}, { threshold: 0.1 });
+
+fadeElements.forEach(element => {
+element.style.opacity = '0';
+element.style.transform = 'translateY(20px)';
+element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+observer.observe(element);
+});
+
+// Изменение шапки при скролле
+window.addEventListener('scroll', () => {
+const header = document.querySelector('header');
+if (window.scrollY > 100) {
+header.style.padding = '15px 0';
+header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+} else {
+header.style.padding = '20px 0';
+header.style.boxShadow = 'none';
+}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO мета-теги -->
+    <title>Космические исследования: От Спутника до Марса</title>
+    <meta name="description" content="История космических исследований от первых запусков до современных программ колонизации Марса. Хронология, технологии и будущее космонавтики.">
+    <meta name="keywords" content="космос, NASA, SpaceX, Марс, спутник, ракеты, космонавтика">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Космические исследования: От первых спутников до колонизации Марса">
+    <meta property="og:description" content="Полная история освоения космоса человечеством">
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Космические исследования: От первых спутников до колонизации Марса",
+        "description": "Образовательный ресурс по истории космонавтики"
+    }
+    </script>
+    
+    <!-- Стили -->
+    <style>
+        /* Переменные для космической темы */
+        :root {
+            --space-dark: #0a0e17;
+            --space-blue: #1a1f2e;
+            --nebula-purple: #6d28d9;
+            --star-yellow: #fbbf24;
+            --planet-orange: #f97316;
+            --rocket-red: #dc2626;
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            
+            --font-main: 'Segoe UI', system-ui, sans-serif;
+            --font-tech: 'Courier New', monospace;
+            
+            --gradient-space: linear-gradient(135deg, var(--space-dark), var(--space-blue));
+            --gradient-nebula: linear-gradient(135deg, var(--nebula-purple), #1e40af);
+            
+            --section-spacing: 6rem 1.5rem;
+        }
+        
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background: var(--gradient-space);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Звездный фон */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 60% 70%, rgba(109, 40, 217, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.1) 1px, transparent 1px);
+            background-size: 100px 100px, 150px 150px, 200px 200px;
+            pointer-events: none;
+            z-index: -1;
+            animation: twinkle 20s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Герой-секция */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 30%, var(--space-dark) 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        /* Анимация для заголовка */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--star-yellow), var(--planet-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient-nebula);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(109, 40, 217, 0.4);
+            border-color: var(--star-yellow);
+        }
+        
+        /* Секции */
+        section {
+            padding: var(--section-spacing);
+            position: relative;
+        }
+        
+        section:nth-child(even) {
+            background: rgba(26, 31, 46, 0.5);
+        }
+        
+        /* Таймлайн космический */
+        .space-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto;
+        }
+        
+        .space-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--nebula-purple), var(--star-yellow));
+            border-radius: 2px;
+        }
+        
+        .timeline-event {
+            display: flex;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .event-content {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 45%;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .event-content:hover {
+            transform: scale(1.02);
+            border-color: var(--star-yellow);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .event-year {
+            display: inline-block;
+            background: var(--rocket-red);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-family: var(--font-tech);
+        }
+        
+        /* Сетка миссий */
+        .missions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient-nebula);
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--star-yellow);
+        }
+        
+        /* Анимация ракеты */
+        .rocket-animation {
+            position: fixed;
+            bottom: 0;
+            right: 10%;
+            width: 100px;
+            height: 200px;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.3;
+            animation: launch 20s linear infinite;
+        }
+        
+        @keyframes launch {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .space-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-event {
+                flex-direction: column;
+                margin-left: 60px;
+            }
+            
+            .event-content {
+                width: 100%;
+            }
+            
+            .missions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .rocket-animation {
+                display: none;
+            }
+        }
+        
+        /* Технологическая галерея */
+        .tech-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .tech-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+        
+        .tech-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .tech-item:hover .tech-image {
+            transform: scale(1.1);
+        }
+        
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированная ракета -->
+    <div class="rocket-animation">🚀</div>
+    
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Космическая Одиссея</h1>
+            <p class="hero-subtitle" style="font-size: 1.5rem; margin-bottom: 2rem;">
+                От первого спутника до колонизации Марса: полная история освоения космоса
+            </p>
+            <div>
+                <a href="#timeline" class="btn">История</a>
+                <a href="#missions" class="btn">Миссии</a>
+                <a href="#future" class="btn">Будущее</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Основной контент -->
+    <main>
+        <!-- Введение -->
+        <section id="intro">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Начало космической эры</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                        4 октября 1957 года мир навсегда изменился с запуском первого искусственного спутника Земли - Спутника-1. 
+                        Это событие положило начало космической гонке между СССР и США, которая стала двигателем технологического 
+                        прогресса второй половины XX века.
+                    </p>
+                    <div style="background: rgba(109, 40, 217, 0.1); padding: 2rem; border-radius: 10px; border-left: 4px solid var(--nebula-purple); margin: 2rem 0;">
+                        <h3 style="color: var(--star-yellow); margin-bottom: 1rem;">Первый шаг в космос</h3>
+                        <p>
+                            Спутник-1 был простейшим аппаратом: сфера диаметром 58 см с четырьмя антеннами и радиопередатчиком. 
+                            Его сигнал "бип-бип" можно было услышать по всему миру, символизируя начало новой эры.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Таймлайн -->
+        <section id="timeline">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Хронология космических достижений</h2>
+                <div class="space-timeline">
+                    
+                    <!-- Событие 1 -->
+                    <div class="timeline-event">
+                        <div class="event-content">
+                            <span class="event-year">1957</span>
+                            <h3>Спутник-1</h3>
+                            <p>Первый искусственный спутник Земли, запущенный СССР. Начало космической эры.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Событие 2 -->
+                    <div class="timeline-event">
+                        <div class="event-content">
+                            <span class="event-year">1961</span>
+                            <h3>Первый человек в космосе</h3>
+                            <p>Юрий Гагарин на корабле "Восток-1" совершил первый полет человека в космос.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Событие 3 -->
+                    <div class="timeline-event">
+                        <div class="event-content">
+                            <span class="event-year">1969</span>
+                            <h3>Луна-человечество</h3>
+                            <p>Аполлон-11: Нил Армстронг и Базз Олдрин стали первыми людьми на Луне.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Событие 4 -->
+                    <div class="timeline-event">
+                        <div class="event-content">
+                            <span class="event-year">1971</span>
+                            <h3>Первая космическая станция</h3>
+                            <p>Салют-1 - первая в мире орбитальная станция, открывшая эру долговременных космических миссий.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Событие 5 -->
+                    <div class="timeline-event">
+                        <div class="event-content">
+                            <span class="event-year">1998</span>
+                            <h3>Международная космическая станция</h3>
+                            <p>Начало сборки МКС - самого масштабного международного космического проекта.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Событие 6 -->
+                    <div class="timeline-event">
+                        <div class="event-content">
+                            <span class="event-year">2012</span>
+                            <h3>Curiosity на Марсе</h3>
+                            <p>Марсоход Curiosity начал исследование Красной планеты, ища следы жизни.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Событие 7 -->
+                    <div class="timeline-event">
+                        <div class="event-content">
+                            <span class="event-year">2020</span>
+                            <h3>Коммерческая космонавтика</h3>
+                            <p>SpaceX Crew Dragon доставил астронавтов на МКС, открыв эру коммерческих полетов.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Ключевые миссии -->
+        <section id="missions">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Знаковые космические миссии</h2>
+                <div class="missions-grid">
+                    
+                    <!-- Миссия 1 -->
+                    <div class="mission-card">
+                        <h3>Восток-1</h3>
+                        <p style="color: var(--text-muted); margin: 1rem 0;">12 апреля 1961</p>
+                        <p>Первый пилотируемый полет в космос. Юрий Гагарин совершил один виток вокруг Земли.</p>
+                    </div>
+                    
+                    <!-- Миссия 2 -->
+                    <div class="mission-card">
+                        <h3>Аполлон-11</h3>
+                        <p style="color: var(--text-muted); margin: 1rem 0;">16-24 июля 1969</p>
+                        <p>"Маленький шаг для человека, гигантский скачок для человечества" - высадка на Луну.</p>
+                    </div>
+                    
+                    <!-- Миссия 3 -->
+                    <div class="mission-card">
+                        <h3>Вояджер-1</h3>
+                        <p style="color: var(--text-muted); margin: 1rem 0;">Запуск: 1977</p>
+                        <p>Самый далекий рукотворный объект. Покинул Солнечную систему в 2012 году.</p>
+                    </div>
+                    
+                    <!-- Миссия 4 -->
+                    <div class="mission-card">
+                        <h3>Hubble</h3>
+                        <p style="color: var(--text-muted); margin: 1rem 0;">Запуск: 1990</p>
+                        <p>Космический телескоп, изменивший наше понимание Вселенной.</p>
+                    </div>
+                    
+                    <!-- Миссия 5 -->
+                    <div class="mission-card">
+                        <h3>Марс-2020</h3>
+                        <p style="color: var(--text-muted); margin: 1rem 0;">Запуск: 2020</p>
+                        <p>Миссия Perseverance: поиск жизни и подготовка к пилотируемым полетам.</p>
+                    </div>
+                    
+                    <!-- Миссия 6 -->
+                    <div class="mission-card">
+                        <h3>Artemis</h3>
+                        <p style="color: var(--text-muted); margin: 1rem 0;">Планируется: 2025+</p>
+                        <p>Возвращение человека на Луну и создание постоянной базы.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Технологии -->
+        <section id="tech">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Космические технологии</h2>
+                <div class="tech-gallery">
+                    <div class="tech-item">
+                        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?auto=format&fit=crop&w=400&q=80" 
+                             alt="Ракета Falcon 9" class="tech-image">
+                    </div>
+                    <div class="tech-item">
+                        <img src="https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=400&q=80" 
+                             alt="Космический телескоп" class="tech-image">
+                    </div>
+                    <div class="tech-item">
+                        <img src="https://images.unsplash.com/photo-1541188495357-ad2dc89487b8?auto=format&fit=crop&w=400&q=80" 
+                             alt="Спутник на орбите" class="tech-image">
+                    </div>
+                    <div class="tech-item">
+                        <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=400&q=80" 
+                             alt="Марсоход" class="tech-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Будущее -->
+        <section id="future">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Будущее космонавтики</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="background: rgba(251, 191, 36, 0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                        <h3 style="color: var(--star-yellow);">Колонизация Марса</h3>
+                        <p>Компании SpaceX и NASA работают над программами по созданию постоянных поселений на Марсе к 2030-2040 годам.</p>
+                    </div>
+                    <div style="background: rgba(109, 40, 217, 0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                        <h3 style="color: var(--nebula-purple);">Космический туризм</h3>
+                        <p>Virgin Galactic, Blue Origin и SpaceX открывают космос для частных лиц, делая орбитальные полеты доступными.</p>
+                    </div>
+                    <div style="background: rgba(220, 38, 38, 0.1); padding: 2rem; border-radius: 15px;">
+                        <h3 style="color: var(--rocket-red);">Межзвездные полеты</h3>
+                        <p>Проекты Breakthrough Starshot разрабатывают технологии для полетов к ближайшим звездным системам.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Источники -->
+        <section id="sources">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Источники и литература</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border-radius: 10px;">
+                        <h4>NASA Official Website</h4>
+                        <p>Официальный сайт NASA с архивами миссий, фотографиями и научными данными.</p>
+                    </div>
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border-radius: 10px;">
+                        <h4>SpaceX Press Kits</h4>
+                        <p>Техническая документация и пресс-киты всех миссий SpaceX.</p>
+                    </div>
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border-radius: 10px;">
+                        <h4>Роскосмос: История космонавтики</h4>
+                        <p>Архивы советской и российской космической программы.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Футер -->
+    <footer style="background: rgba(10, 14, 23, 0.8); padding: 3rem 1.5rem; text-align: center; border-top: 1px solid rgba(109, 40, 217, 0.3);">
+        <div class="container">
+            <p>© 2023 Космический образовательный проект</p>
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
+                Все материалы предоставлены для образовательных целей
+            </p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Анимация появления элементов при скролле
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        // Наблюдаем за элементами таймлайна
+        document.querySelectorAll('.timeline-event').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Анимация звезд
+        function createStars() {
+            const starsContainer = document.createElement('div');
+            starsContainer.style.position = 'fixed';
+            starsContainer.style.top = '0';
+            starsContainer.style.left = '0';
+            starsContainer.style.width = '100%';
+            starsContainer.style.height = '100%';
+            starsContainer.style.pointerEvents = 'none';
+            starsContainer.style.zIndex = '-1';
+            
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.background = 'white';
+                star.style.borderRadius = '50%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.7 + 0.3;
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite alternate`;
+                
+                starsContainer.appendChild(star);
+            }
+            
+            document.body.appendChild(starsContainer);
+        }
+        
+        // Запускаем создание звезд
+        createStars();
+        
+        // Анимация ракеты при скролле
+        window.addEventListener('scroll', () => {
+            const rocket = document.querySelector('.rocket-animation');
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            
+            if (rocket) {
+                rocket.style.opacity = 0.1 + scrollPercent * 0.4;
+            }
+        });
+        
+        console.log('Космический сайт загружен! 🚀');
+    </script>
+</body>
+</html>

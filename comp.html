@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Эволюция компьютеров: История вычислительной техники</title>
+    <meta name="description" content="Полная история развития вычислительной техники от древних счетов до квантовых компьютеров">
+    
+    <style>
+        :root {
+            --matrix-green: #00ff41;
+            --cyber-blue: #0ff0fc;
+            --retro-purple: #9d00ff;
+            --chip-gold: #ffd700;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-glitch: #fff;
+            
+            --font-mono: 'Courier New', monospace;
+            --font-pixel: 'Arial', sans-serif;
+            
+            --glitch-shadow: 0 0 10px var(--matrix-green);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-mono);
+            background: var(--dark-bg);
+            color: var(--text-glitch);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(transparent 99%, rgba(0, 255, 65, 0.1) 100%),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 100% 3em, 2em 100%;
+        }
+        
+        /* Эффект матрицы */
+        .matrix-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        /* Герой с неоновым текстом */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .neon-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--matrix-green);
+            text-shadow: 
+                0 0 10px var(--matrix-green),
+                0 0 20px var(--matrix-green),
+                0 0 30px var(--matrix-green);
+            animation: neonPulse 2s infinite alternate;
+            margin-bottom: 2rem;
+        }
+        
+        @keyframes neonPulse {
+            from { opacity: 0.8; }
+            to { opacity: 1; }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--cyber-blue);
+            margin-bottom: 3rem;
+        }
+        
+        /* Эволюционная линия */
+        .evolution-line {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+        
+        .evolution-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, 
+                var(--retro-purple), 
+                var(--cyber-blue), 
+                var(--matrix-green));
+            transform: translateX(-50%);
+        }
+        
+        .era {
+            display: flex;
+            align-items: center;
+            margin: 4rem 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .era.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .era-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 45%;
+            border: 1px solid var(--matrix-green);
+            box-shadow: var(--glitch-shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .era-content:hover {
+            transform: scale(1.02);
+            border-color: var(--chip-gold);
+        }
+        
+        .era-year {
+            background: var(--retro-purple);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        /* Карточки компьютеров */
+        .computers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+        }
+        
+        .computer-card {
+            background: var(--card-bg);
+            border: 1px solid var(--matrix-green);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .computer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--retro-purple), 
+                var(--cyber-blue), 
+                var(--matrix-green));
+        }
+        
+        .computer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+        }
+        
+        /* Контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: 6rem 1.5rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .evolution-line::before {
+                left: 30px;
+            }
+            
+            .era {
+                margin-left: 60px;
+                flex-direction: column;
+            }
+            
+            .era-content {
+                width: 100%;
+            }
+            
+            .computers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="matrix-effect" id="matrixCanvas"></div>
+    
+    <section class="hero">
+        <div class="container">
+            <h1 class="neon-title">ЭВОЛЮЦИЯ КОМПЬЮТЕРОВ</h1>
+            <p class="subtitle">От механических калькуляторов до искусственного интеллекта</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button onclick="scrollToSection('timeline')" style="background: var(--matrix-green); color: black; border: none; padding: 1rem 2rem; border-radius: 5px; font-family: var(--font-mono); font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+                    ХРОНОЛОГИЯ
+                </button>
+                <button onclick="scrollToSection('computers')" style="background: transparent; color: var(--cyber-blue); border: 2px solid var(--cyber-blue); padding: 1rem 2rem; border-radius: 5px; font-family: var(--font-mono); font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+                    КОМПЬЮТЕРЫ
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <main>
+        <!-- Эволюционная линия -->
+        <section id="timeline">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--cyber-blue);">Историческая линия развития</h2>
+                <div class="evolution-line">
+                    
+                    <!-- Эра 1 -->
+                    <div class="era">
+                        <div class="era-content">
+                            <span class="era-year">До 1900</span>
+                            <h3>Механические вычисления</h3>
+                            <p>Абак → Антикитерский механизм → Паскалина → Аналитическая машина Бэббиджа</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Эра 2 -->
+                    <div class="era">
+                        <div class="era-content">
+                            <span class="era-year">1930-1940</span>
+                            <h3>Электромеханические компьютеры</h3>
+                            <p>Z1 Конрада Цузе → Harvard Mark I → Колосс → ENIAC</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Эра 3 -->
+                    <div class="era">
+                        <div class="era-content">
+                            <span class="era-year">1950-1960</span>
+                            <h3>Транзисторная революция</h3>
+                            <p>UNIVAC I → IBM System/360 → МЭСМ (первый советский компьютер)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Эра 4 -->
+                    <div class="era">
+                        <div class="era-content">
+                            <span class="era-year">1970-1980</span>
+                            <h3>Микропроцессоры и ПК</h3>
+                            <p>Intel 4004 → Altair 8800 → Apple II → IBM PC → ZX Spectrum</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Эра 5 -->
+                    <div class="era">
+                        <div class="era-content">
+                            <span class="era-year">1990-2000</span>
+                            <h3>Интернет-революция</h3>
+                            <p>World Wide Web → Windows 95 → Google → Мобильные устройства</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Эра 6 -->
+                    <div class="era">
+                        <div class="era-content">
+                            <span class="era-year">2010-2020</span>
+                            <h3>ИИ и облачные вычисления</h3>
+                            <p>Deep Learning → Квантовые компьютеры → Нейроморфные процессоры</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Легендарные компьютеры -->
+        <section id="computers">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--cyber-blue);">Легендарные компьютеры</h2>
+                <div class="computers-grid">
+                    
+                    <!-- ENIAC -->
+                    <div class="computer-card">
+                        <h3 style="color: var(--matrix-green); margin-bottom: 1rem;">ENIAC (1946)</h3>
+                        <p>Первый электронный компьютер общего назначения. Занимал 167 м², весил 27 тонн.</p>
+                    </div>
+                    
+                    <!-- IBM PC -->
+                    <div class="computer-card">
+                        <h3 style="color: var(--matrix-green); margin-bottom: 1rem;">IBM PC 5150 (1981)</h3>
+                        <p>Компьютер, который стандартизировал архитектуру ПК и изменил индустрию.</p>
+                    </div>
+                    
+                    <!-- Apple Macintosh -->
+                    <div class="computer-card">
+                        <h3 style="color: var(--matrix-green); margin-bottom: 1rem;">Apple Macintosh (1984)</h3>
+                        <p>Первый успешный ПК с графическим интерфейсом и мышью.</p>
+                    </div>
+                    
+                    <!-- Cray-1 -->
+                    <div class="computer-card">
+                        <h3 style="color: var(--matrix-green); margin-bottom: 1rem;">Cray-1 (1976)</h3>
+                        <p>Самый быстрый компьютер своего времени, икона суперкомпьютинга.</p>
+                    </div>
+                    
+                    <!-- ZX Spectrum -->
+                    <div class="computer-card">
+                        <h3 style="color: var(--matrix-green); margin-bottom: 1rem;">ZX Spectrum (1982)</h3>
+                        <p>Компьютер, который принес программирование в массы в Европе.</p>
+                    </div>
+                    
+                    <!-- IBM Deep Blue -->
+                    <div class="computer-card">
+                        <h3 style="color: var(--matrix-green); margin-bottom: 1rem;">IBM Deep Blue (1997)</h3>
+                        <p>Первый компьютер, обыгравший чемпиона мира по шахматам.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Технологии будущего -->
+        <section>
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--cyber-blue);">Будущее вычислений</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: rgba(0, 255, 65, 0.1); padding: 2rem; border-radius: 10px; border: 1px solid var(--matrix-green);">
+                        <h3 style="color: var(--chip-gold); margin-bottom: 1rem;">Квантовые компьютеры</h3>
+                        <p>Используют квантовые биты (кубиты) для экспоненциального ускорения вычислений.</p>
+                    </div>
+                    <div style="background: rgba(15, 240, 252, 0.1); padding: 2rem; border-radius: 10px; border: 1px solid var(--cyber-blue);">
+                        <h3 style="color: var(--chip-gold); margin-bottom: 1rem;">Нейроморфные чипы</h3>
+                        <p>Аппаратная архитектура, имитирующая работу человеческого мозга.</p>
+                    </div>
+                    <div style="background: rgba(157, 0, 255, 0.1); padding: 2rem; border-radius: 10px; border: 1px solid var(--retro-purple);">
+                        <h3 style="color: var(--chip-gold); margin-bottom: 1rem;">Оптические вычисления</h3>
+                        <p>Использование света вместо электричества для передачи данных.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer style="background: rgba(26, 26, 26, 0.9); padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--matrix-green);">
+        <div class="container">
+            <p>© 2023 Музей вычислительной техники</p>
+            <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">
+                Все торговые марки принадлежат их правообладателям
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Эффект матрицы
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const letters = '01';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for(let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height);
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = `${fontSize}px monospace`;
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
+        
+        // Анимация появления
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.era').forEach(el => observer.observe(el));
+        
+        // Плавная прокрутка
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Эффект печатающего текста
+        const heroText = document.querySelector('.neon-title');
+        const originalText = heroText.textContent;
+        heroText.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < originalText.length) {
+                heroText.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        
+        setTimeout(typeWriter, 1000);
+        
+        console.log('Компьютерный сайт загружен! 💻');
+    </script>
+</body>
+</html>

@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Япония: Страна восходящего солнца</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary-red: #BC002D;
+--primary-white: #FFFFFF;
+--primary-black: #0A0A0A;
+--secondary-gold: #C5A572;
+--secondary-gray: #2B2B2B;
+--accent-sakura: #FFB7C5;
+--accent-bamboo: #7BA23F;
+--text-light: #F5F5F5;
+--text-gray: #CCCCCC;
+--card-bg: rgba(43, 43, 43, 0.9);
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+--gradient-sunrise: linear-gradient(135deg, #BC002D 0%, #FF6B6B 50%, #C5A572 100%);
+--gradient-traditional: linear-gradient(135deg, #0A0A0A 0%, #2B2B2B 100%);
+}
+
+body {
+background-color: var(--primary-black);
+color: var(--text-light);
+font-family: 'Noto Sans JP', sans-serif;
+line-height: 1.7;
+overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+font-family: 'Playfair Display', serif;
+font-weight: 700;
+}
+
+/* Загрузочный экран */
+.preloader {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: var(--gradient-traditional);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+z-index: 10000;
+transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader.hidden {
+opacity: 0;
+visibility: hidden;
+}
+
+.loading-container {
+text-align: center;
+position: relative;
+padding: 3rem;
+border-radius: 20px;
+background: rgba(10, 10, 10, 0.9);
+box-shadow: var(--shadow);
+border: 2px solid var(--primary-red);
+}
+
+.loading-logo {
+font-size: 4.5rem;
+color: var(--primary-red);
+margin-bottom: 2rem;
+font-weight: 800;
+letter-spacing: 2px;
+position: relative;
+}
+
+.loading-logo::after {
+content: '日本';
+position: absolute;
+top: -10px;
+right: -40px;
+font-size: 2rem;
+color: var(--secondary-gold);
+background: rgba(197, 165, 114, 0.1);
+padding: 5px 10px;
+border-radius: 5px;
+}
+
+.loading-text {
+font-size: 1.8rem;
+margin-bottom: 2.5rem;
+color: var(--text-light);
+text-transform: uppercase;
+letter-spacing: 3px;
+position: relative;
+}
+
+.loading-text::after {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 100px;
+height: 3px;
+background: var(--gradient-sunrise);
+}
+
+.loader {
+width: 120px;
+height: 120px;
+border: 5px solid rgba(188, 0, 45, 0.1);
+border-radius: 50%;
+border-top-color: var(--primary-red);
+border-right-color: var(--secondary-gold);
+animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+margin: 0 auto 2.5rem;
+position: relative;
+}
+
+.loader::before {
+content: '';
+position: absolute;
+top: 10px;
+left: 10px;
+right: 10px;
+bottom: 10px;
+border: 3px solid rgba(255, 183, 197, 0.1);
+border-radius: 50%;
+border-top-color: var(--accent-sakura);
+animation: spin 2s linear infinite reverse;
+}
+
+.progress-container {
+width: 350px;
+margin: 0 auto;
+}
+
+.progress-bar {
+width: 100%;
+height: 10px;
+background-color: rgba(204, 204, 204, 0.1);
+border-radius: 5px;
+overflow: hidden;
+margin-bottom: 1.5rem;
+box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.progress {
+height: 100%;
+width: 0%;
+background: var(--gradient-sunrise);
+border-radius: 5px;
+animation: load 3.5s ease-in-out forwards;
+position: relative;
+overflow: hidden;
+}
+
+.progress::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+animation: shimmer 2s infinite;
+}
+
+.progress-text {
+font-size: 1.2rem;
+color: var(--text-gray);
+margin-bottom: 0.5rem;
+display: flex;
+justify-content: space-between;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+@keyframes load {
+0% { width: 0%; }
+100% { width: 100%; }
+}
+
+@keyframes shimmer {
+0% { transform: translateX(-100%); }
+100% { transform: translateX(100%); }
+}
+
+/* Анимированные сакуры */
+.sakura-fall {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 9999;
+}
+
+.sakura {
+position: absolute;
+border-radius: 50% 50% 50% 0;
+opacity: 0.7;
+animation: fall linear infinite;
+}
+
+.sakura:nth-child(3n) {
+background-color: var(--accent-sakura);
+box-shadow: 0 0 10px var(--accent-sakura);
+}
+
+.sakura:nth-child(3n+1) {
+background-color: #FFE4E9;
+box-shadow: 0 0 10px #FFE4E9;
+}
+
+.sakura:nth-child(3n+2) {
+background-color: #FF9EB5;
+box-shadow: 0 0 10px #FF9EB5;
+}
+
+@keyframes fall {
+to {
+transform: translateY(100vh) rotate(360deg);
+}
+}
+
+/* Основной контент */
+.content {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 1s ease, transform 1s ease;
+}
+
+.content.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Шапка */
+header {
+background: rgba(10, 10, 10, 0.95);
+padding: 1.2rem 3rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--primary-red);
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 15px;
+flex-shrink: 0;
+}
+
+.logo-icon {
+color: var(--primary-red);
+font-size: 2.8rem;
+filter: drop-shadow(0 0 10px rgba(188, 0, 45, 0.7));
+}
+
+.logo-text {
+display: flex;
+flex-direction: column;
+}
+
+.site-title {
+font-size: 2.4rem;
+font-weight: 800;
+letter-spacing: 2px;
+line-height: 1;
+color: var(--primary-white);
+}
+
+.site-subtitle {
+font-size: 1rem;
+color: var(--text-gray);
+letter-spacing: 1px;
+margin-top: 5px;
+}
+
+/* Гамбургер меню */
+.menu-toggle {
+display: none;
+flex-direction: column;
+cursor: pointer;
+padding: 8px;
+background: rgba(188, 0, 45, 0.1);
+border-radius: 5px;
+transition: all 0.3s;
+}
+
+.menu-toggle:hover {
+background: rgba(188, 0, 45, 0.2);
+}
+
+.menu-toggle span {
+width: 30px;
+height: 3px;
+background: var(--primary-red);
+margin: 4px 0;
+transition: 0.3s;
+border-radius: 2px;
+}
+
+.menu {
+display: flex;
+gap: 2.5rem;
+align-items: center;
+}
+
+.menu a {
+color: var(--text-light);
+text-decoration: none;
+font-size: 1.2rem;
+font-weight: 600;
+transition: all 0.3s;
+position: relative;
+padding: 8px 0;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.menu a:hover {
+color: var(--primary-red);
+}
+
+.menu a::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 0;
+height: 3px;
+background: var(--gradient-sunrise);
+transition: width 0.3s ease;
+}
+
+.menu a:hover::after {
+width: 100%;
+}
+
+.menu a.active {
+color: var(--primary-red);
+}
+
+.menu a.active::after {
+width: 100%;
+}
+
+.cta-button {
+background: var(--gradient-sunrise);
+color: var(--text-light);
+padding: 0.8rem 2rem;
+border: none;
+border-radius: 8px;
+font-size: 1.1rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+text-transform: uppercase;
+letter-spacing: 1px;
+box-shadow: 0 5px 15px rgba(188, 0, 45, 0.3);
+position: relative;
+overflow: hidden;
+}
+
+.cta-button:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 25px rgba(188, 0, 45, 0.5);
+}
+
+.cta-button:active {
+transform: translateY(-1px);
+}
+
+/* Герой-секция */
+.hero {
+min-height: 100vh;
+background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 4rem 2rem;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(circle at 30% 20%, rgba(188, 0, 45, 0.2) 0%, transparent 50%),
+radial-gradient(circle at 70% 80%, rgba(197, 165, 114, 0.2) 0%, transparent 50%);
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 1200px;
+}
+
+.hero-title {
+font-size: 4.5rem;
+margin-bottom: 1.5rem;
+line-height: 1.1;
+color: var(--primary-white);
+text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-japanese {
+font-size: 3rem;
+color: var(--primary-red);
+margin-bottom: 2rem;
+font-family: 'Noto Sans JP', sans-serif;
+font-weight: 700;
+}
+
+.hero-subtitle {
+font-size: 1.8rem;
+max-width: 900px;
+margin: 0 auto 2rem;
+line-height: 1.7;
+color: var(--text-light);
+font-weight: 300;
+}
+
+.hero-stats {
+display: flex;
+justify-content: center;
+gap: 3rem;
+margin: 3rem 0;
+flex-wrap: wrap;
+}
+
+.stat-item {
+text-align: center;
+padding: 1.5rem 2rem;
+background: rgba(43, 43, 43, 0.7);
+border-radius: 15px;
+border: 1px solid rgba(188, 0, 45, 0.2);
+min-width: 180px;
+transition: transform 0.3s;
+}
+
+.stat-item:hover {
+transform: translateY(-10px);
+border-color: var(--primary-red);
+box-shadow: 0 10px 25px rgba(188, 0, 45, 0.2);
+}
+
+.stat-value {
+font-size: 2.8rem;
+font-weight: 800;
+color: var(--primary-red);
+margin-bottom: 0.5rem;
+font-family: 'Playfair Display', serif;
+}
+
+.stat-label {
+font-size: 1.1rem;
+color: var(--text-gray);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.hero-buttons {
+display: flex;
+gap: 1.5rem;
+justify-content: center;
+margin-top: 3rem;
+flex-wrap: wrap;
+}
+
+.btn-primary {
+background: var(--gradient-sunrise);
+color: var(--text-light);
+padding: 1.2rem 3rem;
+border: none;
+border-radius: 10px;
+font-size: 1.3rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+text-transform: uppercase;
+letter-spacing: 2px;
+box-shadow: 0 10px 25px rgba(188, 0, 45, 0.4);
+}
+
+.btn-primary:hover {
+transform: translateY(-5px) scale(1.05);
+box-shadow: 0 15px 35px rgba(188, 0, 45, 0.6);
+}
+
+.btn-secondary {
+background: transparent;
+color: var(--text-light);
+padding: 1.2rem 3rem;
+border: 2px solid var(--primary-red);
+border-radius: 10px;
+font-size: 1.3rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+text-transform: uppercase;
+letter-spacing: 2px;
+}
+
+.btn-secondary:hover {
+background: rgba(188, 0, 45, 0.1);
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(188, 0, 45, 0.2);
+}
+
+/* Секции */
+.section {
+padding: 6rem 3rem;
+max-width: 1400px;
+margin: 0 auto;
+}
+
+.section-title {
+text-align: center;
+font-size: 3.2rem;
+margin-bottom: 1rem;
+color: var(--primary-white);
+position: relative;
+padding-bottom: 1.5rem;
+}
+
+.section-title::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 150px;
+height: 5px;
+background: var(--gradient-sunrise);
+border-radius: 3px;
+}
+
+.section-subtitle {
+text-align: center;
+font-size: 1.4rem;
+color: var(--text-gray);
+margin-bottom: 4rem;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+line-height: 1.7;
+}
+
+/* Секция истории */
+.history-section {
+background: var(--gradient-traditional);
+position: relative;
+overflow: hidden;
+}
+
+.history-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: url('https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2092&q=80');
+background-size: cover;
+background-position: center;
+opacity: 0.05;
+}
+
+.history-timeline {
+display: flex;
+flex-direction: column;
+gap: 3rem;
+max-width: 1000px;
+margin: 0 auto;
+position: relative;
+z-index: 2;
+}
+
+.timeline-item {
+display: flex;
+gap: 3rem;
+align-items: flex-start;
+}
+
+.timeline-year {
+font-size: 2.5rem;
+color: var(--primary-red);
+font-weight: 700;
+min-width: 150px;
+text-align: right;
+padding-top: 0.5rem;
+}
+
+.timeline-content {
+flex: 1;
+background: var(--card-bg);
+padding: 2rem;
+border-radius: 15px;
+border-left: 5px solid var(--primary-red);
+box-shadow: var(--shadow);
+transition: transform 0.3s;
+}
+
+.timeline-content:hover {
+transform: translateY(-10px);
+border-left-color: var(--secondary-gold);
+}
+
+.timeline-title {
+font-size: 1.8rem;
+color: var(--text-light);
+margin-bottom: 1rem;
+}
+
+.timeline-description {
+font-size: 1.2rem;
+line-height: 1.8;
+color: var(--text-gray);
+text-align: justify;
+}
+
+/* Секция культуры */
+.culture-section {
+background: #0A0A0A;
+position: relative;
+}
+
+.culture-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+gap: 3rem;
+margin-bottom: 5rem;
+}
+
+.culture-card {
+background: var(--card-bg);
+border-radius: 20px;
+overflow: hidden;
+transition: all 0.5s;
+border: 1px solid rgba(197, 165, 114, 0.2);
+box-shadow: var(--shadow);
+}
+
+.culture-card:hover {
+transform: translateY(-15px);
+box-shadow: 0 25px 50px rgba(197, 165, 114, 0.2);
+border-color: var(--secondary-gold);
+}
+
+.culture-header {
+height: 250px;
+overflow: hidden;
+}
+
+.culture-img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.5s;
+}
+
+.culture-card:hover .culture-img {
+transform: scale(1.1);
+}
+
+.culture-content {
+padding: 2rem;
+}
+
+.culture-title {
+font-size: 1.8rem;
+color: var(--text-light);
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.culture-title i {
+color: var(--primary-red);
+}
+
+.culture-description {
+font-size: 1.2rem;
+line-height: 1.8;
+color: var(--text-gray);
+margin-bottom: 1.5rem;
+text-align: justify;
+}
+
+.culture-details {
+background: rgba(10, 10, 10, 0.7);
+padding: 1.5rem;
+border-radius: 10px;
+margin-top: 1.5rem;
+border-left: 4px solid var(--secondary-gold);
+}
+
+.details-title {
+font-size: 1.3rem;
+color: var(--secondary-gold);
+margin-bottom: 1rem;
+}
+
+.details-list {
+list-style: none;
+}
+
+.details-list li {
+padding: 0.5rem 0;
+color: var(--text-gray);
+position: relative;
+padding-left: 1.5rem;
+}
+
+.details-list li::before {
+content: '•';
+position: absolute;
+left: 0;
+color: var(--primary-red);
+font-weight: bold;
+font-size: 1.5rem;
+}
+
+/* Секция достопримечательностей */
+.attractions-section {
+background: var(--gradient-traditional);
+position: relative;
+overflow: hidden;
+}
+
+.attractions-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: url('https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80');
+background-size: cover;
+background-position: center;
+opacity: 0.05;
+}
+
+.attractions-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2.5rem;
+margin-bottom: 5rem;
+position: relative;
+z-index: 2;
+}
+
+.attraction-card {
+background: var(--card-bg);
+border-radius: 15px;
+overflow: hidden;
+transition: all 0.4s;
+border: 1px solid rgba(123, 162, 63, 0.2);
+box-shadow: var(--shadow);
+}
+
+.attraction-card:hover {
+transform: translateY(-10px);
+border-color: var(--accent-bamboo);
+box-shadow: 0 20px 40px rgba(123, 162, 63, 0.2);
+}
+
+.attraction-img {
+width: 100%;
+height: 250px;
+object-fit: cover;
+}
+
+.attraction-content {
+padding: 2rem;
+}
+
+.attraction-title {
+font-size: 1.8rem;
+color: var(--text-light);
+margin-bottom: 1rem;
+}
+
+.attraction-location {
+font-size: 1.1rem;
+color: var(--accent-bamboo);
+margin-bottom: 1rem;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.attraction-description {
+font-size: 1.1rem;
+line-height: 1.7;
+color: var(--text-gray);
+margin-bottom: 1.5rem;
+}
+
+.attraction-features {
+list-style: none;
+text-align: left;
+margin-top: 1.5rem;
+}
+
+.attraction-features li {
+padding: 0.5rem 0;
+color: var(--text-gray);
+position: relative;
+padding-left: 1.8rem;
+}
+
+.attraction-features li::before {
+content: '⛩️';
+position: absolute;
+left: 0;
+}
+
+/* Секция современности */
+.modern-section {
+background: #0A0A0A;
+position: relative;
+}
+
+.modern-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+gap: 3rem;
+margin-bottom: 5rem;
+}
+
+.modern-card {
+background: var(--card-bg);
+border-radius: 20px;
+overflow: hidden;
+transition: all 0.5s;
+border: 1px solid rgba(0, 150, 255, 0.2);
+box-shadow: var(--shadow);
+}
+
+.modern-card:hover {
+transform: translateY(-15px);
+box-shadow: 0 25px 50px rgba(0, 150, 255, 0.2);
+border-color: #0096FF;
+}
+
+.modern-header {
+display: flex;
+padding: 2rem;
+background: rgba(0, 150, 255, 0.05);
+border-bottom: 1px solid rgba(0, 150, 255, 0.2);
+align-items: center;
+gap: 1.5rem;
+}
+
+.modern-icon {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background: linear-gradient(135deg, #0096FF, #00D4FF);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2.5rem;
+color: var(--text-light);
+flex-shrink: 0;
+}
+
+.modern-info {
+flex-grow: 1;
+}
+
+.modern-title {
+font-size: 1.8rem;
+color: var(--text-light);
+margin-bottom: 0.5rem;
+}
+
+.modern-subtitle {
+font-size: 1.2rem;
+color: #0096FF;
+margin-bottom: 0.5rem;
+font-weight: 600;
+}
+
+.modern-content {
+padding: 2rem;
+}
+
+.modern-description {
+font-size: 1.2rem;
+line-height: 1.8;
+color: var(--text-gray);
+margin-bottom: 2rem;
+text-align: justify;
+}
+
+.modern-stats {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1rem;
+background: rgba(0, 0, 0, 0.5);
+padding: 1.5rem;
+border-radius: 10px;
+margin-top: 1.5rem;
+}
+
+.modern-stat {
+text-align: center;
+padding: 1rem;
+background: rgba(30, 30, 30, 0.9);
+border-radius: 8px;
+}
+
+.modern-stat-value {
+font-size: 1.8rem;
+font-weight: bold;
+color: #0096FF;
+margin-bottom: 0.5rem;
+}
+
+.modern-stat-label {
+font-size: 0.9rem;
+color: var(--text-gray);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+/* Футер */
+footer {
+background: #050505;
+padding: 4rem 3rem 2rem;
+border-top: 5px solid var(--primary-red);
+position: relative;
+}
+
+.footer-content {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 3rem;
+max-width: 1400px;
+margin: 0 auto 3rem;
+}
+
+.footer-section h3 {
+font-size: 1.8rem;
+color: var(--primary-red);
+margin-bottom: 1.5rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid rgba(188, 0, 45, 0.3);
+}
+
+.footer-section p {
+font-size: 1.2rem;
+line-height: 1.7;
+color: var(--text-gray);
+margin-bottom: 1.5rem;
+}
+
+.social-icons {
+display: flex;
+gap: 1.2rem;
+margin-top: 1.5rem;
+}
+
+.social-icon {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background: rgba(188, 0, 45, 0.1);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--text-light);
+font-size: 1.5rem;
+transition: all 0.3s;
+text-decoration: none;
+}
+
+.social-icon:hover {
+background: var(--gradient-sunrise);
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(188, 0, 45, 0.4);
+}
+
+.footer-links {
+list-style: none;
+}
+
+.footer-links li {
+margin-bottom: 1rem;
+}
+
+.footer-links a {
+color: var(--text-gray);
+text-decoration: none;
+font-size: 1.2rem;
+transition: color 0.3s;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.footer-links a:hover {
+color: var(--primary-red);
+transform: translateX(5px);
+}
+
+.footer-links i {
+color: var(--primary-red);
+}
+
+.copyright {
+text-align: center;
+padding-top: 2rem;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+color: var(--text-gray);
+font-size: 1.1rem;
+}
+
+.japanese-footer {
+font-size: 1.4rem;
+color: var(--primary-red);
+margin-top: 0.5rem;
+font-weight: bold;
+font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Кнопка "Наверх" */
+.back-to-top {
+position: fixed;
+bottom: 30px;
+right: 30px;
+width: 60px;
+height: 60px;
+background: var(--gradient-sunrise);
+color: white;
+border: none;
+border-radius: 50%;
+font-size: 1.5rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s;
+z-index: 999;
+box-shadow: 0 5px 20px rgba(188, 0, 45, 0.5);
+opacity: 0;
+visibility: hidden;
+}
+
+.back-to-top.visible {
+opacity: 1;
+visibility: visible;
+}
+
+.back-to-top:hover {
+transform: translateY(-5px) scale(1.1);
+box-shadow: 0 10px 25px rgba(188, 0, 45, 0.7);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+.hero-title {
+font-size: 3.8rem;
+}
+
+.modern-grid {
+grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+}
+
+@media (max-width: 992px) {
+.section {
+padding: 5rem 2rem;
+}
+
+.hero-title {
+font-size: 3.2rem;
+}
+
+.hero-subtitle {
+font-size: 1.6rem;
+}
+
+.culture-grid {
+grid-template-columns: 1fr;
+max-width: 700px;
+margin: 0 auto 4rem;
+}
+
+.modern-grid {
+grid-template-columns: 1fr;
+max-width: 700px;
+margin: 0 auto 4rem;
+}
+
+.timeline-item {
+flex-direction: column;
+gap: 1rem;
+}
+
+.timeline-year {
+text-align: left;
+min-width: auto;
+}
+}
+
+@media (max-width: 768px) {
+header {
+padding: 1rem 1.5rem;
+flex-wrap: wrap;
+}
+
+.menu-toggle {
+display: flex;
+order: 2;
+}
+
+.menu {
+position: fixed;
+top: 80px;
+left: 0;
+width: 100%;
+background: rgba(10, 10, 10, 0.98);
+flex-direction: column;
+padding: 2rem;
+transform: translateY(-100%);
+opacity: 0;
+visibility: hidden;
+transition: all 0.4s ease;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+z-index: 999;
+border-top: 1px solid var(--primary-red);
+border-bottom: 1px solid var(--primary-red);
+}
+
+.menu.active {
+transform: translateY(0);
+opacity: 1;
+visibility: visible;
+}
+
+.menu a {
+width: 100%;
+text-align: center;
+padding: 1rem;
+font-size: 1.4rem;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero {
+padding: 3rem 1.5rem;
+min-height: 90vh;
+}
+
+.hero-title {
+font-size: 2.8rem;
+}
+
+.hero-japanese {
+font-size: 2.2rem;
+}
+
+.hero-subtitle {
+font-size: 1.4rem;
+}
+
+.hero-stats {
+gap: 1.5rem;
+}
+
+.stat-item {
+min-width: 140px;
+padding: 1rem 1.5rem;
+}
+
+.section-title {
+font-size: 2.8rem;
+}
+
+.modern-header {
+flex-direction: column;
+text-align: center;
+padding: 1.5rem;
+}
+
+.modern-icon {
+margin: 0 auto;
+}
+
+.hero-buttons {
+flex-direction: column;
+align-items: center;
+}
+
+.btn-primary, .btn-secondary {
+width: 100%;
+max-width: 300px;
+}
+
+.footer-content {
+grid-template-columns: 1fr;
+text-align: center;
+}
+
+.social-icons {
+justify-content: center;
+}
+
+.footer-links a {
+justify-content: center;
+}
+
+.back-to-top {
+width: 50px;
+height: 50px;
+bottom: 20px;
+right: 20px;
+font-size: 1.2rem;
+}
+}
+
+@media (max-width: 480px) {
+.hero-title {
+font-size: 2.2rem;
+}
+
+.hero-japanese {
+font-size: 1.8rem;
+}
+
+.hero-subtitle {
+font-size: 1.2rem;
+}
+
+.section-title {
+font-size: 2.2rem;
+}
+
+.section {
+padding: 4rem 1.5rem;
+}
+
+.culture-card, .modern-card, .attraction-card {
+margin: 0 -1rem;
+border-radius: 10px;
+}
+
+.logo {
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+}
+
+.site-title {
+font-size: 1.8rem;
+}
+
+.stat-value {
+font-size: 2.2rem;
+}
+}
+
+/* Анимации для появления элементов при скролле */
+.fade-in {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Традиционные элементы */
+.japanese-pattern {
+position: absolute;
+opacity: 0.05;
+pointer-events: none;
+z-index: 1;
+}
+
+.pattern-1 {
+top: 10%;
+left: 5%;
+width: 200px;
+height: 200px;
+background: radial-gradient(circle, var(--primary-red) 0%, transparent 70%);
+}
+
+.pattern-2 {
+bottom: 10%;
+right: 5%;
+width: 150px;
+height: 150px;
+background: linear-gradient(45deg, transparent 49%, var(--secondary-gold) 50%, transparent 51%),
+linear-gradient(-45deg, transparent 49%, var(--secondary-gold) 50%, transparent 51%);
+background-size: 30px 30px;
+}
+</style>
+</head>
+<body>
+<!-- Загрузочный экран -->
+<div class="preloader" id="preloader">
+<div class="loading-container">
+<div class="loading-logo">ЯПОНИЯ</div>
+<div class="loading-text">Страна восходящего солнца</div>
+<div class="loader"></div>
+<div class="progress-container">
+<div class="progress-text">
+<span>Загрузка культуры</span>
+<span id="progress-percent">0%</span>
+</div>
+<div class="progress-bar">
+<div class="progress" id="progress"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Падающие лепестки сакуры -->
+<div class="sakura-fall" id="sakuraFall"></div>
+
+<!-- Традиционные узоры -->
+<div class="japanese-pattern pattern-1"></div>
+<div class="japanese-pattern pattern-2"></div>
+
+<!-- Кнопка "Наверх" -->
+<button class="back-to-top" id="backToTop">
+<i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- Основной контент -->
+<div class="content" id="content">
+<!-- Шапка -->
+<header>
+<div class="logo">
+<i class="fas fa-torii-gate logo-icon"></i>
+<div class="logo-text">
+<div class="site-title">ЯПОНИЯ</div>
+<div class="site-subtitle">Путешествие в культуру и историю</div>
+</div>
+</div>
+
+<div class="menu-toggle" id="menuToggle">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<nav class="menu" id="mainMenu">
+<a href="#home" class="active">Главная</a>
+<a href="#history">История</a>
+<a href="#culture">Культура</a>
+<a href="#attractions">Достопримечательности</a>
+<a href="#modern">Современность</a>
+<a href="#travel">Путешествия</a>
+<a href="#contact">Контакты</a>
+</nav>
+
+<button class="cta-button" onclick="scrollToSection('history')">Исследовать</button>
+</header>
+
+<!-- Герой-секция -->
+<section class="hero" id="home">
+<div class="hero-content">
+<h1 class="hero-title animate__animated animate__fadeInDown">Страна восходящего солнца</h1>
+<div class="hero-japanese">日本 - Нихон</div>
+<p class="hero-subtitle animate__animated animate__fadeInUp">
+Древняя культура, уникальные традиции и современные технологии гармонично
+соединяются в Японии — стране, где прошлое встречается с будущим,
+создавая неповторимую атмосферу загадочности и совершенства.
+</p>
+
+<div class="hero-stats">
+<div class="stat-item fade-in">
+<div class="stat-value">125М</div>
+<div class="stat-label">Население</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">2000+</div>
+<div class="stat-label">Лет истории</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">6852</div>
+<div class="stat-label">Острова</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">47</div>
+<div class="stat-label">Префектур</div>
+</div>
+</div>
+
+<div class="hero-buttons">
+<button class="btn-primary" onclick="scrollToSection('history')">
+<i class="fas fa-landmark"></i> Изучить историю
+</button>
+<button class="btn-secondary" onclick="scrollToSection('culture')">
+<i class="fas fa-mask"></i> Познать культуру
+</button>
+</div>
+</div>
+</section>
+
+<!-- Секция истории -->
+<section class="section history-section" id="history">
+<h2 class="section-title">История Японии</h2>
+<p class="section-subtitle">
+От древних императоров до современных технологических гигантов —
+богатая история Японии насчитывает тысячи лет развития, войн, культурных
+революций и экономических чудес.
+</p>
+
+<div class="history-timeline">
+<!-- Период 1 -->
+<div class="timeline-item fade-in">
+<div class="timeline-year">660 г. до н.э.</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Основание Японии</h3>
+<p class="timeline-description">
+Согласно легендам, Япония была основана императором Дзимму,
+потомком богини солнца Аматэрасу. Этот период знаменует начало
+императорской линии, которая продолжается до сегодняшнего дня,
+делая японскую монархию самой древней непрерывной наследственной
+монархией в мире.
+</p>
+</div>
+</div>
+
+<!-- Период 2 -->
+<div class="timeline-item fade-in">
+<div class="timeline-year">710-794 гг.</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Период Нара</h3>
+<p class="timeline-description">
+Эпоха, когда столица была перенесена в Нару, ознаменовала
+расцвет буддизма и китайского влияния в Японии. Были построены
+величественные храмы, включая Тодай-дзи с гигантской бронзовой
+статуей Будды. В этот период была создана первая письменная
+история Японии — "Кодзики" и "Нихон сёки".
+</p>
+</div>
+</div>
+
+<!-- Период 3 -->
+<div class="timeline-item fade-in">
+<div class="timeline-year">1185-1333 гг.</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Период Камакура</h3>
+<p class="timeline-description">
+Эпоха самураев и военного правления. Минамото но Ёритомо
+установил первый сёгунат в Камакуре, положив начало почти
+700-летнему правлению военных диктаторов. В этот период
+развился кодекс бусидо, а Япония успешно отразила два
+монгольских вторжения с помощью "божественного ветра" (камикадзе).
+</p>
+</div>
+</div>
+
+<!-- Период 4 -->
+<div class="timeline-item fade-in">
+<div class="timeline-year">1603-1868 гг.</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Период Эдо</h3>
+<p class="timeline-description">
+Время изоляции Японии от внешнего мира и расцвета уникальной
+культуры. Токугава Иэясу объединил страну и перенес столицу
+в Эдо (современный Токио). Развивались искусства укиё-э,
+театр кабуки, чайная церемония и икебана. Страна была закрыта
+для иностранцев почти 250 лет, что позволило сохранить
+уникальную культуру.
+</p>
+</div>
+</div>
+
+<!-- Период 5 -->
+<div class="timeline-item fade-in">
+<div class="timeline-year">1868-1912 гг.</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Период Мэйдзи</h3>
+<p class="timeline-description">
+Реставрация Мэйдзи — революционный период модернизации
+и вестернизации. Япония превратилась из феодальной страны
+в современную империю. Были отменены сословия, принята
+конституция, построены железные дороги и созданы современные
+вооруженные силы. Страна стала первой азиатской державой,
+победившей европейскую страну (Россию) в войне 1904-1905 гг.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Секция культуры -->
+<section class="section culture-section" id="culture">
+<h2 class="section-title">Культура и традиции</h2>
+<p class="section-subtitle">
+Японская культура — это уникальное сочетание древних традиций и
+современного искусства, где каждое действие наполнено смыслом и
+эстетическим совершенством.
+</p>
+
+<div class="culture-grid">
+<!-- Культура 1 -->
+<div class="culture-card fade-in">
+<div class="culture-header">
+<img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Самураи" class="culture-img">
+</div>
+<div class="culture-content">
+<h3 class="culture-title">
+<i class="fas fa-user-ninja"></i> Самураи и бусидо
+</h3>
+<p class="culture-description">
+Самураи — военное сословие, существовавшее более 700 лет.
+Их жизнь регулировалась строгим кодексом чести бусидо,
+который включал такие добродетели как верность, мужество,
+честность и сострадание. Самураи были не только воинами,
+но и покровителями искусств — многие были поэтами,
+каллиграфами и философами.
+</p>
+
+<div class="culture-details">
+<h4 class="details-title">Основные принципы бусидо:</h4>
+<ul class="details-list">
+<li>Ги (справедливость и мораль)</li>
+<li>Ю (мужество и героизм)</li>
+<li>Дзин (сострадание и доброта)</li>
+<li>Рэй (вежливость и этикет)</li>
+<li>Макото (искренность и честность)</li>
+<li>Мэйё (честь и слава)</li>
+<li>Тюги (верность)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Культура 2 -->
+<div class="culture-card fade-in">
+<div class="culture-header">
+<img src="https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Чайная церемония" class="culture-img">
+</div>
+<div class="culture-content">
+<h3 class="culture-title">
+<i class="fas fa-mug-hot"></i> Чайная церемония
+</h3>
+<p class="culture-description">
+Чадо (путь чая) — это не просто приготовление и употребление
+чая, а целая философия, воплощающая принципы гармонии (ва),
+уважения (кэй), чистоты (сэй) и покоя (дзяку). Церемония
+развивалась под влиянием дзен-буддизма и достигла своего
+расцвета в XVI веке благодаря мастеру Сэн-но Рикю.
+</p>
+
+<div class="culture-details">
+<h4 class="details-title">Виды чайных церемоний:</h4>
+<ul class="details-list">
+<li>Чадзи — полная церемония (4 часа)</li>
+<li>Тякай — неформальная встреча</li>
+<li>Ринтаи — церемония на открытом воздухе</li>
+<li>Акацуки-но тя — рассветная церемония</li>
+<li>Юдзуми-но тя — вечерняя церемония зимой</li>
+<li>Хацугама — первое кипячение чайника в году</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Культура 3 -->
+<div class="culture-card fade-in">
+<div class="culture-header">
+<img src="https://images.unsplash.com/photo-1543946602-59c20e9d1b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Икебана" class="culture-img">
+</div>
+<div class="culture-content">
+<h3 class="culture-title">
+<i class="fas fa-spa"></i> Икебана
+</h3>
+<p class="culture-description">
+Икебана (живые цветы) — древнее искусство аранжировки цветов,
+зародившееся более 600 лет назад. В отличие от западной
+флористики, икебана фокусируется на линии, форме и пространстве,
+а не только на цветах. Каждая композиция имеет глубокий
+философский смысл и отражает гармонию между небом, землей и человеком.
+</p>
+
+<div class="culture-details">
+<h4 class="details-title">Основные школы икебаны:</h4>
+<ul class="details-list">
+<li>Икэнобо — самая древняя школа (1462 год)</li>
+<li>Охара — ввела использование низких ваз</li>
+<li>Согэцу — самая современная и авангардная</li>
+<li>Рюкэй — специализируется на миниатюрных композициях</li>
+<li>Косю — сочетает традиции и современность</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Секция достопримечательностей -->
+<section class="section attractions-section" id="attractions">
+<h2 class="section-title">Достопримечательности</h2>
+<p class="section-subtitle">
+От древних храмов и замков до современных мегаполисов и природных чудес —
+Япония предлагает бесконечное разнообразие мест для исследования.
+</p>
+
+<div class="attractions-container">
+<!-- Достопримечательность 1 -->
+<div class="attraction-card fade-in">
+<img src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2092&q=80"
+alt="Фудзияма" class="attraction-img">
+<div class="attraction-content">
+<h3 class="attraction-title">Гора Фудзи</h3>
+<div class="attraction-location">
+<i class="fas fa-mountain"></i> Префектуры Сидзуока и Яманаси
+</div>
+<p class="attraction-description">
+Символ Японии, священная гора высотой 3776 метров.
+Фудзи — действующий вулкан, последнее извержение которого
+произошло в 1707 году. Входит в список объектов Всемирного
+наследия ЮНЕСКО. Ежегодно более 300 000 человек совершают
+восхождение на гору в июле и августе.
+</p>
+<ul class="attraction-features">
+<li>Сезон восхождений: июль-август</li>
+<li>5 станций для отдыха на пути к вершине</li>
+<li>Вид на 5 озер с северной стороны</li>
+<li>Святилище на вершине</li>
+</ul>
+</div>
+</div>
+
+<!-- Достопримечательность 2 -->
+<div class="attraction-card fade-in">
+<img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Киёмидзу-дэра" class="attraction-img">
+<div class="attraction-content">
+<h3 class="attraction-title">Киёмидзу-дэра</h3>
+<div class="attraction-location">
+<i class="fas fa-torii-gate"></i> Киото
+</div>
+<p class="attraction-description">
+Буддийский храм в восточном Киото, основанный в 778 году.
+Название означает "Храм чистой воды". Главный зал храма
+построен без единого гвоздя. С деревянной веранды открывается
+панорамный вид на Киото. Храм особенно красив весной во время
+цветения сакуры и осенью, когда клены окрашиваются в красный цвет.
+</p>
+<ul class="attraction-features">
+<li>Основан в 778 году</li>
+<li>Включен в список ЮНЕСКО</li>
+<li>Знаменитый водопад Отова-но-таки</li>
+<li>Ежегодно посещают 3 млн человек</li>
+</ul>
+</div>
+</div>
+
+<!-- Достопримечательность 3 -->
+<div class="attraction-card fade-in">
+<img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
+alt="Замок Химэдзи" class="attraction-img">
+<div class="attraction-content">
+<h3 class="attraction-title">Замок Химэдзи</h3>
+<div class="attraction-location">
+<i class="fas fa-chess-rook"></i> Химэдзи, префектура Хёго
+</div>
+<p class="attraction-description">
+Самый посещаемый замок Японии, известный как "Замок белой цапли"
+за свою элегантную белоснежную внешность. Построен в 1333 году,
+перестроен в 1609 году. Сохранился в оригинальном состоянии,
+пережив войны и землетрясения. Состоит из 83 зданий с развитой
+системой обороны.
+</p>
+<ul class="attraction-features">
+<li>Объект Всемирного наследия ЮНЕСКО</li>
+<li>83 сохранившихся здания</li>
+<li>Сложная система лабиринтов для защиты</li>
+<li>Символ самурайской архитектуры</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Секция современности -->
+<section class="section modern-section" id="modern">
+<h2 class="section-title">Современная Япония</h2>
+<p class="section-subtitle">
+Технологический прогресс, инновации и уникальный образ жизни делают
+современную Японию одной из самых развитых и интересных стран мира.
+</p>
+
+<div class="modern-grid">
+<!-- Современность 1 -->
+<div class="modern-card fade-in">
+<div class="modern-header">
+<div class="modern-icon">
+<i class="fas fa-robot"></i>
+</div>
+<div class="modern-info">
+<h3 class="modern-title">Технологии и инновации</h3>
+<div class="modern-subtitle">Лидер в робототехнике и электронике</div>
+</div>
+</div>
+<div class="modern-content">
+<p class="modern-description">
+Япония остается мировым лидером в области технологий и инноваций.
+От роботов-помощников и человекоподобных андроидов до
+сверхскоростных поездов Синкансэн и передовых медицинских
+технологий — японские компании продолжают задавать тенденции
+в глобальной технологической индустрии.
+</p>
+
+<div class="modern-stats">
+<div class="modern-stat">
+<div class="modern-stat-value">45%</div>
+<div class="modern-stat-label">Мирового рынка роботов</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">320км/ч</div>
+<div class="modern-stat-label">Скорость Синкансэн</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">#3</div>
+<div class="modern-stat-label">В мире по патентам</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">92%</div>
+<div class="modern-stat-label">Проникновение интернета</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Современность 2 -->
+<div class="modern-card fade-in">
+<div class="modern-header">
+<div class="modern-icon">
+<i class="fas fa-city"></i>
+</div>
+<div class="modern-info">
+<h3 class="modern-title">Городская культура</h3>
+<div class="modern-subtitle">Токио, Осака и современная жизнь</div>
+</div>
+</div>
+<div class="modern-content">
+<p class="modern-description">
+Современные японские мегаполисы сочетают небоскребы будущего
+с традиционными кварталами. Токио — крупнейшая городская
+агломерация в мире с населением 37 миллионов человек.
+Уникальные районы вроде Акихабары (электроника и аниме),
+Харадзюку (мода) и Синдзюку (небоскребы) демонстрируют
+разнообразие современной японской городской культуры.
+</p>
+
+<div class="modern-stats">
+<div class="modern-stat">
+<div class="modern-stat-value">37М</div>
+<div class="modern-stat-label">Население Токио</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">51</div>
+<div class="modern-stat-label">Небоскребов выше 200м</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">882</div>
+<div class="modern-stat-label">Станций метро в Токио</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">24/7</div>
+<div class="modern-stat-label">Работает Сибуя</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Современность 3 -->
+<div class="modern-card fade-in">
+<div class="modern-header">
+<div class="modern-icon">
+<i class="fas fa-film"></i>
+</div>
+<div class="modern-info">
+<h3 class="modern-title">Поп-культура</h3>
+<div class="modern-subtitle">Аниме, манга и J-pop</div>
+</div>
+</div>
+<div class="modern-content">
+<p class="modern-description">
+Японская поп-культура завоевала мир через аниме, мангу,
+видеоигры и музыку. Студия Ghibli, созданная Хаяо Миядзаки,
+получила международное признание и "Оскар". Японские видеоигры
+(Nintendo, Sony) определяют индустрию развлечений. J-pop и
+японская мода оказывают влияние на молодежь по всему миру.
+</p>
+
+<div class="modern-stats">
+<div class="modern-stat">
+<div class="modern-stat-value">60%</div>
+<div class="modern-stat-label">Мирового рынка аниме</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">400М+</div>
+<div class="modern-stat-label">Продано игр Nintendo</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">7</div>
+<div class="modern-stat-label">Оскаров у Ghibli</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">$20B</div>
+<div class="modern-stat-label">Индустрия манги</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Футер -->
+<footer id="contact">
+<div class="footer-content">
+<div class="footer-section">
+<h3>О проекте</h3>
+<p>
+"Япония: Страна восходящего солнца" — образовательный проект,
+посвященный культуре, истории и современности Японии.
+Мы стремимся познакомить мир с уникальным наследием и
+достижениями этой удивительной страны.
+</p>
+<div class="social-icons">
+<a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+</div>
+</div>
+
+<div class="footer-section">
+<h3>Быстрые ссылки</h3>
+<ul class="footer-links">
+<li><a href="#home"><i class="fas fa-chevron-right"></i> Главная</a></li>
+<li><a href="#history"><i class="fas fa-chevron-right"></i> История</a></li>
+<li><a href="#culture"><i class="fas fa-chevron-right"></i> Культура</a></li>
+<li><a href="#attractions"><i class="fas fa-chevron-right"></i> Достопримечательности</a></li>
+<li><a href="#modern"><i class="fas fa-chevron-right"></i> Современность</a></li>
+<li><a href="#travel"><i class="fas fa-chevron-right"></i> Путешествия</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Контакты</h3>
+<p>
+<i class="fas fa-envelope"></i> info@japan-culture.com<br>
+<i class="fas fa-phone"></i> +81 (0)3-1234-5678<br>
+<i class="fas fa-map-marker-alt"></i> Токио, Сибуя, 1-1-1
+</p>
+<p>
+Для сотрудничества:<br>
+<i class="fas fa-handshake"></i> partnership@japan-culture.com
+</p>
+<p>
+Туристическая информация:<br>
+<i class="fas fa-plane"></i> travel@japan-culture.com
+</p>
+</div>
+</div>
+
+<div class="copyright">
+<p>&copy; 2025 Япония: Страна восходящего солнца. Все права защищены.</p>
+<p class="japanese-footer">日本 - 伝統と革新の調和</p>
+<p>Этот сайт является образовательным проектом и не связан с правительством Японии.</p>
+</div>
+</footer>
+</div>
+
+<script>
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+initPreloader();
+createSakura();
+initMenu();
+initScrollAnimations();
+initBackToTop();
+initSmoothScroll();
+});
+
+// Прелоадер
+function initPreloader() {
+const preloader = document.getElementById('preloader');
+const content = document.getElementById('content');
+const progress = document.getElementById('progress');
+const progressPercent = document.getElementById('progress-percent');
+
+let width = 0;
+const interval = setInterval(() => {
+if (width >= 100) {
+clearInterval(interval);
+setTimeout(() => {
+preloader.classList.add('hidden');
+content.classList.add('visible');
+setTimeout(() => {
+preloader.style.display = 'none';
+}, 1000);
+}, 500);
+} else {
+width++;
+progress.style.width = width + '%';
+progressPercent.textContent = width + '%';
+
+// Случайные всплески скорости
+if (width > 40 && width < 70 && Math.random() > 0.7) {
+width += 2;
+}
+}
+}, 25);
+}
+
+// Лепестки сакуры
+function createSakura() {
+const sakuraContainer = document.getElementById('sakuraFall');
+const sakuraCount = 80;
+
+for (let i = 0; i < sakuraCount; i++) {
+const sakura = document.createElement('div');
+sakura.classList.add('sakura');
+
+// Случайный размер от 10 до 25 пикселей
+const size = Math.random() * 15 + 10;
+sakura.style.width = `${size}px`;
+sakura.style.height = `${size}px`;
+
+// Случайная позиция
+sakura.style.left = `${Math.random() * 100}vw`;
+sakura.style.top = `${Math.random() * -100}px`;
+
+// Случайная прозрачность
+sakura.style.opacity = Math.random() * 0.5 + 0.3;
+
+// Случайная скорость
+const duration = Math.random() * 20 + 15;
+sakura.style.animationDuration = `${duration}s`;
+
+// Случайная задержка
+sakura.style.animationDelay = `${Math.random() * 5}s`;
+
+sakuraContainer.appendChild(sakura);
+}
+}
+
+// Меню для мобильных
+function initMenu() {
+const menuToggle = document.getElementById('menuToggle');
+const menu = document.getElementById('mainMenu');
+const menuItems = menu.querySelectorAll('a');
+
+menuToggle.addEventListener('click', function() {
+menu.classList.toggle('active');
+this.classList.toggle('active');
+
+// Анимация гамбургера
+const spans = this.querySelectorAll('span');
+if (menu.classList.contains('active')) {
+spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
+spans[1].style.opacity = '0';
+spans[2].style.transform = 'rotate(-45deg) translate(8px, -8px)';
+} else {
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+}
+});
+
+// Закрытие меню при клике на пункт
+menuItems.forEach(item => {
+item.addEventListener('click', function() {
+menu.classList.remove('active');
+menuToggle.classList.remove('active');
+
+const spans = menuToggle.querySelectorAll('span');
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+
+// Обновление активного пункта меню
+menuItems.forEach(i => i.classList.remove('active'));
+this.classList.add('active');
+});
+});
+
+// Закрытие меню при клике вне его
+document.addEventListener('click', function(event) {
+if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+menu.classList.remove('active');
+menuToggle.classList.remove('active');
+
+const spans = menuToggle.querySelectorAll('span');
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+}
+});
+}
+
+// Анимации при скролле
+function initScrollAnimations() {
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+
+// Добавляем случайные задержки для анимации карточек
+if (entry.target.classList.contains('fade-in')) {
+const delay = Math.random() * 0.5;
+entry.target.style.transitionDelay = `${delay}s`;
+}
+}
+});
+}, observerOptions);
+
+// Наблюдаем за элементами с классом fade-in
+document.querySelectorAll('.fade-in').forEach(el => {
+observer.observe(el);
+});
+}
+
+// Кнопка "Наверх"
+function initBackToTop() {
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTop.classList.add('visible');
+} else {
+backToTop.classList.remove('visible');
+}
+});
+
+backToTop.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+}
+
+// Плавная прокрутка
+function initSmoothScroll() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+// Обновление активного пункта меню
+document.querySelectorAll('.menu a').forEach(link => {
+link.classList.remove('active');
+});
+this.classList.add('active');
+
+// Прокрутка к элементу
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+}
+
+// Вспомогательные функции
+function scrollToSection(sectionId) {
+const section = document.getElementById(sectionId);
+if (section) {
+window.scrollTo({
+top: section.offsetTop - 80,
+behavior: 'smooth'
+});
+
+// Обновление активного пункта меню
+document.querySelectorAll('.menu a').forEach(link => {
+link.classList.remove('active');
+if (link.getAttribute('href') === `#${sectionId}`) {
+link.classList.add('active');
+}
+});
+}
+}
+
+// Параллакс эффект для лепестков сакуры
+window.addEventListener('scroll', function() {
+const scrolled = window.pageYOffset;
+
+// Эффект для лепестков сакуры
+const sakuraPetals = document.querySelectorAll('.sakura');
+sakuraPetals.forEach(petal => {
+const speed = parseFloat(petal.style.animationDuration);
+petal.style.transform = `translateY(${scrolled * 0.03}px)`;
+});
+
+// Эффект для карточек
+const cards = document.querySelectorAll('.culture-card, .modern-card, .attraction-card');
+cards.forEach(card => {
+const rect = card.getBoundingClientRect();
+const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+if (isVisible) {
+const speed = 0.05;
+const yPos = -(rect.top * speed);
+card.style.transform = `translateY(${yPos}px)`;
+}
+});
+});
+
+// Анимация при наведении на кнопки
+document.querySelectorAll('.btn-primary, .btn-secondary, .cta-button').forEach(button => {
+button.addEventListener('mouseenter', function() {
+this.style.transform = 'translateY(-5px)';
+});
+
+button.addEventListener('mouseleave', function() {
+if (!this.classList.contains('active')) {
+this.style.transform = 'translateY(0)';
+}
+});
+});
+
+// Сезонные изменения фона
+function changeSeasonalBackground() {
+const now = new Date();
+const month = now.getMonth() + 1;
+const hero = document.querySelector('.hero');
+
+if (!hero) return;
+
+// Весна (март-май) - сакура
+if (month >= 3 && month <= 5) {
+hero.style.background = `linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`;
+document.title = "Япония: Весна сакуры";
+}
+// Лето (июнь-август) - горы
+else if (month >= 6 && month <= 8) {
+hero.style.background = `linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+url('https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2092&q=80')`;
+document.title = "Япония: Летние пейзажи";
+}
+// Осень (сентябрь-ноябрь) - клены
+else if (month >= 9 && month <= 11) {
+hero.style.background = `linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+url('https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`;
+document.title = "Япония: Осенние краски";
+}
+// Зима (декабрь-февраль) - снег
+else {
+hero.style.background = `linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`;
+document.title = "Япония: Зимняя сказка";
+}
+
+hero.style.backgroundSize = 'cover';
+hero.style.backgroundPosition = 'center';
+hero.style.backgroundAttachment = 'fixed';
+}
+
+// Запуск сезонных изменений
+setTimeout(changeSeasonalBackground, 3000);
+
+// Японские приветствия в зависимости от времени суток
+function displayJapaneseGreeting() {
+const now = new Date();
+const hour = now.getHours();
+let greeting = '';
+let reading = '';
+
+if (hour >= 5 && hour < 12) {
+greeting = 'おはようございます';
+reading = 'Охаё: годзаимас (Доброе утро)';
+} else if (hour >= 12 && hour < 18) {
+greeting = 'こんにちは';
+reading = 'Коннитива (Добрый день)';
+} else {
+greeting = 'こんばんは';
+reading = 'Конбанва (Добрый вечер)';
+}
+
+// Создаем уведомление
+const notification = document.createElement('div');
+notification.style.cssText = `
+position: fixed;
+top: 100px;
+right: 20px;
+background: rgba(188, 0, 45, 0.9);
+color: white;
+padding: 1rem 2rem;
+border-radius: 10px;
+z-index: 1000;
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+animation: slideInRight 0.5s ease;
+max-width: 300px;
+text-align: center;
+border: 2px solid var(--secondary-gold);
+`;
+
+notification.innerHTML = `
+<div style="font-size: 1.8rem; margin-bottom: 0.5rem;">${greeting}</div>
+<div style="font-size: 1rem; color: #FFD700;">${reading}</div>
+`;
+
+document.body.appendChild(notification);
+
+// Удаляем через 5 секунд
+setTimeout(() => {
+notification.style.animation = 'slideOutRight 0.5s ease';
+setTimeout(() => {
+if (notification.parentNode) {
+notification.parentNode.removeChild(notification);
+}
+}, 500);
+}, 5000);
+}
+
+// Добавляем CSS для анимации
+const style = document.createElement('style');
+style.textContent = `
+@keyframes slideInRight {
+from { transform: translateX(100%); opacity: 0; }
+to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutRight {
+from { transform: translateX(0); opacity: 1; }
+to { transform: translateX(100%); opacity: 0; }
+}
+`;
+document.head.appendChild(style);
+
+// Показываем приветствие через 4 секунды после загрузки
+setTimeout(displayJapaneseGreeting, 4000);
+</script>
+</body>
+</html>
