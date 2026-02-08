@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Часто задаваемые вопросы - DigitalStudio</title>
+<meta name="description" content="Ответы на частые вопросы о веб-разработке, услугах, процессе работы и сотрудничестве с DigitalStudio.">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+<header class="header" role="banner">
+<div class="container">
+<div class="header__inner">
+<a href="sas.html" class="logo" aria-label="DigitalStudio - вернуться на главную">
+<svg class="logo__icon" width="40" height="40" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+
+<nav class="nav" aria-label="Основная навигация">
+<button class="nav__toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+</button>
+
+<ul class="nav__list" id="nav-menu" role="menu">
+<li class="nav__item" role="none">
+<a href="sas.html" class="nav__link" role="menuitem">Главная</a>
+</li>
+<li class="nav__item" role="none">
+<a href="about.html" class="nav__link" role="menuitem">О нас</a>
+</li>
+<li class="nav__item" role="none">
+<a href="portfolio.html" class="nav__link" role="menuitem">Портфолио</a>
+</li>
+<li class="nav__item" role="none">
+<a href="services.html" class="nav__link" role="menuitem">Услуги</a></li>
+<li class="nav__item" role="none">
+<a href="blog.html" class="nav__link" role="menuitem">Блог</a>
+</li>
+<li class="nav__item" role="none">
+<a href="contacts.html" class="nav__link" role="menuitem">Контакты</a>
+</li>
+</ul>
+</nav>
+
+<a href="contacts.html#contact-form" class="btn btn--primary btn--small">Задать вопрос</a>
+</div>
+</div>
+</header>
+
+<main id="main-content" class="main" role="main">
+<!-- Хлебные крошки -->
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<div class="container">
+<ol class="breadcrumbs__list">
+<li class="breadcrumbs__item">
+<a href="sas.html" class="breadcrumbs__link">Главная</a>
+</li>
+<li class="breadcrumbs__item" aria-current="page">
+<span class="breadcrumbs__current">Часто задаваемые вопросы</span>
+</li>
+</ol>
+</div>
+</nav>
+
+<!-- Герой-секция -->
+<section class="page-hero" aria-labelledby="page-title">
+<div class="container">
+<h1 id="page-title" class="page-hero__title">Часто задаваемые вопросы</h1>
+<p class="page-hero__subtitle">Ответы на популярные вопросы о наших услугах и процессе работы</p>
+</div>
+</section>
+
+<!-- Поиск по FAQ -->
+<section class="faq-search" aria-label="Поиск по вопросам">
+<div class="container">
+<form class="faq-search-form" role="search">
+<label for="faq-search" class="visually-hidden">Поиск по вопросам</label>
+<input type="search" id="faq-search" placeholder="Введите вопрос или ключевое слово..." aria-label="Поиск по часто задаваемым вопросам">
+<button type="submit" aria-label="Найти">🔍</button>
+</form>
+</div>
+</section>
+
+<!-- Категории FAQ -->
+<section class="faq-categories" aria-label="Категории вопросов">
+<div class="container">
+<h2 class="faq-categories__title">Категории</h2>
+<div class="faq-categories__list">
+<a href="#general" class="faq-category active" data-category="general">
+<span class="faq-category__name">Общие вопросы</span>
+<span class="faq-category__count">8 вопросов</span>
+</a>
+
+<a href="#development" class="faq-category" data-category="development">
+<span class="faq-category__name">Разработка</span>
+<span class="faq-category__count">12 вопросов</span>
+</a>
+
+<a href="#design" class="faq-category" data-category="design">
+<span class="faq-category__name">Дизайн</span>
+<span class="faq-category__count">6 вопросов</span>
+</a>
+
+<a href="#seo" class="faq-category" data-category="seo">
+<span class="faq-category__name">SEO и маркетинг</span>
+<span class="faq-category__count">7 вопросов</span>
+</a>
+
+<a href="#pricing" class="faq-category" data-category="pricing">
+<span class="faq-category__name">Стоимость и оплата</span>
+<span class="faq-category__count">5 вопросов</span>
+</a>
+
+<a href="#support" class="faq-category" data-category="support">
+<span class="faq-category__name">Поддержка</span>
+<span class="faq-category__count">4 вопроса</span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- FAQ аккордеон -->
+<section class="faq-accordion" aria-label="Вопросы и ответы">
+<div class="container">
+<!-- Общие вопросы -->
+<div class="faq-category-section" id="general">
+<h2 class="faq-category-section__title">Общие вопросы</h2>
+<div class="accordion" data-accordion data-accordion-single>
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Сколько времени занимает разработка сайта?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Сроки разработки зависят от сложности проекта:</p>
+<ul>
+<li><strong>Лендинг</strong>: 1-2 недели</li>
+<li><strong>Корпоративный сайт</strong>: 1-2 месяца</li>
+<li><strong>Интернет-магазин</strong>: 2-4 месяца</li>
+<li><strong>Веб-приложение</strong>: от 3 месяцев</li>
+</ul>
+<p>Точные сроки определяются после анализа требований и составления технического задания.</p>
+</div>
+</div>
+
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Как происходит процесс работы?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Наш процесс работы включает 5 основных этапов:</p>
+<ol>
+<li><strong>Анализ</strong>: изучаем ваш бизнес, цели, целевую аудиторию</li>
+<li><strong>Планирование</strong>: составляем ТЗ, прототипы, дизайн-концепцию</li>
+<li><strong>Разработка</strong>: создаем продукт с регулярными демо и отчетами</li>
+<li><strong>Тестирование</strong>: проводим комплексное тестирование на разных устройствах</li>
+<li><strong>Запуск и поддержка</strong>: развертываем проект и оказываем техническую поддержку</li>
+</ol>
+</div>
+</div>
+
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Кто будет работать над моим проектом?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Над каждым проектом работает команда специалистов:</p>
+<ul>
+<li><strong>Project Manager</strong>: координация проекта, коммуникация с клиентом</li>
+<li><strong>UI/UX дизайнер</strong>: создание дизайна и пользовательских сценариев</li>
+<li><strong>Frontend разработчик</strong>: верстка и клиентская часть</li>
+<li><strong>Backend разработчик</strong>: серверная логика и базы данных</li>
+<li><strong>QA инженер</strong>: тестирование качества</li>
+</ul>
+<p>Состав команды зависит от сложности проекта. Для небольших проектов один специалист может выполнять несколько ролей.</p>
+</div>
+</div>
+
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Можно ли изменить требования в процессе работы?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Да, мы работаем по гибкой методологии и понимаем, что требования могут меняться. Однако есть некоторые нюансы:</p>
+<ul>
+<li>Незначительные изменения включаются в работу без дополнительной оплаты</li>
+<li>Крупные изменения обсуждаются отдельно и могут повлиять на сроки и бюджет</li>
+<li>Все изменения фиксируются в дополнительных соглашениях</li>
+</ul>
+<p>Мы всегда стремимся найти баланс между гибкостью и соблюдением договоренностей.</p>
+</div>
+</div>
+
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Как часто вы будете отчитываться о прогрессе?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Мы предоставляем регулярные отчеты о ходе работы:</p>
+<ul>
+<li><strong>Еженедельные созвоны</strong>: обсуждение прогресса и планов на неделю</li>
+<li><strong>Демо-сессии</strong>: показ готовых функциональных блоков каждые 2 недели</li>
+<li><strong>Ежемесячные отчеты</strong>: детальный отчет о выполненной работе</li>
+<li><strong>Доступ к трекеру задач</strong>: вы можете видеть статус всех задач в реальном времени</li>
+</ul>
+<p>Частота отчетности может быть настроена под ваши предпочтения.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Разработка -->
+<div class="faq-category-section" id="development" hidden>
+<h2 class="faq-category-section__title">Разработка</h2>
+<div class="accordion" data-accordion data-accordion-single>
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Какие технологии вы используете?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Мы используем современные и проверенные технологии:</p>
+<div class="tech-stack">
+<div class="tech-stack__category">
+<h3>Frontend</h3>
+<ul>
+<li>HTML5, CSS3, JavaScript (ES6+)</li>
+<li>React, Vue.js, Angular</li>
+<li>TypeScript</li>
+<li>Next.js, Nuxt.js</li>
+<li>Webpack, Vite</li>
+</ul>
+</div>
+<div class="tech-stack__category">
+<h3>Backend</h3>
+<ul>
+<li>Node.js, Express</li>
+<li>Python, Django, Flask</li>
+<li>PHP, Laravel, Symfony</li>
+<li>Java, Spring Boot</li>
+</ul>
+</div>
+<div class="tech-stack__category">
+<h3>Базы данных</h3>
+<ul>
+<li>PostgreSQL, MySQL</li>
+<li>MongoDB, Redis</li>
+<li>Elasticsearch</li>
+</ul>
+</div>
+</div>
+<p>Технологии подбираются индивидуально под каждый проект.</p>
+</div>
+</div>
+
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Делаете ли вы адаптивную верстку?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>Да, все наши сайты полностью адаптивны. Мы используем mobile-first подход и тестируем на всех популярных разрешениях:</p>
+<ul>
+<li>Мобильные телефоны (320px - 767px)</li>
+<li>Планшеты (768px - 1023px)</li>
+<li>Ноутбуки (1024px - 1439px)</li>
+<li>Десктопы (1440px и выше)</li>
+</ul>
+<p>Также мы учитываем особенности разных браузеров и обеспечиваем кроссбраузерную совместимость.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Дизайн -->
+<div class="faq-category-section" id="design" hidden>
+<h2 class="faq-category-section__title">Дизайн</h2>
+<div class="accordion" data-accordion data-accordion-single>
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Сколько итераций дизайна включено?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>В базовую стоимость входит:</p>
+<ul>
+<li>3 концепции главной страницы</li>
+<li>2 раунда правок выбранной концепции</li>
+<li>Дизайн 5 типовых страниц (главная, о нас, услуги, контакты, статья)</li>
+<li>2 раунда правок для каждой типовой страницы</li>
+</ul>
+<p>Дополнительные итерации оплачиваются отдельно. Мы всегда стараемся уложиться в согласованный бюджет.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SEO -->
+<div class="faq-category-section" id="seo" hidden>
+<h2 class="faq-category-section__title">SEO и маркетинг</h2>
+<div class="accordion" data-accordion data-accordion-single>
+<div class="accordion__item" data-accordion-item>
+<button class="accordion__button" data-accordion-toggle aria-expanded="false">
+Включается ли SEO в стоимость разработки?
+</button>
+<div class="accordion__content" data-accordion-content aria-hidden="true">
+<p>В стоимость разработки сайта включена базовая SEO-оптимизация:</p>
+<ul>
+<li>Техническая SEO-оптимизация (скорость, mobile-friendly, безопасность)</li>
+<li>Семантическая разметка (Schema.org)</li>
+<li>Оптимизация мета-тегов и структуры URL</li>
+<li>Настройка файлов robots.txt и sitemap.xml</li>
+</ul>
+<p>Полноценное SEO-продвижение — это отдельная услуга, которая включает анализ конкурентов, подбор ключевых слов, создание контента, наращивание ссылочной массы и аналитику.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Форма для нового вопроса -->
+<section class="faq-new-question" aria-labelledby="new-question-title">
+<div class="container">
+<div class="faq-new-question__wrapper">
+<div class="faq-new-question__content">
+<h2 id="new-question-title" class="faq-new-question__title">Не нашли ответ на свой вопрос?</h2>
+<p class="faq-new-question__description">Задайте его нам напрямую, и мы ответим в течение 24 часов</p>
+</div>
+
+<div class="faq-new-question__form">
+<form class="simple-form" novalidate>
+<div class="form__group">
+<label for="faq-name" class="form__label">Имя</label>
+<input type="text" id="faq-name" name="name" required>
+</div>
+
+<div class="form__group">
+<label for="faq-email" class="form__label">Email</label>
+<input type="email" id="faq-email" name="email" required>
+</div>
+
+<div class="form__group">
+<label for="faq-question" class="form__label">Ваш вопрос</label>
+<textarea id="faq-question" name="question" rows="4" required></textarea>
+</div>
+
+<button type="submit" class="btn btn--primary">Задать вопрос</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA секция -->
+<section class="cta-section" aria-labelledby="cta-title">
+<div class="container">
+<h2 id="cta-title" class="cta-section__title">Готовы обсудить ваш проект?</h2>
+<p class="cta-section__description">Свяжитесь с нами для бесплатной консультации</p>
+<a href="contacts.html" class="btn btn--primary btn--large">Связаться с нами</a>
+</div>
+</section>
+</main>
+
+<footer class="footer" role="contentinfo">
+<div class="container">
+<div class="footer__grid">
+<div class="footer__brand">
+<a href="sas.html" class="logo logo--footer">
+<svg class="logo__icon" width="32" height="32" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+<p class="footer__description">Профессиональные digital-решения</p>
+</div>
+
+<div class="footer__nav">
+<h3 class="footer__title">Навигация</h3>
+<ul class="footer__list">
+<li><a href="sas.html">Главная</a></li>
+<li><a href="about.html">О нас</a></li>
+<li><a href="portfolio.html">Портфолио</a></li>
+<li><a href="services.html">Услуги</a></li>
+<li><a href="blog.html">Блог</a></li>
+<li><a href="contacts.html">Контакты</a></li>
+</ul>
+</div>
+</div>
+
+<div class="footer__bottom">
+<p class="footer__copyright">&copy; 2024 DigitalStudio. Все права защищены.</p>
+<nav class="footer__legal" aria-label="Юридическая информация">
+<a href="privacy.html">Политика конфиденциальности</a>
+<a href="terms.html">Условия использования</a>
+</nav>
+</div>
+</div>
+</footer>
+
+<!-- SVG спрайт -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<!-- Иконки из предыдущих файлов -->
+</svg>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Интернет-магазин электроники - DigitalStudio</title>
+<meta name="description" content="Кейс разработки интернет-магазина электроники с каталогом на 5000+ товаров. Задачи, процесс работы и результаты.">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+<header class="header" role="banner">
+<div class="container">
+<div class="header__inner">
+<a href="sas.html" class="logo" aria-label="DigitalStudio - вернуться на главную">
+<svg class="logo__icon" width="40" height="40" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+
+<nav class="nav" aria-label="Основная навигация">
+<button class="nav__toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+</button>
+
+<ul class="nav__list" id="nav-menu" role="menu">
+<li class="nav__item" role="none">
+<a href="sas.html" class="nav__link" role="menuitem">Главная</a>
+</li>
+<li class="nav__item" role="none">
+<a href="about.html" class="nav__link" role="menuitem">О нас</a>
+</li>
+<li class="nav__item" role="none">
+<a href="portfolio.html" class="nav__link" role="menuitem">Портфолио</a>
+</li>
+<li class="nav__item" role="none">
+<a href="services.html" class="nav__link" role="menuitem">Услуги</a></li>
+<li class="nav__item" role="none">
+<a href="blog.html" class="nav__link" role="menuitem">Блог</a>
+</li>
+<li class="nav__item" role="none">
+<a href="contacts.html" class="nav__link" role="menuitem">Контакты</a>
+</li>
+</ul>
+</nav>
+
+<a href="contacts.html#contact-form" class="btn btn--primary btn--small">Связаться</a>
+</div>
+</div>
+</header>
+
+<main id="main-content" class="main" role="main">
+<!-- Хлебные крошки -->
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<div class="container">
+<ol class="breadcrumbs__list">
+<li class="breadcrumbs__item">
+<a href="sas.html" class="breadcrumbs__link">Главная</a>
+</li>
+<li class="breadcrumbs__item">
+<a href="portfolio.html" class="breadcrumbs__link">Портфолио</a>
+</li>
+<li class="breadcrumbs__item" aria-current="page">
+<span class="breadcrumbs__current">Интернет-магазин электроники</span>
+</li>
+</ol>
+</div>
+</nav>
+
+<!-- Заголовок проекта -->
+<article class="project-detail">
+<header class="project-header">
+<div class="container">
+<div class="project-header__content">
+<h1 class="project-header__title">Интернет-магазин электроники</h1>
+<p class="project-header__subtitle">Разработка современного интернет-магазина с каталогом на 5000+ товаров и интеграцией с 1С</p>
+
+<div class="project-header__meta">
+<div class="project-meta">
+<div class="project-meta__item">
+<span class="project-meta__label">Клиент</span>
+<span class="project-meta__value">ElectroTech</span>
+</div>
+<div class="project-meta__item">
+<span class="project-meta__label">Год</span>
+<span class="project-meta__value">2024</span>
+</div>
+<div class="project-meta__item">
+<span class="project-meta__label">Категория</span>
+<span class="project-meta__value">E-commerce</span>
+</div>
+<div class="project-meta__item">
+<span class="project-meta__label">Технологии</span>
+<span class="project-meta__value">React, Node.js, MongoDB</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="project-header__image">
+<picture>
+<source srcset="project-1-hero.webp" type="image/webp">
+<img src="project-1-hero.jpg" alt="Главная страница интернет-магазина ElectroTech" width="1200" height="600" loading="eager">
+</picture>
+</div>
+</div>
+</header>
+
+<!-- Основной контент проекта -->
+<div class="project-content">
+<div class="container">
+<div class="project-content__grid">
+<div class="project-content__main">
+<!-- Задача проекта -->
+<section class="project-section" aria-labelledby="challenge-title">
+<h2 id="challenge-title" class="project-section__title">Задача</h2>
+<div class="project-section__content">
+<p>Клиент — розничная сеть по продаже электроники, имеющая несколько физических магазинов. Основные задачи:</p>
+<ul>
+<li>Создать современный интернет-магазин для расширения клиентской базы</li>
+<li>Реализовать синхронизацию товаров с системой 1С</li>
+<li>Интегрировать несколько способов оплаты и доставки</li>
+<li>Обеспечить быструю загрузку страниц при большом каталоге</li>
+<li>Создать удобную систему фильтрации и поиска</li>
+</ul>
+</div>
+</section>
+
+<!-- Процесс работы -->
+<section class="project-section" aria-labelledby="process-title">
+<h2 id="process-title" class="project-section__title">Процесс работы</h2>
+<div class="project-section__content">
+<p>Проект реализовывался в несколько этапов:</p>
+
+<h3>1. Анализ и проектирование</h3>
+<p>Провели анализ конкурентов, определили целевую аудиторию и разработали пользовательские сценарии.</p>
+
+<h3>2. Дизайн и прототипирование</h3>
+<p>Создали дизайн-систему и интерактивные прототипы основных страниц: главная, каталог, карточка товара, корзина.</p>
+
+<h3>3. Разработка</h3>
+<p>Фронтенд на React с использованием Next.js для SSR. Бэкенд на Node.js с REST API. База данных MongoDB.</p>
+
+<h3>4. Интеграции</h3>
+<p>Интегрировали системы: 1С для товаров, Яндекс.Касса для оплаты, СДЭК для доставки, amoCRM для заявок.</p>
+
+<h3>5. Тестирование и запуск</h3>
+<p>Провели нагрузочное тестирование, протестировали на разных устройствах и запустили продакшен.</p>
+</div>
+</section>
+
+<!-- Результаты -->
+<section class="project-section" aria-labelledby="results-title">
+<h2 id="results-title" class="project-section__title">Результаты</h2>
+<div class="project-section__content">
+<p>За 6 месяцев разработки был создан полностью функциональный интернет-магазин:</p>
+
+<div class="project-results">
+<div class="project-result">
+<div class="project-result__number">+40%</div>
+<div class="project-result__text">к онлайн-продажам в первый месяц</div>
+</div>
+<div class="project-result">
+<div class="project-result__number">2.1с</div>
+<div class="project-result__text">среднее время загрузки страниц</div>
+</div>
+<div class="project-result">
+<div class="project-result__number">98%</div>
+<div class="project-result__text">удовлетворенность пользователей</div>
+</div>
+<div class="project-result">
+<div class="project-result__number">5000+</div>
+<div class="project-result__text">товаров в каталоге</div>
+</div>
+</div>
+
+<blockquote class="project-quote">
+<p>"DigitalStudio создали для нас магазин, который превзошел все ожидания. Запустили продажи в срок, поддержка на высшем уровне."</p>
+<footer>
+<cite>Иван Сидоров, директор ElectroTech</cite>
+</footer>
+</blockquote>
+</div>
+</section>
+
+<!-- Технологии -->
+<section class="project-section" aria-labelledby="tech-title">
+<h2 id="tech-title" class="project-section__title">Технологии</h2>
+<div class="project-section__content">
+<div class="project-tech">
+<div class="project-tech__category">
+<h3>Фронтенд</h3>
+<ul class="tech-list">
+<li>React</li>
+<li>Next.js</li>
+<li>TypeScript</li>
+<li>Redux Toolkit</li>
+<li>Tailwind CSS</li>
+</ul>
+</div>
+<div class="project-tech__category">
+<h3>Бэкенд</h3>
+<ul class="tech-list">
+<li>Node.js</li>
+<li>Express</li>
+<li>MongoDB</li>
+<li>Redis</li>
+</ul>
+</div>
+<div class="project-tech__category">
+<h3>Инфраструктура</h3>
+<ul class="tech-list">
+<li>Docker</li>
+<li>GitLab CI/CD</li>
+<li>AWS</li>
+<li>nginx</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<!-- Сайдбар с дополнительной информацией -->
+<aside class="project-sidebar" aria-label="Дополнительная информация">
+<div class="project-sidebar__block">
+<h3 class="project-sidebar__title">Детали проекта</h3>
+<dl class="project-details">
+<dt>Сроки:</dt>
+<dd>6 месяцев</dd>
+
+<dt>Команда:</dt>
+<dd>4 специалиста</dd>
+
+<dt>Бюджет:</dt>
+<dd>По запросу</dd>
+
+<dt>Ссылка:</dt>
+<dd>
+<a href="https://electrotech.example.com" target="_blank" rel="noopener noreferrer">
+electrotech.example.com
+</a>
+</dd>
+</dl>
+</div>
+
+<div class="project-sidebar__block">
+<h3 class="project-sidebar__title">Похожие проекты</h3>
+<div class="related-projects">
+<article class="related-project">
+<a href="project-6.html" class="related-project__link">
+<div class="related-project__image">
+<img src="project-6-thumb.jpg" alt="Онлайн-бутик одежды" loading="lazy">
+</div>
+<h4 class="related-project__title">Онлайн-бутик одежды</h4>
+</a>
+</article>
+
+<article class="related-project">
+<a href="project-4.html" class="related-project__link">
+<div class="related-project__image">
+<img src="project-4-thumb.jpg" alt="Приложение доставки еды" loading="lazy">
+</div>
+<h4 class="related-project__title">Приложение доставки еды</h4>
+</a>
+</article>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+
+<!-- Галерея проекта -->
+<section class="project-gallery" aria-label="Галерея проекта">
+<div class="container">
+<h2 class="project-gallery__title">Скриншоты проекта</h2>
+<div class="project-gallery__grid">
+<figure class="project-gallery__item">
+<a href="project-1-full-1.jpg" data-modal-open="image-modal-1">
+<picture>
+<source srcset="project-1-gallery-1.webp" type="image/webp">
+<img src="project-1-gallery-1.jpg" alt="Главная страница интернет-магазина" loading="lazy">
+</picture>
+</a>
+<figcaption>Главная страница с промо-баннерами</figcaption>
+</figure>
+
+<figure class="project-gallery__item">
+<a href="project-1-full-2.jpg" data-modal-open="image-modal-2">
+<picture>
+<source srcset="project-1-gallery-2.webp" type="image/webp">
+<img src="project-1-gallery-2.jpg" alt="Страница каталога товаров" loading="lazy">
+</picture>
+</a>
+<figcaption>Страница каталога с фильтрами</figcaption>
+</figure>
+
+<figure class="project-gallery__item">
+<a href="project-1-full-3.jpg" data-modal-open="image-modal-3">
+<picture>
+<source srcset="project-1-gallery-3.webp" type="image/webp">
+<img src="project-1-gallery-3.jpg" alt="Страница товара" loading="lazy">
+</picture>
+</a>
+<figcaption>Детальная страница товара</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<!-- CTA секция -->
+<section class="project-cta">
+<div class="container">
+<div class="project-cta__content">
+<h2 class="project-cta__title">Хотите похожий проект?</h2>
+<p class="project-cta__description">Мы готовы обсудить вашу задачу и предложить решение</p>
+<a href="contacts.html" class="btn btn--primary btn--large">Обсудить проект</a>
+</div>
+</div>
+</section>
+</article>
+</main>
+
+<footer class="footer" role="contentinfo">
+<div class="container">
+<div class="footer__grid">
+<div class="footer__brand">
+<a href="sas.html" class="logo logo--footer">
+<svg class="logo__icon" width="32" height="32" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+<p class="footer__description">Профессиональная веб-разработка для бизнеса</p>
+</div>
+
+<div class="footer__nav">
+<h3 class="footer__title">Навигация</h3>
+<ul class="footer__list">
+<li><a href="sas.html">Главная</a></li>
+<li><a href="about.html">О нас</a></li>
+<li><a href="portfolio.html">Портфолио</a></li>
+<li><a href="services.html">Услуги</a></li>
+<li><a href="blog.html">Блог</a></li>
+<li><a href="contacts.html">Контакты</a></li>
+</ul>
+</div>
+</div>
+
+<div class="footer__bottom">
+<p class="footer__copyright">&copy; 2024 DigitalStudio. Все права защищены.</p>
+</div>
+</div>
+</footer>
+
+<!-- Модальные окна для галереи -->
+<div id="image-modal-1" class="modal" aria-hidden="true">
+<div class="modal__content">
+<button class="modal__close" data-modal-close aria-label="Закрыть модальное окно">×</button>
+<img src="project-1-full-1.jpg" alt="Главная страница интернет-магазина - увеличенное изображение">
+</div>
+</div>
+
+<!-- SVG спрайт -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<!-- Иконки из sas.html -->
+</svg>
+</body>
+</html>

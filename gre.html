@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Эллада: Колыбель Западной Цивилизации</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary-blue: #0D3B66;
+--primary-white: #FFFFFF;
+--primary-beige: #F5F1E8;
+--secondary-gold: #D4AF37;
+--secondary-terracotta: #C44536;
+--accent-olive: #7D8C65;
+--accent-sky: #87CEEB;
+--text-dark: #2C3E50;
+--text-light: #5D6D7E;
+--card-bg: rgba(255, 255, 255, 0.95);
+--shadow: 0 10px 30px rgba(13, 59, 102, 0.1);
+--gradient-hero: linear-gradient(135deg, rgba(13, 59, 102, 0.9) 0%, rgba(135, 206, 235, 0.8) 100%);
+--gradient-section: linear-gradient(135deg, #F5F1E8 0%, #FFFFFF 100%);
+}
+
+body {
+background-color: var(--primary-beige);
+color: var(--text-dark);
+font-family: 'Open Sans', sans-serif;
+line-height: 1.7;
+overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+font-family: 'Cormorant Garamond', serif;
+font-weight: 600;
+}
+
+/* Загрузочный экран - Греческий орнамент */
+.preloader {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: var(--primary-beige);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+z-index: 10000;
+transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader.hidden {
+opacity: 0;
+visibility: hidden;
+}
+
+.loading-container {
+text-align: center;
+position: relative;
+padding: 3rem;
+border-radius: 20px;
+background: var(--card-bg);
+box-shadow: var(--shadow);
+border: 2px solid var(--secondary-gold);
+}
+
+.greek-pattern {
+font-size: 5rem;
+color: var(--primary-blue);
+margin-bottom: 2rem;
+position: relative;
+}
+
+.loading-text {
+font-size: 1.8rem;
+margin-bottom: 2.5rem;
+color: var(--text-dark);
+letter-spacing: 2px;
+position: relative;
+}
+
+.loading-text::after {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 100px;
+height: 3px;
+background: linear-gradient(90deg, var(--primary-blue), var(--secondary-gold));
+}
+
+.olive-loader {
+width: 120px;
+height: 120px;
+position: relative;
+margin: 0 auto 2.5rem;
+}
+
+.olive-branch {
+position: absolute;
+width: 100%;
+height: 100%;
+border: 3px solid transparent;
+border-top-color: var(--accent-olive);
+border-radius: 50%;
+animation: spin 2s linear infinite;
+}
+
+.olive-branch:nth-child(2) {
+border-top-color: var(--secondary-gold);
+animation: spin 3s linear infinite reverse;
+}
+
+.olive-branch:nth-child(3) {
+border-top-color: var(--secondary-terracotta);
+animation: spin 1.5s linear infinite;
+width: 80%;
+height: 80%;
+top: 10%;
+left: 10%;
+}
+
+.progress-container {
+width: 350px;
+margin: 0 auto;
+}
+
+.progress-bar {
+width: 100%;
+height: 8px;
+background-color: rgba(13, 59, 102, 0.1);
+border-radius: 4px;
+overflow: hidden;
+margin-bottom: 1.5rem;
+}
+
+.progress {
+height: 100%;
+width: 0%;
+background: linear-gradient(90deg, var(--primary-blue), var(--accent-olive));
+border-radius: 4px;
+animation: load 3.5s ease-in-out forwards;
+}
+
+.progress-text {
+font-size: 1.2rem;
+color: var(--text-light);
+margin-bottom: 0.5rem;
+display: flex;
+justify-content: space-between;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+@keyframes load {
+0% { width: 0%; }
+100% { width: 100%; }
+}
+
+/* Анимированные оливковые ветви */
+.olive-leaves {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 9999;
+}
+
+.leaf {
+position: absolute;
+width: 40px;
+height: 20px;
+background: var(--accent-olive);
+clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+opacity: 0.3;
+animation: float linear infinite;
+}
+
+.leaf:nth-child(3n) {
+background: var(--secondary-gold);
+}
+
+.leaf:nth-child(3n+1) {
+background: var(--accent-olive);
+}
+
+.leaf:nth-child(3n+2) {
+background: #7D8C65;
+}
+
+@keyframes float {
+to {
+transform: translateY(100vh) rotate(360deg);
+}
+}
+
+/* Основной контент */
+.content {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 1s ease, transform 1s ease;
+}
+
+.content.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Шапка - Современная греческая архитектура */
+header {
+background: rgba(255, 255, 255, 0.95);
+padding: 1.5rem 3rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 5px 20px rgba(13, 59, 102, 0.1);
+backdrop-filter: blur(10px);
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 15px;
+flex-shrink: 0;
+}
+
+.logo-icon {
+color: var(--secondary-gold);
+font-size: 3rem;
+filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
+}
+
+.logo-text {
+display: flex;
+flex-direction: column;
+}
+
+.site-title {
+font-size: 2.5rem;
+font-weight: 700;
+color: var(--primary-blue);
+letter-spacing: 1px;
+line-height: 1;
+}
+
+.site-subtitle {
+font-size: 1rem;
+color: var(--text-light);
+letter-spacing: 1px;
+margin-top: 5px;
+font-style: italic;
+}
+
+/* Гамбургер меню */
+.menu-toggle {
+display: none;
+flex-direction: column;
+cursor: pointer;
+padding: 8px;
+background: rgba(13, 59, 102, 0.1);
+border-radius: 5px;
+transition: all 0.3s;
+}
+
+.menu-toggle:hover {
+background: rgba(13, 59, 102, 0.2);
+}
+
+.menu-toggle span {
+width: 30px;
+height: 3px;
+background: var(--primary-blue);
+margin: 4px 0;
+transition: 0.3s;
+border-radius: 2px;
+}
+
+.menu {
+display: flex;
+gap: 2.5rem;
+align-items: center;
+}
+
+.menu a {
+color: var(--text-dark);
+text-decoration: none;
+font-size: 1.2rem;
+font-weight: 600;
+transition: all 0.3s;
+position: relative;
+padding: 8px 0;
+letter-spacing: 1px;
+}
+
+.menu a:hover {
+color: var(--secondary-gold);
+}
+
+.menu a::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 0;
+height: 3px;
+background: linear-gradient(90deg, var(--primary-blue), var(--secondary-gold));
+transition: width 0.3s ease;
+}
+
+.menu a:hover::after {
+width: 100%;
+}
+
+.menu a.active {
+color: var(--primary-blue);
+}
+
+.menu a.active::after {
+width: 100%;
+}
+
+.cta-button {
+background: linear-gradient(135deg, var(--primary-blue), var(--accent-sky));
+color: var(--primary-white);
+padding: 0.8rem 2rem;
+border: none;
+border-radius: 50px;
+font-size: 1.1rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+letter-spacing: 1px;
+box-shadow: 0 5px 15px rgba(13, 59, 102, 0.2);
+}
+
+.cta-button:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 25px rgba(13, 59, 102, 0.3);
+}
+
+/* Герой-секция */
+.hero {
+min-height: 100vh;
+background: linear-gradient(rgba(245, 241, 232, 0.9), rgba(245, 241, 232, 0.95)),
+url('https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+background-size: cover;
+background-position: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 4rem 2rem;
+position: relative;
+overflow: hidden;
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 1200px;
+}
+
+.hero-title {
+font-size: 4.5rem;
+margin-bottom: 1.5rem;
+line-height: 1.1;
+color: var(--primary-blue);
+text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.hero-greek {
+font-size: 2.5rem;
+color: var(--secondary-gold);
+margin-bottom: 2rem;
+font-family: 'Cormorant Garamond', serif;
+font-style: italic;
+}
+
+.hero-subtitle {
+font-size: 1.8rem;
+max-width: 900px;
+margin: 0 auto 2rem;
+line-height: 1.7;
+color: var(--text-dark);
+font-weight: 300;
+}
+
+.hero-stats {
+display: flex;
+justify-content: center;
+gap: 3rem;
+margin: 3rem 0;
+flex-wrap: wrap;
+}
+
+.stat-item {
+text-align: center;
+padding: 1.5rem 2rem;
+background: rgba(255, 255, 255, 0.9);
+border-radius: 15px;
+border: 2px solid rgba(212, 175, 55, 0.3);
+min-width: 180px;
+transition: transform 0.3s;
+backdrop-filter: blur(10px);
+}
+
+.stat-item:hover {
+transform: translateY(-10px);
+border-color: var(--secondary-gold);
+box-shadow: var(--shadow);
+}
+
+.stat-value {
+font-size: 2.8rem;
+font-weight: 700;
+color: var(--primary-blue);
+margin-bottom: 0.5rem;
+font-family: 'Cormorant Garamond', serif;
+}
+
+.stat-label {
+font-size: 1.1rem;
+color: var(--text-light);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.hero-buttons {
+display: flex;
+gap: 1.5rem;
+justify-content: center;
+margin-top: 3rem;
+flex-wrap: wrap;
+}
+
+.btn-primary {
+background: linear-gradient(135deg, var(--primary-blue), var(--accent-sky));
+color: var(--primary-white);
+padding: 1.2rem 3rem;
+border: none;
+border-radius: 50px;
+font-size: 1.3rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+letter-spacing: 2px;
+box-shadow: 0 10px 25px rgba(13, 59, 102, 0.3);
+}
+
+.btn-primary:hover {
+transform: translateY(-5px) scale(1.05);
+box-shadow: 0 15px 35px rgba(13, 59, 102, 0.4);
+}
+
+.btn-secondary {
+background: transparent;
+color: var(--primary-blue);
+padding: 1.2rem 3rem;
+border: 2px solid var(--primary-blue);
+border-radius: 50px;
+font-size: 1.3rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+letter-spacing: 2px;
+}
+
+.btn-secondary:hover {
+background: rgba(13, 59, 102, 0.1);
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(13, 59, 102, 0.2);
+}
+
+/* Секции */
+.section {
+padding: 6rem 3rem;
+max-width: 1400px;
+margin: 0 auto;
+}
+
+.section-title {
+text-align: center;
+font-size: 3.2rem;
+margin-bottom: 1rem;
+color: var(--primary-blue);
+position: relative;
+padding-bottom: 1.5rem;
+}
+
+.section-title::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 150px;
+height: 5px;
+background: linear-gradient(90deg, var(--primary-blue), var(--secondary-gold));
+border-radius: 3px;
+}
+
+.section-subtitle {
+text-align: center;
+font-size: 1.4rem;
+color: var(--text-light);
+margin-bottom: 4rem;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+line-height: 1.7;
+}
+
+/* Секция истории */
+.history-section {
+background: var(--gradient-section);
+position: relative;
+overflow: hidden;
+}
+
+.timeline-container {
+position: relative;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.timeline-container::after {
+content: '';
+position: absolute;
+width: 6px;
+background: linear-gradient(to bottom, var(--primary-blue), var(--secondary-gold));
+top: 0;
+bottom: 0;
+left: 50%;
+margin-left: -3px;
+border-radius: 3px;
+}
+
+.timeline-item {
+padding: 10px 40px;
+position: relative;
+width: 50%;
+box-sizing: border-box;
+}
+
+.timeline-item:nth-child(odd) {
+left: 0;
+}
+
+.timeline-item:nth-child(even) {
+left: 50%;
+}
+
+.timeline-content {
+padding: 2rem;
+background: var(--card-bg);
+border-radius: 15px;
+box-shadow: var(--shadow);
+position: relative;
+transition: transform 0.3s;
+border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.timeline-content:hover {
+transform: translateY(-10px);
+border-color: var(--secondary-gold);
+}
+
+.timeline-year {
+font-size: 2.2rem;
+color: var(--secondary-gold);
+font-weight: 700;
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.timeline-title {
+font-size: 1.8rem;
+color: var(--primary-blue);
+margin-bottom: 1rem;
+}
+
+.timeline-description {
+font-size: 1.2rem;
+line-height: 1.8;
+color: var(--text-light);
+}
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+content: '';
+position: absolute;
+width: 20px;
+height: 20px;
+right: -10px;
+background: var(--secondary-gold);
+border: 4px solid var(--primary-blue);
+top: 50%;
+transform: translateY(-50%);
+border-radius: 50%;
+z-index: 1;
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+content: '';
+position: absolute;
+width: 20px;
+height: 20px;
+left: -10px;
+background: var(--secondary-gold);
+border: 4px solid var(--primary-blue);
+top: 50%;
+transform: translateY(-50%);
+border-radius: 50%;
+z-index: 1;
+}
+
+/* Секция мифологии */
+.mythology-section {
+background: var(--primary-beige);
+position: relative;
+}
+
+.gods-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+gap: 3rem;
+margin-bottom: 5rem;
+}
+
+.god-card {
+background: var(--card-bg);
+border-radius: 20px;
+overflow: hidden;
+transition: all 0.5s;
+box-shadow: var(--shadow);
+border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.god-card:hover {
+transform: translateY(-15px);
+box-shadow: 0 25px 50px rgba(13, 59, 102, 0.15);
+border-color: var(--secondary-gold);
+}
+
+.god-header {
+height: 250px;
+overflow: hidden;
+position: relative;
+}
+
+.god-img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.5s;
+}
+
+.god-card:hover .god-img {
+transform: scale(1.1);
+}
+
+.god-symbol {
+position: absolute;
+top: 20px;
+right: 20px;
+width: 60px;
+height: 60px;
+background: rgba(255, 255, 255, 0.9);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: var(--secondary-gold);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.god-content {
+padding: 2rem;
+}
+
+.god-name {
+font-size: 2rem;
+color: var(--primary-blue);
+margin-bottom: 0.5rem;
+}
+
+.god-title {
+font-size: 1.2rem;
+color: var(--secondary-terracotta);
+margin-bottom: 1rem;
+font-weight: 600;
+}
+
+.god-description {
+font-size: 1.2rem;
+line-height: 1.8;
+color: var(--text-light);
+margin-bottom: 1.5rem;
+}
+
+.god-powers {
+background: rgba(13, 59, 102, 0.05);
+padding: 1.5rem;
+border-radius: 10px;
+margin-top: 1.5rem;
+border-left: 4px solid var(--secondary-gold);
+}
+
+.powers-title {
+font-size: 1.3rem;
+color: var(--primary-blue);
+margin-bottom: 1rem;
+}
+
+.powers-list {
+list-style: none;
+}
+
+.powers-list li {
+padding: 0.5rem 0;
+color: var(--text-light);
+position: relative;
+padding-left: 1.5rem;
+}
+
+.powers-list li::before {
+content: '⚡';
+position: absolute;
+left: 0;
+color: var(--secondary-gold);
+}
+
+/* Секция архитектуры */
+.architecture-section {
+background: var(--gradient-section);
+position: relative;
+overflow: hidden;
+}
+
+.architecture-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2.5rem;
+margin-bottom: 5rem;
+}
+
+.architecture-card {
+background: var(--card-bg);
+border-radius: 15px;
+overflow: hidden;
+transition: all 0.4s;
+box-shadow: var(--shadow);
+border: 1px solid rgba(125, 140, 101, 0.2);
+}
+
+.architecture-card:hover {
+transform: translateY(-10px);
+border-color: var(--accent-olive);
+box-shadow: 0 20px 40px rgba(125, 140, 101, 0.15);
+}
+
+.architecture-img {
+width: 100%;
+height: 250px;
+object-fit: cover;
+}
+
+.architecture-content {
+padding: 2rem;
+}
+
+.architecture-title {
+font-size: 1.8rem;
+color: var(--primary-blue);
+margin-bottom: 1rem;
+}
+
+.architecture-location {
+font-size: 1.1rem;
+color: var(--accent-olive);
+margin-bottom: 1rem;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.architecture-description {
+font-size: 1.1rem;
+line-height: 1.7;
+color: var(--text-light);
+margin-bottom: 1.5rem;
+}
+
+.architecture-features {
+list-style: none;
+text-align: left;
+margin-top: 1.5rem;
+}
+
+.architecture-features li {
+padding: 0.5rem 0;
+color: var(--text-light);
+position: relative;
+padding-left: 1.8rem;
+}
+
+.architecture-features li::before {
+content: '🏛️';
+position: absolute;
+left: 0;
+}
+
+/* Секция современности */
+.modern-section {
+background: var(--primary-beige);
+position: relative;
+}
+
+.modern-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+gap: 3rem;
+margin-bottom: 5rem;
+}
+
+.modern-card {
+background: var(--card-bg);
+border-radius: 20px;
+overflow: hidden;
+transition: all 0.5s;
+box-shadow: var(--shadow);
+border: 1px solid rgba(135, 206, 235, 0.2);
+}
+
+.modern-card:hover {
+transform: translateY(-15px);
+box-shadow: 0 25px 50px rgba(135, 206, 235, 0.2);
+border-color: var(--accent-sky);
+}
+
+.modern-header {
+display: flex;
+padding: 2rem;
+background: rgba(135, 206, 235, 0.05);
+border-bottom: 1px solid rgba(135, 206, 235, 0.2);
+align-items: center;
+gap: 1.5rem;
+}
+
+.modern-icon {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(--accent-sky), var(--primary-blue));
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2.5rem;
+color: var(--primary-white);
+flex-shrink: 0;
+}
+
+.modern-info {
+flex-grow: 1;
+}
+
+.modern-title {
+font-size: 1.8rem;
+color: var(--primary-blue);
+margin-bottom: 0.5rem;
+}
+
+.modern-subtitle {
+font-size: 1.2rem;
+color: var(--accent-sky);
+margin-bottom: 0.5rem;
+font-weight: 600;
+}
+
+.modern-content {
+padding: 2rem;
+}
+
+.modern-description {
+font-size: 1.2rem;
+line-height: 1.8;
+color: var(--text-light);
+margin-bottom: 2rem;
+}
+
+.modern-stats {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1rem;
+background: rgba(13, 59, 102, 0.05);
+padding: 1.5rem;
+border-radius: 10px;
+margin-top: 1.5rem;
+}
+
+.modern-stat {
+text-align: center;
+padding: 1rem;
+background: var(--card-bg);
+border-radius: 8px;
+border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.modern-stat-value {
+font-size: 1.8rem;
+font-weight: bold;
+color: var(--primary-blue);
+margin-bottom: 0.5rem;
+}
+
+.modern-stat-label {
+font-size: 0.9rem;
+color: var(--text-light);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+/* Футер */
+footer {
+background: var(--primary-blue);
+padding: 4rem 3rem 2rem;
+position: relative;
+color: var(--primary-white);
+}
+
+.footer-content {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 3rem;
+max-width: 1400px;
+margin: 0 auto 3rem;
+}
+
+.footer-section h3 {
+font-size: 1.8rem;
+color: var(--secondary-gold);
+margin-bottom: 1.5rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.footer-section p {
+font-size: 1.2rem;
+line-height: 1.7;
+color: rgba(255, 255, 255, 0.8);
+margin-bottom: 1.5rem;
+}
+
+.social-icons {
+display: flex;
+gap: 1.2rem;
+margin-top: 1.5rem;
+}
+
+.social-icon {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.1);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--primary-white);
+font-size: 1.5rem;
+transition: all 0.3s;
+text-decoration: none;
+}
+
+.social-icon:hover {
+background: var(--secondary-gold);
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+}
+
+.footer-links {
+list-style: none;
+}
+
+.footer-links li {
+margin-bottom: 1rem;
+}
+
+.footer-links a {
+color: rgba(255, 255, 255, 0.8);
+text-decoration: none;
+font-size: 1.2rem;
+transition: color 0.3s;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.footer-links a:hover {
+color: var(--secondary-gold);
+transform: translateX(5px);
+}
+
+.footer-links i {
+color: var(--secondary-gold);
+}
+
+.copyright {
+text-align: center;
+padding-top: 2rem;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+color: rgba(255, 255, 255, 0.6);
+font-size: 1.1rem;
+}
+
+.greek-footer {
+font-size: 1.4rem;
+color: var(--secondary-gold);
+margin-top: 0.5rem;
+font-weight: bold;
+font-family: 'Cormorant Garamond', serif;
+}
+
+/* Кнопка "Наверх" */
+.back-to-top {
+position: fixed;
+bottom: 30px;
+right: 30px;
+width: 60px;
+height: 60px;
+background: linear-gradient(135deg, var(--primary-blue), var(--accent-sky));
+color: var(--primary-white);
+border: none;
+border-radius: 50%;
+font-size: 1.5rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s;
+z-index: 999;
+box-shadow: 0 5px 20px rgba(13, 59, 102, 0.3);
+opacity: 0;
+visibility: hidden;
+}
+
+.back-to-top.visible {
+opacity: 1;
+visibility: visible;
+}
+
+.back-to-top:hover {
+transform: translateY(-5px) scale(1.1);
+box-shadow: 0 10px 25px rgba(13, 59, 102, 0.5);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+.hero-title {
+font-size: 3.8rem;
+}
+
+.modern-grid {
+grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+}
+
+@media (max-width: 992px) {
+.section {
+padding: 5rem 2rem;
+}
+
+.hero-title {
+font-size: 3.2rem;
+}
+
+.hero-subtitle {
+font-size: 1.6rem;
+}
+
+.gods-grid {
+grid-template-columns: 1fr;
+max-width: 700px;
+margin: 0 auto 4rem;
+}
+
+.modern-grid {
+grid-template-columns: 1fr;
+max-width: 700px;
+margin: 0 auto 4rem;
+}
+
+.timeline-container::after {
+left: 31px;
+}
+
+.timeline-item {
+width: 100%;
+padding-left: 70px;
+padding-right: 25px;
+}
+
+.timeline-item:nth-child(even) {
+left: 0;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::after,
+.timeline-item:nth-child(even) .timeline-content::after {
+left: 20px;
+}
+}
+
+@media (max-width: 768px) {
+header {
+padding: 1rem 1.5rem;
+flex-wrap: wrap;
+}
+
+.menu-toggle {
+display: flex;
+order: 2;
+}
+
+.menu {
+position: fixed;
+top: 80px;
+left: 0;
+width: 100%;
+background: rgba(255, 255, 255, 0.98);
+flex-direction: column;
+padding: 2rem;
+transform: translateY(-100%);
+opacity: 0;
+visibility: hidden;
+transition: all 0.4s ease;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+z-index: 999;
+border-top: 2px solid var(--secondary-gold);
+border-bottom: 2px solid var(--secondary-gold);
+}
+
+.menu.active {
+transform: translateY(0);
+opacity: 1;
+visibility: visible;
+}
+
+.menu a {
+width: 100%;
+text-align: center;
+padding: 1rem;
+font-size: 1.4rem;
+border-bottom: 1px solid rgba(13, 59, 102, 0.1);
+}
+
+.hero {
+padding: 3rem 1.5rem;
+min-height: 90vh;
+}
+
+.hero-title {
+font-size: 2.8rem;
+}
+
+.hero-greek {
+font-size: 2rem;
+}
+
+.hero-subtitle {
+font-size: 1.4rem;
+}
+
+.hero-stats {
+gap: 1.5rem;
+}
+
+.stat-item {
+min-width: 140px;
+padding: 1rem 1.5rem;
+}
+
+.section-title {
+font-size: 2.8rem;
+}
+
+.modern-header {
+flex-direction: column;
+text-align: center;
+padding: 1.5rem;
+}
+
+.modern-icon {
+margin: 0 auto;
+}
+
+.hero-buttons {
+flex-direction: column;
+align-items: center;
+}
+
+.btn-primary, .btn-secondary {
+width: 100%;
+max-width: 300px;
+}
+
+.footer-content {
+grid-template-columns: 1fr;
+text-align: center;
+}
+
+.social-icons {
+justify-content: center;
+}
+
+.footer-links a {
+justify-content: center;
+}
+
+.back-to-top {
+width: 50px;
+height: 50px;
+bottom: 20px;
+right: 20px;
+font-size: 1.2rem;
+}
+}
+
+@media (max-width: 480px) {
+.hero-title {
+font-size: 2.2rem;
+}
+
+.hero-greek {
+font-size: 1.6rem;
+}
+
+.hero-subtitle {
+font-size: 1.2rem;
+}
+
+.section-title {
+font-size: 2.2rem;
+}
+
+.section {
+padding: 4rem 1.5rem;
+}
+
+.god-card, .modern-card, .architecture-card {
+margin: 0 -1rem;
+border-radius: 10px;
+}
+
+.logo {
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+}
+
+.site-title {
+font-size: 1.8rem;
+}
+
+.stat-value {
+font-size: 2.2rem;
+}
+
+.modern-stats {
+grid-template-columns: 1fr;
+}
+}
+
+/* Анимации для появления элементов при скролле */
+.fade-in {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Греческие орнаменты */
+.greek-ornament {
+position: absolute;
+opacity: 0.05;
+pointer-events: none;
+z-index: 1;
+}
+
+.ornament-1 {
+top: 10%;
+right: 5%;
+width: 200px;
+height: 200px;
+background: radial-gradient(circle, var(--secondary-gold) 0%, transparent 70%);
+}
+
+.ornament-2 {
+bottom: 10%;
+left: 5%;
+width: 150px;
+height: 150px;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,10 L60,40 L90,50 L60,60 L50,90 L40,60 L10,50 L40,40 Z' fill='%23D4AF37'/%3E%3C/svg%3E");
+background-size: contain;
+background-repeat: no-repeat;
+}
+</style>
+</head>
+<body>
+<!-- Загрузочный экран -->
+<div class="preloader" id="preloader">
+<div class="loading-container">
+<div class="greek-pattern">ΕΛΛΑΔΑ</div>
+<div class="loading-text">Колыбель Западной Цивилизации</div>
+<div class="olive-loader">
+<div class="olive-branch"></div>
+<div class="olive-branch"></div>
+<div class="olive-branch"></div>
+</div>
+<div class="progress-container">
+<div class="progress-text">
+<span>Загрузка истории</span>
+<span id="progress-percent">0%</span>
+</div>
+<div class="progress-bar">
+<div class="progress" id="progress"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Падающие оливковые листья -->
+<div class="olive-leaves" id="oliveLeaves"></div>
+
+<!-- Греческие орнаменты -->
+<div class="greek-ornament ornament-1"></div>
+<div class="greek-ornament ornament-2"></div>
+
+<!-- Кнопка "Наверх" -->
+<button class="back-to-top" id="backToTop">
+<i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- Основной контент -->
+<div class="content" id="content">
+<!-- Шапка -->
+<header>
+<div class="logo">
+<i class="fas fa-landmark logo-icon"></i>
+<div class="logo-text">
+<div class="site-title">Эллада</div>
+<div class="site-subtitle">Древняя и современная Греция</div>
+</div>
+</div>
+
+<div class="menu-toggle" id="menuToggle">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<nav class="menu" id="mainMenu">
+<a href="#home" class="active">Главная</a>
+<a href="#history">История</a>
+<a href="#mythology">Мифология</a>
+<a href="#architecture">Архитектура</a>
+<a href="#modern">Современность</a>
+<a href="#travel">Путешествия</a>
+<a href="#contact">Контакты</a>
+</nav>
+
+<button class="cta-button" onclick="scrollToSection('history')">Исследовать</button>
+</header>
+
+<!-- Герой-секция -->
+<section class="hero" id="home">
+<div class="hero-content">
+<h1 class="hero-title animate__animated animate__fadeInDown">Древняя Греция: Колыбель Западной Цивилизации</h1>
+<div class="hero-greek">Ελλάδα - Elláda</div>
+<p class="hero-subtitle animate__animated animate__fadeInUp">
+От философии и демократии до искусства и науки — Древняя Греция подарила
+миру фундаментальные идеи, которые продолжают формировать наше мышление
+и общество спустя тысячи лет.
+</p>
+
+<div class="hero-stats">
+<div class="stat-item fade-in">
+<div class="stat-value">800 г. до н.э.</div>
+<div class="stat-label">Начало эпохи</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">150+</div>
+<div class="stat-label">Города-государства</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">6000+</div>
+<div class="stat-label">Островов</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">3400</div>
+<div class="stat-label">Лет истории</div>
+</div>
+</div>
+
+<div class="hero-buttons">
+<button class="btn-primary" onclick="scrollToSection('history')">
+<i class="fas fa-scroll"></i> Изучить историю
+</button>
+<button class="btn-secondary" onclick="scrollToSection('mythology')">
+<i class="fas fa-gem"></i> Познать мифы
+</button>
+</div>
+</div>
+</section>
+
+<!-- Секция истории -->
+<section class="section history-section" id="history">
+<h2 class="section-title">Историческая хронология</h2>
+<p class="section-subtitle">
+От Минойской цивилизации до эллинистического периода — ключевые этапы развития
+древнегреческой культуры, которые сформировали западную цивилизацию.
+</p>
+
+<div class="timeline-container">
+<!-- Период 1 -->
+<div class="timeline-item fade-in">
+<div class="timeline-content">
+<div class="timeline-year">
+<i class="fas fa-history"></i> 2700-1100 гг. до н.э.
+</div>
+<h3 class="timeline-title">Минойская цивилизация</h3>
+<p class="timeline-description">
+Первая высокоразвитая цивилизация в Европе на острове Крит.
+Известна дворцовыми комплексами (Кносс, Фест), развитой системой
+письменности (линейное письмо А и Б), фресками и отсутствием
+оборонительных стен, что свидетельствует о мирном существовании.
+</p>
+</div>
+</div>
+
+<!-- Период 2 -->
+<div class="timeline-item fade-in">
+<div class="timeline-content">
+<div class="timeline-year">
+<i class="fas fa-shield-alt"></i> 1600-1100 гг. до н.э.
+</div>
+<h3 class="timeline-title">Микенская цивилизация</h3>
+<p class="timeline-description">
+Первая грекоязычная цивилизация на материковой Греции.
+Известна циклопическими крепостями, погребальными масками
+из золота (маска Агамемнона), и участием в Троянской войне,
+описанной Гомером в "Илиаде".
+</p>
+</div>
+</div>
+
+<!-- Период 3 -->
+<div class="timeline-item fade-in">
+<div class="timeline-content">
+<div class="timeline-year">
+<i class="fas fa-city"></i> 800-500 гг. до н.э.
+</div>
+<h3 class="timeline-title">Архаический период</h3>
+<p class="timeline-description">
+Формирование полисов (городов-государств), появление
+демократии в Афинах, развитие философии (досократики),
+и создание классического греческого искусства.
+Великая греческая колонизация Средиземноморья и Черного моря.
+</p>
+</div>
+</div>
+
+<!-- Период 4 -->
+<div class="timeline-item fade-in">
+<div class="timeline-content">
+<div class="timeline-year">
+<i class="fas fa-helmet-battle"></i> 500-323 гг. до н.э.
+</div>
+<h3 class="timeline-title">Классический период</h3>
+<p class="timeline-description">
+Золотой век греческой культуры. Греко-персидские войны,
+расцвет афинской демократии при Перикле, строительство
+Парфенона, творчество Сократа, Платона и Аристотеля.
+Пелопоннесская война и возвышение Македонии.
+</p>
+</div>
+</div>
+
+<!-- Период 5 -->
+<div class="timeline-item fade-in">
+<div class="timeline-content">
+<div class="timeline-year">
+<i class="fas fa-globe"></i> 323-31 гг. до н.э.
+</div>
+<h3 class="timeline-title">Эллинистический период</h3>
+<p class="timeline-description">
+Распространение греческой культуры на Восток после завоеваний
+Александра Македонского. Создание огромных эллинистических
+царств, развитие науки в Александрийском музее, синтез
+греческой и восточных культур. Завершается римским завоеванием.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Секция мифологии -->
+<section class="section mythology-section" id="mythology">
+<h2 class="section-title">Олимпийские боги</h2>
+<p class="section-subtitle">
+Пантеон древнегреческих божеств, чьи истории, взаимоотношения и влияние
+формировали мировоззрение древних греков и продолжают вдохновлять искусство.
+</p>
+
+<div class="gods-grid">
+<!-- Бог 1 -->
+<div class="god-card fade-in">
+<div class="god-header">
+<img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Зевс" class="god-img">
+<div class="god-symbol">⚡</div>
+</div>
+<div class="god-content">
+<h3 class="god-name">Зевс</h3>
+<div class="god-title">Верховный бог, бог неба и грома</div>
+<p class="god-description">
+Царь богов и людей, правитель Олимпа. Сын Кроноса и Реи,
+младший из титанов. Известен своими многочисленными любовными
+связями и метаморфозами. Его атрибуты — молния, орел и скипетр.
+</p>
+
+<div class="god-powers">
+<h4 class="powers-title">Сферы влияния:</h4>
+<ul class="powers-list">
+<li>Погода и природные явления</li>
+<li>Справедливость и закон</li>
+<li>Гостеприимство и клятвы</li>
+<li>Судьба и предсказания</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Бог 2 -->
+<div class="god-card fade-in">
+<div class="god-header">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Афина" class="god-img">
+<div class="god-symbol">🦉</div>
+</div>
+<div class="god-content">
+<h3 class="god-name">Афина</h3>
+<div class="god-title">Богиня мудрости, войны и ремесел</div>
+<p class="god-description">
+Родилась из головы Зевса в полном боевом облачении.
+Покровительница Афин, дарительница оливкового дерева.
+Богиня стратегической войны (в отличие от Ареса — бога кровавой битвы).
+</p>
+
+<div class="god-powers">
+<h4 class="powers-title">Сферы влияния:</h4>
+<ul class="powers-list">
+<li>Мудрость и знания</li>
+<li>Стратегия и тактика</li>
+<li>Ремесла и искусства</li>
+<li>Города и цивилизации</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Бог 3 -->
+<div class="god-card fade-in">
+<div class="god-header">
+<img src="https://images.unsplash.com/photo-1517462964-21fdcec3f25b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Аполлон" class="god-img">
+<div class="god-symbol">🏹</div>
+</div>
+<div class="god-content">
+<h3 class="god-name">Аполлон</h3>
+<div class="god-title">Бог солнца, света, музыки и пророчеств</div>
+<p class="god-description">
+Сын Зевса и Лето, брат-близнец Артемиды. Идеал мужской красоты.
+Покровитель муз, врачевания, стрельбы из лука. Его оракул в Дельфах
+был самым влиятельным в древнем мире.
+</p>
+
+<div class="god-powers">
+<h4 class="powers-title">Сферы влияния:</h4>
+<ul class="powers-list">
+<li>Солнце и свет</li>
+<li>Музыка и поэзия</li>
+<li>Исцеление и медицина</li>
+<li>Пророчества и гадания</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Секция архитектуры -->
+<section class="section architecture-section" id="architecture">
+<h2 class="section-title">Архитектурные шедевры</h2>
+<p class="section-subtitle">
+Вечные памятники древнегреческого зодчества, демонстрирующие гармонию,
+пропорции и совершенство, которые стали основой западной архитектуры.
+</p>
+
+<div class="architecture-container">
+<!-- Архитектура 1 -->
+<div class="architecture-card fade-in">
+<img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Парфенон" class="architecture-img">
+<div class="architecture-content">
+<h3 class="architecture-title">Парфенон</h3>
+<div class="architecture-location">
+<i class="fas fa-map-marker-alt"></i> Афинский Акрополь, Афины
+</div>
+<p class="architecture-description">
+Храм богини Афины, построенный в 447-438 гг. до н.э.
+Архитекторы Иктин и Калликрат. Ярчайший пример дорического
+ордера с элементами ионического. Символ афинской демократии
+и золотого века Перикла.
+</p>
+<ul class="architecture-features">
+<li>Строительство: 447-438 гг. до н.э.</li>
+<li>Архитектурный ордер: Дорический</li>
+<li>Материал: Пентелийский мрамор</li>
+<li>Статуя Афины работы Фидия (утрачена)</li>
+</ul>
+</div>
+</div>
+
+<!-- Архитектура 2 -->
+<div class="architecture-card fade-in">
+<img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Храм Гефеста" class="architecture-img">
+<div class="architecture-content">
+<h3 class="architecture-title">Храм Гефеста</h3>
+<div class="architecture-location">
+<i class="fas fa-map-marker-alt"></i> Афины, район Агора
+</div>
+<p class="architecture-description">
+Лучше всего сохранившийся древнегреческий храм. Построен в
+449-415 гг. до н.э. в честь бога Гефеста и богини Афины.
+Дорический периптер с 34 колоннами. В V веке был превращен
+в христианскую церковь, что способствовало его сохранности.
+</p>
+<ul class="architecture-features">
+<li>Строительство: 449-415 гг. до н.э.</li>
+<li>Архитектурный ордер: Дорический</li>
+<li>Состояние: Отличное сохранение</li>
+<li>Единственный храм с целой крышей</li>
+</ul>
+</div>
+</div>
+
+<!-- Архитектура 3 -->
+<div class="architecture-card fade-in">
+<img src="https://images.unsplash.com/photo-1551764611-39f2c6b93d2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+alt="Эрехтейон" class="architecture-img">
+<div class="architecture-content">
+<h3 class="architecture-title">Эрехтейон</h3>
+<div class="architecture-location">
+<i class="fas fa-map-marker-alt"></i> Афинский Акрополь
+</div>
+<p class="architecture-description">
+Храм, построенный в 421-406 гг. до н.э. на месте спора
+Афины и Посейдона за покровительство Афинам. Известен
+портиком кариатид — шестью колоннами в виде женских фигур.
+Сложная асимметричная планировка обусловлена неровным рельефом.
+</p>
+<ul class="architecture-features">
+<li>Строительство: 421-406 гг. до н.э.</li>
+<li>Архитектурный ордер: Ионический</li>
+<li>Особенность: Портик кариатид</li>
+<li>Святилище Афины и Посейдона</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Секция современности -->
+<section class="section modern-section" id="modern">
+<h2 class="section-title">Современная Греция</h2>
+<p class="section-subtitle">
+Сохранение древнего наследия в сочетании с развитием современного общества,
+экономики и культуры в стране, которая остается мостом между Востоком и Западом.
+</p>
+
+<div class="modern-grid">
+<!-- Современность 1 -->
+<div class="modern-card fade-in">
+<div class="modern-header">
+<div class="modern-icon">
+<i class="fas fa-ship"></i>
+</div>
+<div class="modern-info">
+<h3 class="modern-title">Морское наследие</h3>
+<div class="modern-subtitle">Крупнейший торговый флот в мире</div>
+</div>
+</div>
+<div class="modern-content">
+<p class="modern-description">
+Греция обладает крупнейшим в мире торговым флотом, контролируя
+около 20% мирового тоннажа. Морские традиции, восходящие к
+древним временам, продолжают играть ключевую роль в экономике
+страны и ее культурной идентичности.
+</p>
+
+<div class="modern-stats">
+<div class="modern-stat">
+<div class="modern-stat-value">#1</div>
+<div class="modern-stat-label">В мире по тоннажу</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">20%</div>
+<div class="modern-stat-label">Мирового флота</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">4000+</div>
+<div class="modern-stat-label">Греческих судов</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">150+</div>
+<div class="modern-stat-label">Стран регистрации</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Современность 2 -->
+<div class="modern-card fade-in">
+<div class="modern-header">
+<div class="modern-icon">
+<i class="fas fa-umbrella-beach"></i>
+</div>
+<div class="modern-info">
+<h3 class="modern-title">Туризм</h3>
+<div class="modern-subtitle">Одна из самых посещаемых стран</div>
+</div>
+</div>
+<div class="modern-content">
+<p class="modern-description">
+Греция входит в топ-20 самых посещаемых стран мира. Ежегодно
+страну посещают более 30 миллионов туристов, привлеченных
+древними памятниками, островами, пляжами и средиземноморской кухней.
+Туризм составляет около 20% ВВП страны.
+</p>
+
+<div class="modern-stats">
+<div class="modern-stat">
+<div class="modern-stat-value">30M+</div>
+<div class="modern-stat-label">Туристов в год</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">20%</div>
+<div class="modern-stat-label">ВВП от туризма</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">18</div>
+<div class="modern-stat-label">Объектов ЮНЕСКО</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">300+</div>
+<div class="modern-stat-label">Солнечных дней</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Современность 3 -->
+<div class="modern-card fade-in">
+<div class="modern-header">
+<div class="modern-icon">
+<i class="fas fa-leaf"></i>
+</div>
+<div class="modern-info">
+<h3 class="modern-title">Сельское хозяйство</h3>
+<div class="modern-subtitle">Мировой лидер по производству оливкового масла</div>
+</div>
+</div>
+<div class="modern-content">
+<p class="modern-description">
+Греция занимает третье место в мире по производству оливкового масла
+и является крупнейшим производителем хлопка в ЕС. Сельское хозяйство
+сохраняет древние традиции, особенно в производстве оливок, винограда,
+фисташек и цитрусовых.
+</p>
+
+<div class="modern-stats">
+<div class="modern-stat">
+<div class="modern-stat-value">#3</div>
+<div class="modern-stat-label">Оливковое масло</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">120M+</div>
+<div class="modern-stat-label">Оливковых деревьев</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">#1 в ЕС</div>
+<div class="modern-stat-label">Хлопок</div>
+</div>
+<div class="modern-stat">
+<div class="modern-stat-value">3000 лет</div>
+<div class="modern-stat-label">Традиции виноделия</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Футер -->
+<footer id="contact">
+<div class="footer-content">
+<div class="footer-section">
+<h3>О проекте</h3>
+<p>
+"Эллада" — образовательный проект, посвященный изучению
+древнегреческой цивилизации и ее влияния на современный мир.
+Мы стремимся сделать богатое наследие Греции доступным
+и понятным для всех.
+</p>
+<div class="social-icons">
+<a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+</div>
+</div>
+
+<div class="footer-section">
+<h3>Разделы</h3>
+<ul class="footer-links">
+<li><a href="#home"><i class="fas fa-chevron-right"></i> Главная</a></li>
+<li><a href="#history"><i class="fas fa-chevron-right"></i> История</a></li>
+<li><a href="#mythology"><i class="fas fa-chevron-right"></i> Мифология</a></li>
+<li><a href="#architecture"><i class="fas fa-chevron-right"></i> Архитектура</a></li>
+<li><a href="#modern"><i class="fas fa-chevron-right"></i> Современность</a></li>
+<li><a href="#travel"><i class="fas fa-chevron-right"></i> Путешествия</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Контакты</h3>
+<p>
+<i class="fas fa-envelope"></i> info@ellada-project.com<br>
+<i class="fas fa-phone"></i> +30 210 123 4567<br>
+<i class="fas fa-map-marker-alt"></i> Афины, Плака, Греция
+</p>
+<p>
+Для сотрудничества:<br>
+<i class="fas fa-handshake"></i> partner@ellada-project.com
+</p>
+<p>
+Образовательные программы:<br>
+<i class="fas fa-graduation-cap"></i> education@ellada-project.com
+</p>
+</div>
+</div>
+
+<div class="copyright">
+<p>&copy; 2025 Эллада: Древняя и современная Греция. Все права защищены.</p>
+<p class="greek-footer">Ελλάδα - Η κοιτίδα του Δυτικού Πολιτισμού</p>
+<p>Этот сайт является образовательным проектом и не связан с правительством Греции.</p>
+</div>
+</footer>
+</div>
+
+<script>
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+initPreloader();
+createOliveLeaves();
+initMenu();
+initScrollAnimations();
+initBackToTop();
+initSmoothScroll();
+});
+
+// Прелоадер
+function initPreloader() {
+const preloader = document.getElementById('preloader');
+const content = document.getElementById('content');
+const progress = document.getElementById('progress');
+const progressPercent = document.getElementById('progress-percent');
+
+let width = 0;
+const interval = setInterval(() => {
+if (width >= 100) {
+clearInterval(interval);
+setTimeout(() => {
+preloader.classList.add('hidden');
+content.classList.add('visible');
+setTimeout(() => {
+preloader.style.display = 'none';
+}, 1000);
+}, 500);
+} else {
+width++;
+progress.style.width = width + '%';
+progressPercent.textContent = width + '%';
+
+// Случайные всплески скорости
+if (width > 40 && width < 70 && Math.random() > 0.7) {
+width += 2;
+}
+}
+}, 25);
+}
+
+// Оливковые листья
+function createOliveLeaves() {
+const leavesContainer = document.getElementById('oliveLeaves');
+const leavesCount = 60;
+
+for (let i = 0; i < leavesCount; i++) {
+const leaf = document.createElement('div');
+leaf.classList.add('leaf');
+
+// Случайный размер
+const size = Math.random() * 30 + 20;
+leaf.style.width = `${size}px`;
+leaf.style.height = `${size/2}px`;
+
+// Случайная позиция
+leaf.style.left = `${Math.random() * 100}vw`;
+leaf.style.top = `${Math.random() * -100}px`;
+
+// Случайная прозрачность
+leaf.style.opacity = Math.random() * 0.3 + 0.1;
+
+// Случайная скорость
+const duration = Math.random() * 20 + 15;
+leaf.style.animationDuration = `${duration}s`;
+
+// Случайная задержка
+leaf.style.animationDelay = `${Math.random() * 5}s`;
+
+// Случайный поворот
+leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+leavesContainer.appendChild(leaf);
+}
+}
+
+// Меню для мобильных
+function initMenu() {
+const menuToggle = document.getElementById('menuToggle');
+const menu = document.getElementById('mainMenu');
+const menuItems = menu.querySelectorAll('a');
+
+menuToggle.addEventListener('click', function() {
+menu.classList.toggle('active');
+this.classList.toggle('active');
+
+// Анимация гамбургера
+const spans = this.querySelectorAll('span');
+if (menu.classList.contains('active')) {
+spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
+spans[1].style.opacity = '0';
+spans[2].style.transform = 'rotate(-45deg) translate(8px, -8px)';
+} else {
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+}
+});
+
+// Закрытие меню при клике на пункт
+menuItems.forEach(item => {
+item.addEventListener('click', function() {
+menu.classList.remove('active');
+menuToggle.classList.remove('active');
+
+const spans = menuToggle.querySelectorAll('span');
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+
+// Обновление активного пункта меню
+menuItems.forEach(i => i.classList.remove('active'));
+this.classList.add('active');
+});
+});
+
+// Закрытие меню при клике вне его
+document.addEventListener('click', function(event) {
+if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+menu.classList.remove('active');
+menuToggle.classList.remove('active');
+
+const spans = menuToggle.querySelectorAll('span');
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+}
+});
+}
+
+// Анимации при скролле
+function initScrollAnimations() {
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+
+// Добавляем случайные задержки для анимации карточек
+if (entry.target.classList.contains('fade-in')) {
+const delay = Math.random() * 0.5;
+entry.target.style.transitionDelay = `${delay}s`;
+}
+}
+});
+}, observerOptions);
+
+// Наблюдаем за элементами с классом fade-in
+document.querySelectorAll('.fade-in').forEach(el => {
+observer.observe(el);
+});
+}
+
+// Кнопка "Наверх"
+function initBackToTop() {
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTop.classList.add('visible');
+} else {
+backToTop.classList.remove('visible');
+}
+});
+
+backToTop.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+}
+
+// Плавная прокрутка
+function initSmoothScroll() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+// Обновление активного пункта меню
+document.querySelectorAll('.menu a').forEach(link => {
+link.classList.remove('active');
+});
+this.classList.add('active');
+
+// Прокрутка к элементу
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+}
+
+// Вспомогательные функции
+function scrollToSection(sectionId) {
+const section = document.getElementById(sectionId);
+if (section) {
+window.scrollTo({
+top: section.offsetTop - 80,
+behavior: 'smooth'
+});
+
+// Обновление активного пункта меню
+document.querySelectorAll('.menu a').forEach(link => {
+link.classList.remove('active');
+if (link.getAttribute('href') === `#${sectionId}`) {
+link.classList.add('active');
+}
+});
+}
+}
+
+// Параллакс эффект для листьев
+window.addEventListener('scroll', function() {
+const scrolled = window.pageYOffset;
+
+// Эффект для оливковых листьев
+const leaves = document.querySelectorAll('.leaf');
+leaves.forEach(leaf => {
+const speed = parseFloat(leaf.style.animationDuration);
+leaf.style.transform += ` translateY(${scrolled * 0.02}px)`;
+});
+
+// Эффект для карточек
+const cards = document.querySelectorAll('.god-card, .modern-card, .architecture-card');
+cards.forEach(card => {
+const rect = card.getBoundingClientRect();
+const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+if (isVisible) {
+const speed = 0.05;
+const yPos = -(rect.top * speed);
+card.style.transform += ` translateY(${yPos}px)`;
+}
+});
+});
+
+// Анимация при наведении на кнопки
+document.querySelectorAll('.btn-primary, .btn-secondary, .cta-button').forEach(button => {
+button.addEventListener('mouseenter', function() {
+this.style.transform = 'translateY(-5px)';
+});
+
+button.addEventListener('mouseleave', function() {
+if (!this.classList.contains('active')) {
+this.style.transform = 'translateY(0)';
+}
+});
+});
+
+// Греческие приветствия
+function showGreekGreeting() {
+const greetings = [
+{greek: "Γεια σας", roman: "Yia sas", meaning: "Здравствуйте (формально)"},
+{greek: "Καλημέρα", roman: "Kaliméra", meaning: "Доброе утро"},
+{greek: "Καλησπέρα", roman: "Kalispéra", meaning: "Добрый вечер"},
+{greek: "Χαίρετε", roman: "Chaírete", meaning: "Приветствую (древнегреческое)"}
+];
+
+const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+// Создаем уведомление
+const notification = document.createElement('div');
+notification.style.cssText = `
+position: fixed;
+top: 100px;
+right: 20px;
+background: rgba(13, 59, 102, 0.95);
+color: white;
+padding: 1.5rem;
+border-radius: 10px;
+z-index: 1000;
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+animation: slideInRight 0.5s ease;
+max-width: 300px;
+text-align: center;
+border: 2px solid var(--secondary-gold);
+`;
+
+notification.innerHTML = `
+<div style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--secondary-gold);">
+${randomGreeting.greek}
+</div>
+<div style="font-size: 1.2rem; margin-bottom: 0.5rem;">${randomGreeting.roman}</div>
+<div style="font-size: 1rem; color: #87CEEB;">${randomGreeting.meaning}</div>
+`;
+
+document.body.appendChild(notification);
+
+// Удаляем через 6 секунд
+setTimeout(() => {
+notification.style.animation = 'slideOutRight 0.5s ease';
+setTimeout(() => {
+if (notification.parentNode) {
+notification.parentNode.removeChild(notification);
+}
+}, 500);
+}, 6000);
+}
+
+// Добавляем CSS для анимации
+const style = document.createElement('style');
+style.textContent = `
+@keyframes slideInRight {
+from { transform: translateX(100%); opacity: 0; }
+to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutRight {
+from { transform: translateX(0); opacity: 1; }
+to { transform: translateX(100%); opacity: 0; }
+}
+`;
+document.head.appendChild(style);
+
+// Показываем приветствие через 4 секунды после загрузки
+setTimeout(showGreekGreeting, 4000);
+
+// Показываем новые приветствия каждые 45 секунд
+setInterval(showGreekGreeting, 45000);
+</script>
+</body>
+</html>

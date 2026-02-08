@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProTrade - Профессиональный трейдинг</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary-green: #00D09C;
+--primary-blue: #2962FF;
+--primary-dark: #0F172A;
+--secondary-dark: #1E293B;
+--accent-gold: #FFB800;
+--accent-red: #FF4757;
+--text-light: #F8FAFC;
+--text-gray: #94A3B8;
+--card-bg: rgba(30, 41, 59, 0.8);
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+--gradient-primary: linear-gradient(135deg, #00D09C 0%, #2962FF 100%);
+--gradient-dark: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+}
+
+body {
+background-color: var(--primary-dark);
+color: var(--text-light);
+font-family: 'Exo 2', sans-serif;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+}
+
+/* Загрузочный экран */
+.preloader {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: var(--gradient-dark);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+z-index: 10000;
+transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader.hidden {
+opacity: 0;
+visibility: hidden;
+}
+
+.loading-container {
+text-align: center;
+position: relative;
+padding: 3rem;
+border-radius: 20px;
+background: rgba(15, 23, 42, 0.9);
+box-shadow: var(--shadow);
+border: 1px solid rgba(0, 208, 156, 0.3);
+}
+
+.loading-logo {
+font-size: 4.5rem;
+color: var(--primary-green);
+margin-bottom: 2rem;
+font-weight: 800;
+letter-spacing: 2px;
+position: relative;
+}
+
+.loading-logo::after {
+content: 'PRO';
+position: absolute;
+top: -10px;
+right: -25px;
+font-size: 1.5rem;
+color: var(--accent-gold);
+background: rgba(255, 184, 0, 0.1);
+padding: 5px 10px;
+border-radius: 5px;
+}
+
+.loading-text {
+font-size: 1.8rem;
+margin-bottom: 2.5rem;
+color: var(--text-light);
+text-transform: uppercase;
+letter-spacing: 3px;
+position: relative;
+}
+
+.loading-text::after {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 100px;
+height: 3px;
+background: var(--gradient-primary);
+}
+
+.loader {
+width: 120px;
+height: 120px;
+border: 5px solid rgba(41, 98, 255, 0.1);
+border-radius: 50%;
+border-top-color: var(--primary-green);
+border-right-color: var(--primary-blue);
+animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+margin: 0 auto 2.5rem;
+position: relative;
+}
+
+.loader::before {
+content: '';
+position: absolute;
+top: 10px;
+left: 10px;
+right: 10px;
+bottom: 10px;
+border: 3px solid rgba(255, 184, 0, 0.1);
+border-radius: 50%;
+border-top-color: var(--accent-gold);
+animation: spin 2s linear infinite reverse;
+}
+
+.progress-container {
+width: 350px;
+margin: 0 auto;
+}
+
+.progress-bar {
+width: 100%;
+height: 10px;
+background-color: rgba(148, 163, 184, 0.1);
+border-radius: 5px;
+overflow: hidden;
+margin-bottom: 1.5rem;
+box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.progress {
+height: 100%;
+width: 0%;
+background: var(--gradient-primary);
+border-radius: 5px;
+animation: load 3.5s ease-in-out forwards;
+position: relative;
+overflow: hidden;
+}
+
+.progress::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+animation: shimmer 2s infinite;
+}
+
+.progress-text {
+font-size: 1.2rem;
+color: var(--text-gray);
+margin-bottom: 0.5rem;
+display: flex;
+justify-content: space-between;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+@keyframes load {
+0% { width: 0%; }
+100% { width: 100%; }
+}
+
+@keyframes shimmer {
+0% { transform: translateX(-100%); }
+100% { transform: translateX(100%); }
+}
+
+/* Анимированные частицы */
+.particles {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 9999;
+}
+
+.particle {
+position: absolute;
+border-radius: 50%;
+opacity: 0.7;
+animation: float linear infinite;
+}
+
+.particle:nth-child(3n) {
+background-color: var(--primary-green);
+box-shadow: 0 0 10px var(--primary-green);
+}
+
+.particle:nth-child(3n+1) {
+background-color: var(--primary-blue);
+box-shadow: 0 0 10px var(--primary-blue);
+}
+
+.particle:nth-child(3n+2) {
+background-color: var(--accent-gold);
+box-shadow: 0 0 10px var(--accent-gold);
+}
+
+@keyframes float {
+to {
+transform: translateY(100vh) rotate(360deg);
+}
+}
+
+/* Основной контент */
+.content {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 1s ease, transform 1s ease;
+}
+
+.content.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Шапка */
+header {
+background: rgba(15, 23, 42, 0.95);
+padding: 1.2rem 3rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid rgba(0, 208, 156, 0.2);
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 15px;
+flex-shrink: 0;
+}
+
+.logo-icon {
+color: var(--primary-green);
+font-size: 2.8rem;
+filter: drop-shadow(0 0 10px rgba(0, 208, 156, 0.7));
+}
+
+.logo-text {
+display: flex;
+flex-direction: column;
+}
+
+.site-title {
+font-size: 2.4rem;
+font-weight: 800;
+letter-spacing: 2px;
+line-height: 1;
+background: var(--gradient-primary);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.site-subtitle {
+font-size: 1rem;
+color: var(--text-gray);
+letter-spacing: 1px;
+margin-top: 5px;
+}
+
+/* Гамбургер меню */
+.menu-toggle {
+display: none;
+flex-direction: column;
+cursor: pointer;
+padding: 8px;
+background: rgba(41, 98, 255, 0.1);
+border-radius: 5px;
+transition: all 0.3s;
+}
+
+.menu-toggle:hover {
+background: rgba(41, 98, 255, 0.2);
+}
+
+.menu-toggle span {
+width: 30px;
+height: 3px;
+background: var(--primary-green);
+margin: 4px 0;
+transition: 0.3s;
+border-radius: 2px;
+}
+
+.menu {
+display: flex;
+gap: 2.5rem;
+align-items: center;
+}
+
+.menu a {
+color: var(--text-light);
+text-decoration: none;
+font-size: 1.2rem;
+font-weight: 600;
+transition: all 0.3s;
+position: relative;
+padding: 8px 0;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.menu a:hover {
+color: var(--primary-green);
+}
+
+.menu a::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 0;
+height: 3px;
+background: var(--gradient-primary);
+transition: width 0.3s ease;
+}
+
+.menu a:hover::after {
+width: 100%;
+}
+
+.menu a.active {
+color: var(--primary-green);
+}
+
+.menu a.active::after {
+width: 100%;
+}
+
+.cta-button {
+background: var(--gradient-primary);
+color: var(--text-light);
+padding: 0.8rem 2rem;
+border: none;
+border-radius: 8px;
+font-size: 1.1rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+text-transform: uppercase;
+letter-spacing: 1px;
+box-shadow: 0 5px 15px rgba(41, 98, 255, 0.3);
+position: relative;
+overflow: hidden;
+}
+
+.cta-button:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 25px rgba(41, 98, 255, 0.5);
+}
+
+.cta-button:active {
+transform: translateY(-1px);
+}
+
+/* Герой-секция */
+.hero {
+min-height: 100vh;
+background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)),
+url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 4rem 2rem;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(circle at 30% 20%, rgba(41, 98, 255, 0.2) 0%, transparent 50%),
+radial-gradient(circle at 70% 80%, rgba(0, 208, 156, 0.2) 0%, transparent 50%);
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 1200px;
+}
+
+.hero-title {
+font-size: 4.5rem;
+margin-bottom: 1.5rem;
+line-height: 1.1;
+background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+font-size: 1.8rem;
+max-width: 900px;
+margin: 0 auto 2rem;
+line-height: 1.7;
+color: var(--text-light);
+font-weight: 300;
+}
+
+.hero-stats {
+display: flex;
+justify-content: center;
+gap: 3rem;
+margin: 3rem 0;
+flex-wrap: wrap;
+}
+
+.stat-item {
+text-align: center;
+padding: 1.5rem 2rem;
+background: rgba(30, 41, 59, 0.7);
+border-radius: 15px;
+border: 1px solid rgba(0, 208, 156, 0.2);
+min-width: 180px;
+transition: transform 0.3s;
+}
+
+.stat-item:hover {
+transform: translateY(-10px);
+border-color: var(--primary-green);
+box-shadow: 0 10px 25px rgba(0, 208, 156, 0.2);
+}
+
+.stat-value {
+font-size: 2.8rem;
+font-weight: 800;
+color: var(--primary-green);
+margin-bottom: 0.5rem;
+font-family: 'Montserrat', sans-serif;
+}
+
+.stat-label {
+font-size: 1.1rem;
+color: var(--text-gray);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.hero-buttons {
+display: flex;
+gap: 1.5rem;
+justify-content: center;
+margin-top: 3rem;
+flex-wrap: wrap;
+}
+
+.btn-primary {
+background: var(--gradient-primary);
+color: var(--text-light);
+padding: 1.2rem 3rem;
+border: none;
+border-radius: 10px;
+font-size: 1.3rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+text-transform: uppercase;
+letter-spacing: 1px;
+box-shadow: 0 10px 25px rgba(41, 98, 255, 0.4);
+}
+
+.btn-primary:hover {
+transform: translateY(-5px);
+box-shadow: 0 15px 35px rgba(41, 98, 255, 0.6);
+}
+
+.btn-secondary {
+background: transparent;
+color: var(--text-light);
+padding: 1.2rem 3rem;
+border: 2px solid var(--primary-green);
+border-radius: 10px;
+font-size: 1.3rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+background: rgba(0, 208, 156, 0.1);
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(0, 208, 156, 0.2);
+}
+
+/* Секции */
+.section {
+padding: 6rem 3rem;
+max-width: 1400px;
+margin: 0 auto;
+}
+
+.section-title {
+text-align: center;
+font-size: 3.2rem;
+margin-bottom: 1rem;
+color: var(--text-light);
+position: relative;
+padding-bottom: 1.5rem;
+}
+
+.section-title::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 150px;
+height: 5px;
+background: var(--gradient-primary);
+border-radius: 3px;
+}
+
+.section-subtitle {
+text-align: center;
+font-size: 1.4rem;
+color: var(--text-gray);
+margin-bottom: 4rem;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+line-height: 1.7;
+}
+
+/* Секция стратегий */
+.strategies-section {
+background: var(--gradient-dark);
+position: relative;
+overflow: hidden;
+}
+
+.strategies-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: url('https://images.unsplash.com/photo-1621761191319-c6fb62004040?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+background-size: cover;
+background-position: center;
+opacity: 0.05;
+}
+
+.strategies-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+gap: 2.5rem;
+margin-bottom: 5rem;
+position: relative;
+z-index: 2;
+}
+
+.strategy-card {
+background: var(--card-bg);
+border-radius: 15px;
+overflow: hidden;
+transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+border: 1px solid rgba(41, 98, 255, 0.2);
+box-shadow: var(--shadow);
+position: relative;
+}
+
+.strategy-card:hover {
+transform: translateY(-15px) scale(1.02);
+box-shadow: 0 25px 50px rgba(0, 208, 156, 0.2);
+border-color: var(--primary-green);
+}
+
+.strategy-header {
+padding: 2rem;
+background: rgba(41, 98, 255, 0.1);
+border-bottom: 1px solid rgba(41, 98, 255, 0.3);
+display: flex;
+align-items: center;
+gap: 1.5rem;
+}
+
+.strategy-icon {
+width: 70px;
+height: 70px;
+border-radius: 50%;
+background: var(--gradient-primary);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: var(--text-light);
+flex-shrink: 0;
+}
+
+.strategy-title {
+font-size: 1.8rem;
+color: var(--text-light);
+margin-bottom: 0.5rem;
+}
+
+.strategy-difficulty {
+font-size: 1rem;
+color: var(--text-gray);
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.strategy-content {
+padding: 2rem;
+}
+
+.strategy-description {
+font-size: 1.2rem;
+line-height: 1.8;
+color: var(--text-gray);
+margin-bottom: 1.5rem;
+text-align: justify;
+}
+
+.strategy-stats {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1rem;
+background: rgba(15, 23, 42, 0.5);
+padding: 1.5rem;
+border-radius: 10px;
+margin-top: 1.5rem;
+}
+
+.strategy-stat {
+text-align: center;
+padding: 1rem;
+background: rgba(30, 41, 59, 0.8);
+border-radius: 8px;
+}
+
+.strategy-stat-value {
+font-size: 1.8rem;
+font-weight: bold;
+color: var(--primary-green);
+margin-bottom: 0.5rem;
+}
+
+.strategy-stat-label {
+font-size: 0.9rem;
+color: var(--text-gray);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+/* Секция трейдеров */
+.traders-section {
+background: #0F172A;
+position: relative;
+}
+
+.traders-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+gap: 3rem;
+margin-bottom: 5rem;
+}
+
+.trader-card {
+background: var(--card-bg);
+border-radius: 20px;
+overflow: hidden;
+transition: all 0.5s;
+border: 1px solid rgba(255, 184, 0, 0.2);
+box-shadow: var(--shadow);
+}
+
+.trader-card:hover {
+transform: translateY(-15px);
+box-shadow: 0 25px 50px rgba(255, 184, 0, 0.2);
+border-color: var(--accent-gold);
+}
+
+.trader-header {
+display: flex;
+padding: 2rem;
+background: rgba(255, 184, 0, 0.05);
+border-bottom: 1px solid rgba(255, 184, 0, 0.2);
+}
+
+.trader-photo {
+width: 120px;
+height: 120px;
+border-radius: 50%;
+object-fit: cover;
+border: 4px solid var(--accent-gold);
+margin-right: 1.5rem;
+flex-shrink: 0;
+}
+
+.trader-info {
+flex-grow: 1;
+}
+
+.trader-name {
+font-size: 2rem;
+color: var(--text-light);
+margin-bottom: 0.5rem;
+}
+
+.trader-title {
+font-size: 1.2rem;
+color: var(--accent-gold);
+margin-bottom: 0.5rem;
+font-weight: 600;
+}
+
+.trader-experience {
+font-size: 1.1rem;
+color: var(--text-gray);
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.trader-content {
+padding: 2rem;
+}
+
+.trader-bio {
+font-size: 1.2rem;
+line-height: 1.8;
+color: var(--text-gray);
+margin-bottom: 2rem;
+text-align: justify;
+}
+
+.trader-achievements {
+background: rgba(255, 184, 0, 0.05);
+padding: 1.5rem;
+border-radius: 10px;
+margin-top: 1.5rem;
+border-left: 4px solid var(--accent-gold);
+}
+
+.achievements-title {
+font-size: 1.3rem;
+color: var(--accent-gold);
+margin-bottom: 1rem;
+}
+
+.achievements-list {
+list-style: none;
+}
+
+.achievements-list li {
+padding: 0.5rem 0;
+color: var(--text-gray);
+position: relative;
+padding-left: 1.5rem;
+}
+
+.achievements-list li::before {
+content: '✓';
+position: absolute;
+left: 0;
+color: var(--accent-gold);
+font-weight: bold;
+}
+
+/* Секция инструментов */
+.tools-section {
+background: var(--gradient-dark);
+position: relative;
+overflow: hidden;
+}
+
+.tools-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+background-size: cover;
+background-position: center;
+opacity: 0.05;
+}
+
+.tools-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2.5rem;
+margin-bottom: 5rem;
+position: relative;
+z-index: 2;
+}
+
+.tool-card {
+background: var(--card-bg);
+border-radius: 15px;
+padding: 2.5rem;
+text-align: center;
+transition: all 0.4s;
+border: 1px solid rgba(0, 208, 156, 0.2);
+box-shadow: var(--shadow);
+}
+
+.tool-card:hover {
+transform: translateY(-10px);
+border-color: var(--primary-green);
+box-shadow: 0 20px 40px rgba(0, 208, 156, 0.2);
+}
+
+.tool-icon {
+width: 100px;
+height: 100px;
+margin: 0 auto 1.5rem;
+background: var(--gradient-primary);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 3rem;
+color: var(--text-light);
+}
+
+.tool-title {
+font-size: 1.8rem;
+color: var(--text-light);
+margin-bottom: 1rem;
+}
+
+.tool-description {
+font-size: 1.1rem;
+line-height: 1.7;
+color: var(--text-gray);
+margin-bottom: 1.5rem;
+}
+
+.tool-features {
+list-style: none;
+text-align: left;
+margin-top: 1.5rem;
+}
+
+.tool-features li {
+padding: 0.5rem 0;
+color: var(--text-gray);
+position: relative;
+padding-left: 1.8rem;
+}
+
+.tool-features li::before {
+content: '→';
+position: absolute;
+left: 0;
+color: var(--primary-green);
+font-weight: bold;
+}
+
+/* Футер */
+footer {
+background: #0A0F1C;
+padding: 4rem 3rem 2rem;
+border-top: 1px solid rgba(41, 98, 255, 0.2);
+position: relative;
+}
+
+.footer-content {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 3rem;
+max-width: 1400px;
+margin: 0 auto 3rem;
+}
+
+.footer-section h3 {
+font-size: 1.8rem;
+color: var(--primary-green);
+margin-bottom: 1.5rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid rgba(0, 208, 156, 0.3);
+}
+
+.footer-section p {
+font-size: 1.2rem;
+line-height: 1.7;
+color: var(--text-gray);
+margin-bottom: 1.5rem;
+}
+
+.social-icons {
+display: flex;
+gap: 1.2rem;
+margin-top: 1.5rem;
+}
+
+.social-icon {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background: rgba(41, 98, 255, 0.1);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--text-light);
+font-size: 1.5rem;
+transition: all 0.3s;
+text-decoration: none;
+}
+
+.social-icon:hover {
+background: var(--gradient-primary);
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(41, 98, 255, 0.4);
+}
+
+.footer-links {
+list-style: none;
+}
+
+.footer-links li {
+margin-bottom: 1rem;
+}
+
+.footer-links a {
+color: var(--text-gray);
+text-decoration: none;
+font-size: 1.2rem;
+transition: color 0.3s;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.footer-links a:hover {
+color: var(--primary-green);
+transform: translateX(5px);
+}
+
+.footer-links i {
+color: var(--primary-green);
+}
+
+.copyright {
+text-align: center;
+padding-top: 2rem;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+color: var(--text-gray);
+font-size: 1.1rem;
+}
+
+.trading-slogan {
+font-size: 1.4rem;
+color: var(--primary-green);
+margin-top: 0.5rem;
+font-weight: bold;
+}
+
+/* Кнопка "Наверх" */
+.back-to-top {
+position: fixed;
+bottom: 30px;
+right: 30px;
+width: 60px;
+height: 60px;
+background: var(--gradient-primary);
+color: white;
+border: none;
+border-radius: 50%;
+font-size: 1.5rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s;
+z-index: 999;
+box-shadow: 0 5px 20px rgba(41, 98, 255, 0.5);
+opacity: 0;
+visibility: hidden;
+}
+
+.back-to-top.visible {
+opacity: 1;
+visibility: visible;
+}
+
+.back-to-top:hover {
+transform: translateY(-5px) scale(1.1);
+box-shadow: 0 10px 25px rgba(41, 98, 255, 0.7);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+.hero-title {
+font-size: 3.8rem;
+}
+
+.strategies-grid {
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+}
+
+@media (max-width: 992px) {
+.section {
+padding: 5rem 2rem;
+}
+
+.hero-title {
+font-size: 3.2rem;
+}
+
+.hero-subtitle {
+font-size: 1.6rem;
+}
+
+.strategies-grid {
+grid-template-columns: 1fr;
+max-width: 700px;
+margin: 0 auto 4rem;
+}
+
+.traders-grid {
+grid-template-columns: 1fr;
+max-width: 700px;
+margin: 0 auto 4rem;
+}
+}
+
+@media (max-width: 768px) {
+header {
+padding: 1rem 1.5rem;
+flex-wrap: wrap;
+}
+
+.menu-toggle {
+display: flex;
+order: 2;
+}
+
+.menu {
+position: fixed;
+top: 80px;
+left: 0;
+width: 100%;
+background: rgba(15, 23, 42, 0.98);
+flex-direction: column;
+padding: 2rem;
+transform: translateY(-100%);
+opacity: 0;
+visibility: hidden;
+transition: all 0.4s ease;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+z-index: 999;
+border-top: 1px solid rgba(0, 208, 156, 0.2);
+border-bottom: 1px solid rgba(0, 208, 156, 0.2);
+}
+
+.menu.active {
+transform: translateY(0);
+opacity: 1;
+visibility: visible;
+}
+
+.menu a {
+width: 100%;
+text-align: center;
+padding: 1rem;
+font-size: 1.4rem;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero {
+padding: 3rem 1.5rem;
+min-height: 90vh;
+}
+
+.hero-title {
+font-size: 2.8rem;
+}
+
+.hero-subtitle {
+font-size: 1.4rem;
+}
+
+.hero-stats {
+gap: 1.5rem;
+}
+
+.stat-item {
+min-width: 140px;
+padding: 1rem 1.5rem;
+}
+
+.section-title {
+font-size: 2.8rem;
+}
+
+.trader-header {
+flex-direction: column;
+text-align: center;
+padding: 1.5rem;
+}
+
+.trader-photo {
+margin-right: 0;
+margin-bottom: 1.5rem;
+}
+
+.strategy-header {
+flex-direction: column;
+text-align: center;
+}
+
+.strategy-icon {
+margin: 0 auto;
+}
+
+.hero-buttons {
+flex-direction: column;
+align-items: center;
+}
+
+.btn-primary, .btn-secondary {
+width: 100%;
+max-width: 300px;
+}
+
+.footer-content {
+grid-template-columns: 1fr;
+text-align: center;
+}
+
+.social-icons {
+justify-content: center;
+}
+
+.footer-links a {
+justify-content: center;
+}
+
+.back-to-top {
+width: 50px;
+height: 50px;
+bottom: 20px;
+right: 20px;
+font-size: 1.2rem;
+}
+}
+
+@media (max-width: 480px) {
+.hero-title {
+font-size: 2.2rem;
+}
+
+.hero-subtitle {
+font-size: 1.2rem;
+}
+
+.section-title {
+font-size: 2.2rem;
+}
+
+.section {
+padding: 4rem 1.5rem;
+}
+
+.strategy-card, .trader-card, .tool-card {
+margin: 0 -1rem;
+border-radius: 10px;
+}
+
+.logo {
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+}
+
+.site-title {
+font-size: 1.8rem;
+}
+
+.stat-value {
+font-size: 2.2rem;
+}
+}
+
+/* Анимации для появления элементов при скролле */
+.fade-in {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Графики и диаграммы */
+.chart-container {
+width: 100%;
+height: 300px;
+background: rgba(30, 41, 59, 0.7);
+border-radius: 15px;
+margin: 2rem 0;
+position: relative;
+overflow: hidden;
+border: 1px solid rgba(0, 208, 156, 0.2);
+}
+
+.chart-line {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 80%;
+background: linear-gradient(to top, rgba(0, 208, 156, 0.1), transparent);
+clip-path: polygon(0% 100%, 5% 85%, 10% 70%, 15% 60%, 20% 75%, 25% 50%, 30% 65%, 35% 40%, 40% 55%, 45% 30%, 50% 45%, 55% 25%, 60% 40%, 65% 20%, 70% 35%, 75% 15%, 80% 30%, 85% 10%, 90% 25%, 95% 5%, 100% 20%);
+}
+
+/* Уведомления и алерты */
+.alert {
+padding: 1.5rem;
+border-radius: 10px;
+margin: 1.5rem 0;
+display: flex;
+align-items: center;
+gap: 1rem;
+animation: slideIn 0.5s ease;
+}
+
+.alert-success {
+background: rgba(0, 208, 156, 0.1);
+border-left: 5px solid var(--primary-green);
+}
+
+.alert-warning {
+background: rgba(255, 184, 0, 0.1);
+border-left: 5px solid var(--accent-gold);
+}
+
+.alert-info {
+background: rgba(41, 98, 255, 0.1);
+border-left: 5px solid var(--primary-blue);
+}
+
+@keyframes slideIn {
+from {
+opacity: 0;
+transform: translateX(-20px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+</style>
+</head>
+<body>
+<!-- Загрузочный экран -->
+<div class="preloader" id="preloader">
+<div class="loading-container">
+<div class="loading-logo">TRADE</div>
+<div class="loading-text">Инициализация торговых систем</div>
+<div class="loader"></div>
+<div class="progress-container">
+<div class="progress-text">
+<span>Загрузка данных</span>
+<span id="progress-percent">0%</span>
+</div>
+<div class="progress-bar">
+<div class="progress" id="progress"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Анимированные частицы -->
+<div class="particles" id="particles"></div>
+
+<!-- Кнопка "Наверх" -->
+<button class="back-to-top" id="backToTop">
+<i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- Основной контент -->
+<div class="content" id="content">
+<!-- Шапка -->
+<header>
+<div class="logo">
+<i class="fas fa-chart-line logo-icon"></i>
+<div class="logo-text">
+<div class="site-title">ProTrade</div>
+<div class="site-subtitle">Профессиональный трейдинг</div>
+</div>
+</div>
+
+<div class="menu-toggle" id="menuToggle">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<nav class="menu" id="mainMenu">
+<a href="#home" class="active">Главная</a>
+<a href="#strategies">Стратегии</a>
+<a href="#traders">Трейдеры</a>
+<a href="#tools">Инструменты</a>
+<a href="#education">Обучение</a>
+<a href="#community">Сообщество</a>
+<a href="#contact">Контакты</a>
+</nav>
+
+<button class="cta-button" onclick="scrollToSection('strategies')">Начать</button>
+</header>
+
+<!-- Герой-секция -->
+<section class="hero" id="home">
+<div class="hero-content">
+<h1 class="hero-title animate__animated animate__fadeInDown">Профессиональный трейдинг для каждого</h1>
+<p class="hero-subtitle animate__animated animate__fadeInUp">
+Освойте искусство торговли на финансовых рынках с помощью проверенных стратегий,
+современных инструментов и поддержки опытных трейдеров. Достигайте финансовой свободы
+вместе с нами.
+</p>
+
+<div class="hero-stats">
+<div class="stat-item fade-in">
+<div class="stat-value">15K+</div>
+<div class="stat-label">Успешных трейдеров</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">87%</div>
+<div class="stat-label">Положительных сделок</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">$2.5B+</div>
+<div class="stat-label">Общий оборот</div>
+</div>
+<div class="stat-item fade-in">
+<div class="stat-value">24/7</div>
+<div class="stat-label">Поддержка</div>
+</div>
+</div>
+
+<div class="hero-buttons">
+<button class="btn-primary" onclick="scrollToSection('strategies')">
+<i class="fas fa-rocket"></i> Начать торговать
+</button>
+<button class="btn-secondary" onclick="scrollToSection('education')">
+<i class="fas fa-graduation-cap"></i> Пройти обучение
+</button>
+</div>
+</div>
+</section>
+
+<!-- Секция стратегий -->
+<section class="section strategies-section" id="strategies">
+<h2 class="section-title">Проверенные торговые стратегии</h2>
+<p class="section-subtitle">
+Выберите стратегию, которая соответствует вашему стилю торговли и уровню опыта.
+Каждая стратегия прошла тщательное тестирование и доказала свою эффективность.
+</p>
+
+<div class="strategies-grid">
+<!-- Стратегия 1 -->
+<div class="strategy-card fade-in">
+<div class="strategy-header">
+<div class="strategy-icon">
+<i class="fas fa-bolt"></i>
+</div>
+<div>
+<h3 class="strategy-title">Скальпинг</h3>
+<div class="strategy-difficulty">
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--text-gray);"></i>
+<i class="fas fa-star" style="color: var(--text-gray);"></i>
+<span style="margin-left: 10px;">Средняя сложность</span>
+</div>
+</div>
+</div>
+<div class="strategy-content">
+<p class="strategy-description">
+Стратегия скальпинга заключается в заключении большого количества сделок
+с минимальной прибылью по каждой. Трейдеры-скальперы открывают позиции
+на короткие промежутки времени (от нескольких секунд до нескольких минут)
+и фиксируют небольшую прибыль. Эта стратегия требует высокой концентрации,
+быстрой реакции и дисциплины.
+</p>
+
+<div class="alert alert-info">
+<i class="fas fa-info-circle"></i>
+<div>Рекомендуется для опытных трейдеров с хорошей стрессоустойчивостью</div>
+</div>
+
+<div class="strategy-stats">
+<div class="strategy-stat">
+<div class="strategy-stat-value">5-15 мин</div>
+<div class="strategy-stat-label">Время сделки</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">70-85%</div>
+<div class="strategy-stat-label">Успешность</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">1-3%</div>
+<div class="strategy-stat-label">Прибыль/сделка</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">Высокий</div>
+<div class="strategy-stat-label">Риск</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Стратегия 2 -->
+<div class="strategy-card fade-in">
+<div class="strategy-header">
+<div class="strategy-icon">
+<i class="fas fa-chart-line"></i>
+</div>
+<div>
+<h3 class="strategy-title">Дейтрейдинг</h3>
+<div class="strategy-difficulty">
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--text-gray);"></i>
+<i class="fas fa-star" style="color: var(--text-gray);"></i>
+<i class="fas fa-star" style="color: var(--text-gray);"></i>
+<span style="margin-left: 10px;">Низкая сложность</span>
+</div>
+</div>
+</div>
+<div class="strategy-content">
+<p class="strategy-description">
+Дейтрейдинг — стратегия торговли в течение одного дня без переноса
+позиций на следующий день. Трейдеры анализируют внутридневные колебания
+цен и открывают несколько сделок в течение торговой сессии. Эта стратегия
+позволяет избежать рисков, связанных с ночными колебаниями рынка,
+и подходит для начинающих трейдеров.
+</p>
+
+<div class="alert alert-success">
+<i class="fas fa-check-circle"></i>
+<div>Идеально для начинающих трейдеров и тех, кто торгует параллельно с основной работой</div>
+</div>
+
+<div class="strategy-stats">
+<div class="strategy-stat">
+<div class="strategy-stat-value">1-8 часов</div>
+<div class="strategy-stat-label">Время сделки</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">65-75%</div>
+<div class="strategy-stat-label">Успешность</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">3-10%</div>
+<div class="strategy-stat-label">Прибыль/сделка</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">Средний</div>
+<div class="strategy-stat-label">Риск</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Стратегия 3 -->
+<div class="strategy-card fade-in">
+<div class="strategy-header">
+<div class="strategy-icon">
+<i class="fas fa-chess-knight"></i>
+</div>
+<div>
+<h3 class="strategy-title">Свинг-трейдинг</h3>
+<div class="strategy-difficulty">
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--accent-gold);"></i>
+<i class="fas fa-star" style="color: var(--text-gray);"></i>
+<span style="margin-left: 10px;">Высокая сложность</span>
+</div>
+</div>
+</div>
+<div class="strategy-content">
+<p class="strategy-description">
+Свинг-трейдинг — стратегия, при которой трейдер удерживает позиции
+от нескольких дней до нескольких недель, чтобы извлечь прибыль
+из среднесрочных рыночных колебаний. Эта стратегия требует
+глубокого технического и фундаментального анализа, терпения
+и умения определять разворотные точки рынка.
+</p>
+
+<div class="alert alert-warning">
+<i class="fas fa-exclamation-triangle"></i>
+<div>Требует серьезной подготовки и понимания рыночных циклов</div>
+</div>
+
+<div class="strategy-stats">
+<div class="strategy-stat">
+<div class="strategy-stat-value">2-30 дней</div>
+<div class="strategy-stat-label">Время сделки</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">55-70%</div>
+<div class="strategy-stat-label">Успешность</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">10-30%</div>
+<div class="strategy-stat-label">Прибыль/сделка</div>
+</div>
+<div class="strategy-stat">
+<div class="strategy-stat-value">Низкий</div>
+<div class="strategy-stat-label">Риск</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Секция трейдеров -->
+<section class="section traders-section" id="traders">
+<h2 class="section-title">Наши эксперты</h2>
+<p class="section-subtitle">
+Учитесь у лучших в индустрии. Наши трейдеры делятся многолетним опытом и
+уникальными торговыми подходами, которые приносят стабильную прибыль.
+</p>
+
+<div class="traders-grid">
+<!-- Трейдер 1 -->
+<div class="trader-card fade-in">
+<div class="trader-header">
+<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+alt="Александр Волков" class="trader-photo">
+<div class="trader-info">
+<h3 class="trader-name">Александр Волков</h3>
+<div class="trader-title">Старший трейдер, специалист по фьючерсам</div>
+<div class="trader-experience">
+<i class="fas fa-briefcase"></i> 12 лет опыта
+</div>
+</div>
+</div>
+<div class="trader-content">
+<p class="trader-bio">
+Александр начал свою карьеру в инвестиционном банке в 2010 году.
+Специализируется на торговле фьючерсами на индексы и сырьевые товары.
+Разработал собственную методику анализа рыночных циклов, которая
+позволяет определять точки входа с минимальным риском. Провел более
+5000 успешных сделок за последние 5 лет с общей доходностью 340%.
+</p>
+
+<div class="trader-achievements">
+<h4 class="achievements-title">Ключевые достижения</h4>
+<ul class="achievements-list">
+<li>Среднемесячная доходность 8-12% на протяжении 5 лет</li>
+<li>Автор бестселлера "Торговля фьючерсами для профессионалов"</li>
+<li>Разработал 3 патентованные торговые стратегии</li>
+<li>Обучил более 1000 трейдеров по всему миру</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Трейдер 2 -->
+<div class="trader-card fade-in">
+<div class="trader-header">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+alt="Екатерина Смирнова" class="trader-photo">
+<div class="trader-info">
+<h3 class="trader-name">Екатерина Смирнова</h3>
+<div class="trader-title">Аналитик Forex, эксперт по риск-менеджменту</div>
+<div class="trader-experience">
+<i class="fas fa-briefcase"></i> 9 лет опыта
+</div>
+</div>
+</div>
+<div class="trader-content">
+<p class="trader-bio">
+Екатерина специализируется на рынке Forex и разработке систем
+риск-менеджмента. Имеет степень магистра финансов и экономики.
+Разработала уникальную методику управления капиталом, которая
+позволяет минимизировать потери при сохранении высокой доходности.
+Ее клиенты показывают стабильную прибыль даже в периоды высокой
+волатильности рынка.
+</p>
+
+<div class="trader-achievements">
+<h4 class="achievements-title">Ключевые достижения</h4>
+<ul class="achievements-list">
+<li>Разработала систему риск-менеджмента с эффективностью 94%</li>
+<li>Ежегодная доходность портфеля 25-40% за последние 7 лет</li>
+<li>Регулярный эксперт в финансовых СМИ и на телевидении</li>
+<li>Создала образовательную платформу для женщин-трейдеров</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Трейдер 3 -->
+<div class="trader-card fade-in">
+<div class="trader-header">
+<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+alt="Максим Иванов" class="trader-photo">
+<div class="trader-info">
+<h3 class="trader-name">Максим Иванов</h3>
+<div class="trader-title">Криптотрейдер, блокчейн-эксперт</div>
+<div class="trader-experience">
+<i class="fas fa-briefcase"></i> 7 лет опыта
+</div>
+</div>
+</div>
+<div class="trader-content">
+<p class="trader-bio">
+Максим — один из первых трейдеров, начавших работать с криптовалютами
+в 2016 году. Специализируется на торговле альткойнами и DeFi-проектами.
+Разработал собственную систему анализа блокчейн-данных и сетевой активности,
+которая позволяет предсказывать движения цен с высокой точностью.
+Его стратегии показали доходность 1200% в 2021 году.
+</p>
+
+<div class="trader-achievements">
+<h4 class="achievements-title">Ключевые достижения</h4>
+<ul class="achievements-list">
+<li>Создал алгоритмическую торговую систему для крипторынка</li>
+<li>Доходность портфеля 300-500% годовых с 2018 года</li>
+<li>Консультант нескольких криптофондов и блокчейн-стартапов</li>
+<li>Автор популярного YouTube-канала о криптотрейдинге</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Секция инструментов -->
+<section class="section tools-section" id="tools">
+<h2 class="section-title">Торговые инструменты</h2>
+<p class="section-subtitle">
+Современные инструменты для анализа рынка, управления рисками и автоматизации торговли.
+Все необходимое для успешного трейдинга в одном месте.
+</p>
+
+<div class="tools-container">
+<!-- Инструмент 1 -->
+<div class="tool-card fade-in">
+<div class="tool-icon">
+<i class="fas fa-chart-bar"></i>
+</div>
+<h3 class="tool-title">Аналитическая платформа</h3>
+<p class="tool-description">
+Профессиональные инструменты технического и фундаментального анализа
+с реальным временем обновления данных. Более 100 индикаторов и 50 графических инструментов.
+</p>
+<ul class="tool-features">
+<li>Расширенный анализ графиков</li>
+<li>Экономический календарь</li>
+<li>Уровни поддержки и сопротивления</li>
+<li>Автоматическое построение паттернов</li>
+</ul>
+</div>
+
+<!-- Инструмент 2 -->
+<div class="tool-card fade-in">
+<div class="tool-icon">
+<i class="fas fa-robot"></i>
+</div>
+<h3 class="tool-title">Торговые роботы</h3>
+<p class="tool-description">
+Автоматизированные торговые системы на основе искусственного интеллекта.
+Настраивайте стратегии или используйте готовые решения для пассивного заработка.
+</p>
+<ul class="tool-features">
+<li>AI-алгоритмы для анализа рынка</li>
+<li>Backtesting и оптимизация стратегий</li>
+<li>Автоматическое исполнение сделок</li>
+<li>Мониторинг производительности</li>
+</ul>
+</div>
+
+<!-- Инструмент 3 -->
+<div class="tool-card fade-in">
+<div class="tool-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h3 class="tool-title">Система риск-менеджмента</h3>
+<p class="tool-description">
+Комплексная система управления рисками с автоматическими стоп-лоссами,
+трейлинг-стопами и расчетом оптимального объема позиции.
+</p>
+<ul class="tool-features">
+<li>Калькулятор позиции</li>
+<li>Автоматические стоп-ордера</li>
+<li>Анализ риска в реальном времени</li>
+<li>Оповещения о критических уровнях</li>
+</ul>
+</div>
+</div>
+
+<div class="chart-container fade-in">
+<div class="chart-line"></div>
+</div>
+</section>
+
+<!-- Футер -->
+<footer id="contact">
+<div class="footer-content">
+<div class="footer-section">
+<h3>О ProTrade</h3>
+<p>
+ProTrade — ведущая образовательная платформа для трейдеров.
+Мы объединяем опытных профессионалов, современные технологии
+и проверенные методики обучения для вашего успеха на финансовых рынках.
+</p>
+<div class="social-icons">
+<a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+<a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+</div>
+</div>
+
+<div class="footer-section">
+<h3>Быстрые ссылки</h3>
+<ul class="footer-links">
+<li><a href="#home"><i class="fas fa-chevron-right"></i> Главная</a></li>
+<li><a href="#strategies"><i class="fas fa-chevron-right"></i> Стратегии</a></li>
+<li><a href="#traders"><i class="fas fa-chevron-right"></i> Трейдеры</a></li>
+<li><a href="#tools"><i class="fas fa-chevron-right"></i> Инструменты</a></li>
+<li><a href="#education"><i class="fas fa-chevron-right"></i> Обучение</a></li>
+<li><a href="#community"><i class="fas fa-chevron-right"></i> Сообщество</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Контакты</h3>
+<p>
+<i class="fas fa-envelope"></i> support@protrade.com<br>
+<i class="fas fa-phone"></i> +7 (999) 123-45-67<br>
+<i class="fas fa-map-marker-alt"></i> Москва, Пресненская наб., 12
+</p>
+<p>
+Техническая поддержка:<br>
+<i class="fas fa-headset"></i> support@protrade-tech.com
+</p>
+<p>
+Для партнерств:<br>
+<i class="fas fa-handshake"></i> partners@protrade.com
+</p>
+</div>
+</div>
+
+<div class="copyright">
+<p>&copy; 2025 ProTrade. Все права защищены.</p>
+<p class="trading-slogan">Торгуйте с умом, инвестируйте в будущее</p>
+<p>Торговля на финансовых рынках сопряжена с рисками. Прошлые результаты не гарантируют будущих доходов.</p>
+</div>
+</footer>
+</div>
+
+<script>
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+initPreloader();
+createParticles();
+initMenu();
+initScrollAnimations();
+initBackToTop();
+initSmoothScroll();
+});
+
+// Прелоадер
+function initPreloader() {
+const preloader = document.getElementById('preloader');
+const content = document.getElementById('content');
+const progress = document.getElementById('progress');
+const progressPercent = document.getElementById('progress-percent');
+
+let width = 0;
+const interval = setInterval(() => {
+if (width >= 100) {
+clearInterval(interval);
+setTimeout(() => {
+preloader.classList.add('hidden');
+content.classList.add('visible');
+setTimeout(() => {
+preloader.style.display = 'none';
+}, 1000);
+}, 500);
+} else {
+width++;
+progress.style.width = width + '%';
+progressPercent.textContent = width + '%';
+
+// Случайные всплески скорости
+if (width > 40 && width < 70 && Math.random() > 0.7) {
+width += 2;
+}
+}
+}, 25);
+}
+
+// Частицы
+function createParticles() {
+const particlesContainer = document.getElementById('particles');
+const particleCount = 100;
+
+for (let i = 0; i < particleCount; i++) {
+const particle = document.createElement('div');
+particle.classList.add('particle');
+
+// Случайный размер от 2 до 8 пикселей
+const size = Math.random() * 6 + 2;
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+
+// Случайная позиция
+particle.style.left = `${Math.random() * 100}vw`;
+particle.style.top = `${Math.random() * -100}px`;
+
+// Случайная прозрачность
+particle.style.opacity = Math.random() * 0.5 + 0.3;
+
+// Случайная скорость
+const duration = Math.random() * 15 + 10;
+particle.style.animationDuration = `${duration}s`;
+
+// Случайная задержка
+particle.style.animationDelay = `${Math.random() * 5}s`;
+
+particlesContainer.appendChild(particle);
+}
+}
+
+// Меню для мобильных
+function initMenu() {
+const menuToggle = document.getElementById('menuToggle');
+const menu = document.getElementById('mainMenu');
+const menuItems = menu.querySelectorAll('a');
+
+menuToggle.addEventListener('click', function() {
+menu.classList.toggle('active');
+this.classList.toggle('active');
+
+// Анимация гамбургера
+const spans = this.querySelectorAll('span');
+if (menu.classList.contains('active')) {
+spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
+spans[1].style.opacity = '0';
+spans[2].style.transform = 'rotate(-45deg) translate(8px, -8px)';
+} else {
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+}
+});
+
+// Закрытие меню при клике на пункт
+menuItems.forEach(item => {
+item.addEventListener('click', function() {
+menu.classList.remove('active');
+menuToggle.classList.remove('active');
+
+const spans = menuToggle.querySelectorAll('span');
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+
+// Обновление активного пункта меню
+menuItems.forEach(i => i.classList.remove('active'));
+this.classList.add('active');
+});
+});
+
+// Закрытие меню при клике вне его
+document.addEventListener('click', function(event) {
+if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+menu.classList.remove('active');
+menuToggle.classList.remove('active');
+
+const spans = menuToggle.querySelectorAll('span');
+spans[0].style.transform = 'none';
+spans[1].style.opacity = '1';
+spans[2].style.transform = 'none';
+}
+});
+}
+
+// Анимации при скролле
+function initScrollAnimations() {
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+
+// Добавляем случайные задержки для анимации карточек
+if (entry.target.classList.contains('fade-in')) {
+const delay = Math.random() * 0.5;
+entry.target.style.transitionDelay = `${delay}s`;
+}
+}
+});
+}, observerOptions);
+
+// Наблюдаем за элементами с классом fade-in
+document.querySelectorAll('.fade-in').forEach(el => {
+observer.observe(el);
+});
+}
+
+// Кнопка "Наверх"
+function initBackToTop() {
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTop.classList.add('visible');
+} else {
+backToTop.classList.remove('visible');
+}
+});
+
+backToTop.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+}
+
+// Плавная прокрутка
+function initSmoothScroll() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+// Обновление активного пункта меню
+document.querySelectorAll('.menu a').forEach(link => {
+link.classList.remove('active');
+});
+this.classList.add('active');
+
+// Прокрутка к элементу
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+}
+
+// Вспомогательные функции
+function scrollToSection(sectionId) {
+const section = document.getElementById(sectionId);
+if (section) {
+window.scrollTo({
+top: section.offsetTop - 80,
+behavior: 'smooth'
+});
+
+// Обновление активного пункта меню
+document.querySelectorAll('.menu a').forEach(link => {
+link.classList.remove('active');
+if (link.getAttribute('href') === `#${sectionId}`) {
+link.classList.add('active');
+}
+});
+}
+}
+
+// Параллакс эффект для частиц
+window.addEventListener('scroll', function() {
+const scrolled = window.pageYOffset;
+
+// Эффект для частиц
+const particles = document.querySelectorAll('.particle');
+particles.forEach(particle => {
+const speed = parseFloat(particle.style.animationDuration);
+particle.style.transform = `translateY(${scrolled * 0.05}px)`;
+});
+
+// Эффект для карточек
+const cards = document.querySelectorAll('.strategy-card, .trader-card, .tool-card');
+cards.forEach(card => {
+const rect = card.getBoundingClientRect();
+const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+if (isVisible) {
+const speed = 0.1;
+const yPos = -(rect.top * speed);
+card.style.transform = `translateY(${yPos}px)`;
+}
+});
+});
+
+// Анимация при наведении на кнопки
+document.querySelectorAll('.btn-primary, .btn-secondary, .cta-button').forEach(button => {
+button.addEventListener('mouseenter', function() {
+this.style.transform = 'translateY(-5px)';
+});
+
+button.addEventListener('mouseleave', function() {
+if (!this.classList.contains('active')) {
+this.style.transform = 'translateY(0)';
+}
+});
+});
+
+// Создание фейкового графика
+function createChartAnimation() {
+const chartLine = document.querySelector('.chart-line');
+if (!chartLine) return;
+
+// Генерация случайных точек для графика
+let points = '0% 100%, ';
+for (let i = 5; i <= 100; i += 5) {
+const height = Math.random() * 60 + 20;
+points += `${i}% ${100 - height}%, `;
+}
+points = points.slice(0, -2);
+
+chartLine.style.clipPath = `polygon(${points})`;
+
+// Анимация изменения графика
+setInterval(() => {
+let newPoints = '0% 100%, ';
+for (let i = 5; i <= 100; i += 5) {
+const height = Math.random() * 60 + 20;
+newPoints += `${i}% ${100 - height}%, `;
+}
+newPoints = newPoints.slice(0, -2);
+
+chartLine.style.clipPath = `polygon(${newPoints})`;
+chartLine.style.transition = 'clip-path 2s ease-in-out';
+}, 5000);
+}
+
+// Запуск анимации графика после загрузки
+setTimeout(createChartAnimation, 3000);
+
+// Случайные уведомления о сделках
+function createTradeNotification() {
+const notifications = [
+{type: 'success', text: 'Сделка закрыта с прибылью +$245.50', icon: 'fa-check-circle'},
+{type: 'info', text: 'Новый сигнал: EUR/USD покупать по 1.0850', icon: 'fa-bell'},
+{type: 'success', text: 'Торговый робот завершил сессию +1.8%', icon: 'fa-robot'},
+{type: 'warning', text: 'Внимание: высокая волатильность на рынке', icon: 'fa-exclamation-triangle'}
+];
+
+const randomNotification = notifications[Math.floor(Math.random() * notifications.length)];
+
+// Создаем уведомление в стратегиях
+const strategiesSection = document.querySelector('.strategies-section');
+if (strategiesSection) {
+const alert = document.createElement('div');
+alert.className = `alert alert-${randomNotification.type}`;
+alert.innerHTML = `
+<i class="fas ${randomNotification.icon}"></i>
+<div>${randomNotification.text}</div>
+`;
+
+// Добавляем уведомление в случайную стратегию
+const strategyCards = document.querySelectorAll('.strategy-card');
+if (strategyCards.length > 0) {
+const randomCard = strategyCards[Math.floor(Math.random() * strategyCards.length)];
+const content = randomCard.querySelector('.strategy-content');
+if (content) {
+content.insertBefore(alert, content.firstChild);
+
+// Удаляем уведомление через 10 секунд
+setTimeout(() => {
+alert.style.opacity = '0';
+alert.style.transform = 'translateX(-20px)';
+setTimeout(() => {
+if (alert.parentNode) {
+alert.parentNode.removeChild(alert);
+}
+}, 500);
+}, 10000);
+}
+}
+}
+}
+
+// Периодические уведомления
+setInterval(createTradeNotification, 15000);
+</script>
+</body>
+</html>

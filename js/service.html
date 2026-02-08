@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Веб-разработка - DigitalStudio</title>
+<meta name="description" content="Профессиональная веб-разработка сайтов и веб-приложений. Современные технологии, адаптивный дизайн, SEO-оптимизация.">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+<header class="header" role="banner">
+<div class="container">
+<div class="header__inner">
+<a href="sas.html" class="logo" aria-label="DigitalStudio - вернуться на главную">
+<svg class="logo__icon" width="40" height="40" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+
+<nav class="nav" aria-label="Основная навигация">
+<button class="nav__toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+</button>
+
+<ul class="nav__list" id="nav-menu" role="menu">
+<li class="nav__item" role="none">
+<a href="sas.html" class="nav__link" role="menuitem">Главная</a>
+</li>
+<li class="nav__item" role="none">
+<a href="about.html" class="nav__link" role="menuitem">О нас</a>
+</li>
+<li class="nav__item" role="none">
+<a href="portfolio.html" class="nav__link" role="menuitem">Портфолио</a>
+</li>
+<li class="nav__item" role="none">
+<a href="services.html" class="nav__link nav__link--active" role="menuitem" aria-current="page">Услуги</a>
+</li>
+<li class="nav__item" role="none">
+<a href="blog.html" class="nav__link" role="menuitem">Блог</a>
+</li>
+<li class="nav__item" role="none">
+<a href="contacts.html" class="nav__link" role="menuitem">Контакты</a>
+</li>
+</ul>
+</nav>
+
+<a href="#contact-form" class="btn btn--primary btn--small">Заказать</a>
+</div>
+</div>
+</header>
+
+<main id="main-content" class="main" role="main">
+<!-- Хлебные крошки -->
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<div class="container">
+<ol class="breadcrumbs__list">
+<li class="breadcrumbs__item">
+<a href="sas.html" class="breadcrumbs__link">Главная</a>
+</li>
+<li class="breadcrumbs__item">
+<a href="services.html" class="breadcrumbs__link">Услуги</a>
+</li>
+<li class="breadcrumbs__item" aria-current="page">
+<span class="breadcrumbs__current">Веб-разработка</span>
+</li>
+</ol>
+</div>
+</nav>
+
+<!-- Заголовок услуги -->
+<section class="service-hero" aria-labelledby="service-title">
+<div class="container">
+<div class="service-hero__grid">
+<div class="service-hero__content">
+<h1 id="service-title" class="service-hero__title">Веб-разработка</h1>
+<p class="service-hero__subtitle">Создаем современные, быстрые и функциональные веб-сайты и приложения</p>
+<p class="service-hero__description">От лендингов до сложных веб-приложений — мы реализуем проекты любой сложности с использованием современных технологий и лучших практик разработки.</p>
+
+<div class="service-hero__actions">
+<a href="#contact-form" class="btn btn--primary btn--large">Обсудить проект</a>
+<a href="portfolio.html" class="btn btn--secondary btn--large">Смотреть работы</a>
+</div>
+</div>
+
+<div class="service-hero__image">
+<svg width="400" height="300" aria-hidden="true">
+<!-- Декоративная иконка -->
+</svg>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Что входит в услугу -->
+<section class="service-includes" aria-labelledby="includes-title">
+<div class="container">
+<h2 id="includes-title" class="service-includes__title">Что входит в разработку</h2>
+
+<div class="includes-grid">
+<div class="include-card">
+<div class="include-card__icon" aria-hidden="true">🎯</div>
+<h3 class="include-card__title">Анализ и планирование</h3>
+<ul class="include-card__list">
+<li>Исследование бизнеса и ЦА</li>
+<li>Анализ конкурентов</li>
+<li>Прототипирование</li>
+<li>Составление ТЗ</li>
+</ul>
+</div>
+
+<div class="include-card">
+<div class="include-card__icon" aria-hidden="true">🎨</div>
+<h3 class="include-card__title">UI/UX дизайн</h3>
+<ul class="include-card__list">
+<li>Создание дизайн-концепции</li>
+<li>Проектирование пользовательских сценариев</li>
+<li>Адаптивный дизайн</li>
+<li>Дизайн-система</li>
+</ul>
+</div>
+
+<div class="include-card">
+<div class="include-card__icon" aria-hidden="true">💻</div>
+<h3 class="include-card__title">Фронтенд разработка</h3>
+<ul class="include-card__list">
+<li>Верстка по макетам</li>
+<li>Адаптивность и кроссбраузерность</li>
+<li>Интерактивные элементы</li>
+<li>Оптимизация производительности</li>
+</ul>
+</div>
+
+<div class="include-card">
+<div class="include-card__icon" aria-hidden="true">⚙️</div>
+<h3 class="include-card__title">Бэкенд разработка</h3>
+<ul class="include-card__list">
+<li>Архитектура приложения</li>
+<li>Разработка API</li>
+<li>Интеграция с внешними сервисами</li>
+<li>Базы данных и хостинг</li>
+</ul>
+</div>
+
+<div class="include-card">
+<div class="include-card__icon" aria-hidden="true">🧪</div>
+<h3 class="include-card__title">Тестирование и QA</h3>
+<ul class="include-card__list">
+<li>Функциональное тестирование</li>
+<li>Нагрузочное тестирование</li>
+<li>Кроссбраузерное тестирование</li>
+<li>Тестирование на мобильных устройствах</li>
+</ul>
+</div>
+
+<div class="include-card">
+<div class="include-card__icon" aria-hidden="true">🚀</div>
+<h3 class="include-card__title">Запуск и поддержка</h3>
+<ul class="include-card__list">
+<li>Развертывание на сервере</li>
+<li>Настройка домена и SSL</li>
+<li>Техническая поддержка</li>
+<li>Обучение администраторов</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Типы проектов -->
+<section class="project-types" aria-labelledby="types-title">
+<div class="container">
+<h2 id="types-title" class="project-types__title">Типы проектов</h2>
+
+<div class="types-grid">
+<article class="type-card">
+<h3 class="type-card__title">Корпоративные сайты</h3>
+<p class="type-card__description">Представительские сайты для компаний с информацией о бизнесе, услугах, команде и контактами</p>
+<div class="type-card__meta">
+<span class="type-card__price">от 150 000 ₽</span>
+<span class="type-card__time">2-4 недели</span>
+</div>
+</article>
+
+<article class="type-card">
+<h3 class="type-card__title">Интернет-магазины</h3>
+<p class="type-card__description">Полнофункциональные магазины с каталогом, корзиной, оплатой и системами управления заказами</p>
+<div class="type-card__meta">
+<span class="type-card__price">от 300 000 ₽</span>
+<span class="type-card__time">2-4 месяца</span>
+</div>
+</article>
+
+<article class="type-card">
+<h3 class="type-card__title">Веб-приложения</h3>
+<p class="type-card__description">Сложные приложения с бизнес-логикой, системами управления, отчетами и интеграциями</p>
+<div class="type-card__meta">
+<span class="type-card__price">от 500 000 ₽</span>
+<span class="type-card__time">от 3 месяцев</span>
+</div>
+</article>
+
+<article class="type-card">
+<h3 class="type-card__title">Лендинги</h3>
+<p class="type-card__description">Одностраничные сайты для продвижения продуктов, услуг или мероприятий с высокой конверсией</p>
+<div class="type-card__meta">
+<span class="type-card__price">от 80 000 ₽</span>
+<span class="type-card__time">1-2 недели</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- Технологии -->
+<section class="service-tech" aria-labelledby="tech-title">
+<div class="container">
+<h2 id="tech-title" class="service-tech__title">Технологии</h2>
+
+<div class="tech-tabs">
+<div class="tech-tabs__nav" role="tablist">
+<button class="tech-tab active" id="tab-frontend" role="tab" aria-selected="true" aria-controls="panel-frontend">Frontend</button>
+<button class="tech-tab" id="tab-backend" role="tab" aria-selected="false" aria-controls="panel-backend">Backend</button>
+<button class="tech-tab" id="tab-database" role="tab" aria-selected="false" aria-controls="panel-database">Базы данных</button>
+<button class="tech-tab" id="tab-tools" role="tab" aria-selected="false" aria-controls="panel-tools">Инструменты</button>
+</div>
+
+<div class="tech-tabs__content">
+<div class="tech-panel active" id="panel-frontend" role="tabpanel" aria-labelledby="tab-frontend">
+<div class="tech-stack">
+<div class="tech-item">
+<div class="tech-item__name">React</div>
+<div class="tech-item__description">Библиотека для создания пользовательских интерфейсов</div>
+</div>
+<div class="tech-item">
+<div class="tech-item__name">Vue.js</div>
+<div class="tech-item__description">Прогрессивный фреймворк для создания интерфейсов</div>
+</div>
+<div class="tech-item">
+<div class="tech-item__name">TypeScript</div>
+<div class="tech-item__description">Типизированный JavaScript для надежной разработки</div>
+</div>
+<div class="tech-item">
+<div class="tech-item__name">Next.js</div>
+<div class="tech-item__description">Фреймворк для React с SSR и статической генерацией</div>
+</div>
+</div>
+</div>
+
+<div class="tech-panel" id="panel-backend" role="tabpanel" aria-labelledby="tab-backend" hidden>
+<!-- Контент для бэкенда -->
+</div>
+
+<div class="tech-panel" id="panel-database" role="tabpanel" aria-labelledby="tab-database" hidden>
+<!-- Контент для баз данных -->
+</div>
+
+<div class="tech-panel" id="panel-tools" role="tabpanel" aria-labelledby="tab-tools" hidden>
+<!-- Контент для инструментов -->
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Форма заказа -->
+<section class="service-contact" id="contact-form" aria-labelledby="contact-title">
+<div class="container">
+<div class="service-contact__grid">
+<div class="service-contact__content">
+<h2 id="contact-title" class="service-contact__title">Заказать веб-разработку</h2>
+<p class="service-contact__description">Расскажите о вашем проекте и мы подготовим индивидуальное коммерческое предложение</p>
+
+<div class="contact-info">
+<div class="contact-info__item">
+<svg width="24" height="24" aria-hidden="true">
+<use href="#icon-phone"></use>
+</svg>
+<a href="tel:+79991234567">+7 (999) 123-45-67</a>
+</div>
+<div class="contact-info__item">
+<svg width="24" height="24" aria-hidden="true">
+<use href="#icon-email"></use>
+</svg>
+<a href="mailto:web@digitalstudio.example.com">web@digitalstudio.example.com</a>
+</div>
+</div>
+</div>
+
+<div class="service-contact__form">
+<form class="form" novalidate>
+<div class="form__group">
+<label for="service-name" class="form__label">Имя *</label>
+<input type="text" id="service-name" name="name" required>
+</div>
+
+<div class="form__group">
+<label for="service-email" class="form__label">Email *</label>
+<input type="email" id="service-email" name="email" required>
+</div>
+
+<div class="form__group">
+<label for="service-project" class="form__label">Тип проекта</label>
+<select id="service-project" name="project">
+<option value="">Выберите тип</option>
+<option value="corporate">Корпоративный сайт</option>
+<option value="ecommerce">Интернет-магазин</option>
+<option value="webapp">Веб-приложение</option>
+<option value="landing">Лендинг</option>
+<option value="other">Другое</option>
+</select>
+</div>
+
+<div class="form__group">
+<label for="service-budget" class="form__label">Бюджет</label>
+<select id="service-budget" name="budget">
+<option value="">Не определен</option>
+<option value="50-100">50-100 тыс. ₽</option>
+<option value="100-300">100-300 тыс. ₽</option>
+<option value="300-500">300-500 тыс. ₽</option>
+<option value="500+">500+ тыс. ₽</option>
+</select>
+</div>
+
+<div class="form__group">
+<label for="service-description" class="form__label">Описание проекта *</label>
+<textarea id="service-description" name="description" rows="5" required></textarea>
+</div>
+
+<button type="submit" class="btn btn--primary btn--large">Отправить заявку</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="footer" role="contentinfo">
+<div class="container">
+<div class="footer__grid">
+<div class="footer__brand">
+<a href="sas.html" class="logo logo--footer">
+<svg class="logo__icon" width="32" height="32" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+<p class="footer__description">Эксперты в веб-разработке</p>
+</div>
+
+<div class="footer__nav">
+<h3 class="footer__title">Навигация</h3>
+<ul class="footer__list">
+<li><a href="sas.html">Главная</a></li>
+<li><a href="about.html">О нас</a></li>
+<li><a href="portfolio.html">Портфолио</a></li>
+<li><a href="services.html">Услуги</a></li>
+<li><a href="blog.html">Блог</a></li>
+<li><a href="contacts.html">Контакты</a></li>
+</ul>
+</div>
+
+<div class="footer__services">
+<h3 class="footer__title">Услуги</h3>
+<ul class="footer__list">
+<li><a href="service-1.html">Веб-разработка</a></li>
+<li><a href="service-2.html">Дизайн</a></li>
+<li><a href="service-3.html">Мобильные приложения</a></li>
+<li><a href="service-4.html">SEO</a></li>
+</ul>
+</div>
+</div>
+
+<div class="footer__bottom">
+<p class="footer__copyright">&copy; 2024 DigitalStudio. Все права защищены.</p>
+<nav class="footer__legal" aria-label="Юридическая информация">
+<a href="privacy.html">Политика конфиденциальности</a>
+<a href="terms.html">Условия использования</a>
+</nav>
+</div>
+</div>
+</footer>
+
+<!-- SVG спрайт -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<!-- Иконки из предыдущих файлов -->
+</svg>
+</body>
+</html>

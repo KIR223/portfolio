@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>История архитектуры: Эволюция стилей</title>
+    <meta name="description" content="От древних храмов до небоскребов: путеводитель по архитектурным стилям">
+    
+    <style>
+        :root {
+            --classic-gold: #ca8a04;
+            --gothic-purple: #7e22ce;
+            --renaissance-red: #dc2626;
+            --modern-blue: #3b82f6;
+            --glass-teal: #0d9488;
+            
+            --font-classic: 'Times New Roman', serif;
+            --font-modern: 'Helvetica', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-modern);
+            background: linear-gradient(135deg, #f5f5f4, #e7e5e4);
+            color: #1c1917;
+            line-height: 1.7;
+        }
+        
+        /* Архитектурная сетка */
+        .architecture-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(202, 138, 4, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(202, 138, 4, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Герой с колоннами */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1c1917, #292524);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before, .hero::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(transparent, var(--classic-gold), transparent);
+            opacity: 0.1;
+        }
+        
+        .hero::before {
+            left: 20%;
+        }
+        
+        .hero::after {
+            right: 20%;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-family: var(--font-classic);
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 1rem;
+            color: var(--classic-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        /* Хронология стилей */
+        .style-timeline {
+            display: flex;
+            overflow-x: auto;
+            padding: 3rem 0;
+            gap: 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--classic-gold) transparent;
+        }
+        
+        .style-timeline::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .style-timeline::-webkit-scrollbar-track {
+            background: #e7e5e4;
+        }
+        
+        .style-timeline::-webkit-scrollbar-thumb {
+            background: var(--classic-gold);
+            border-radius: 4px;
+        }
+        
+        .style-period {
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--classic-gold);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .style-period.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .period-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .period-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--classic-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        /* Галерея архитектуры */
+        .architecture-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .building-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .building-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .building-info {
+            padding: 1.5rem;
+        }
+        
+        .building-style {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: var(--classic-gold);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Контейнер */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: 6rem 1.5rem;
+        }
+        
+        /* Секции по стилям */
+        .classic-section {
+            background: linear-gradient(135deg, #fef3c7, transparent);
+        }
+        
+        .modern-section {
+            background: linear-gradient(135deg, #dbeafe, transparent);
+        }
+        
+        /* Характеристики стилей */
+        .style-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .architecture-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .style-timeline {
+                flex-direction: column;
+                overflow-x: visible;
+            }
+            
+            .style-period {
+                min-width: auto;
+            }
+            
+            .hero::before, .hero::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="architecture-grid"></div>
+    
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Архитектурные Эпохи</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">
+                Путешествие сквозь время: от древних храмов до современных небоскребов
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button onclick="scrollToSection('timeline')" style="background: var(--classic-gold); color: white; border: none; padding: 1rem 2rem; border-radius: 5px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+                    Хронология стилей
+                </button>
+                <button onclick="scrollToSection('gallery')" style="background: transparent; color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 5px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+                    Шедевры архитектуры
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <main>
+        <!-- Хронология стилей -->
+        <section id="timeline" class="classic-section">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--classic-gold);">
+                    Хронология архитектурных стилей
+                </h2>
+                <div class="style-timeline">
+                    
+                    <!-- Античность -->
+                    <div class="style-period">
+                        <div class="period-header">
+                            <div class="period-icon">🏛️</div>
+                            <h3 style="color: var(--classic-gold);">Античность</h3>
+                        </div>
+                        <p style="color: var(--gothic-purple); font-weight: bold; margin-bottom: 0.5rem;">VIII в. до н.э. - V в. н.э.</p>
+                        <p>Древнегреческие и римские храмы, колонны, арки, купола. Парфенон, Колизей, Пантеон.</p>
+                    </div>
+                    
+                    <!-- Романский стиль -->
+                    <div class="style-period">
+                        <div class="period-header">
+                            <div class="period-icon">⛪</div>
+                            <h3 style="color: var(--gothic-purple);">Романский</h3>
+                        </div>
+                        <p style="color: var(--gothic-purple); font-weight: bold; margin-bottom: 0.5rem;">X-XII вв.</p>
+                        <p>Массивные стены, круглые арки, бочкообразные своды. Собор в Шпейере, Даремский собор.</p>
+                    </div>
+                    
+                    <!-- Готика -->
+                    <div class="style-period">
+                        <div class="period-header">
+                            <div class="period-icon">🕌</div>
+                            <h3 style="color: var(--gothic-purple);">Готика</h3>
+                        </div>
+                        <p style="color: var(--gothic-purple); font-weight: bold; margin-bottom: 0.5rem;">XII-XVI вв.</p>
+                        <p>Стрельчатые арки, контрфорсы, витражи, вертикальность. Собор Парижской Богоматери.</p>
+                    </div>
+                    
+                    <!-- Ренессанс -->
+                    <div class="style-period">
+                        <div class="period-header">
+                            <div class="period-icon">🎨</div>
+                            <h3 style="color: var(--renaissance-red);">Ренессанс</h3>
+                        </div>
+                        <p style="color: var(--renaissance-red); font-weight: bold; margin-bottom: 0.5rem;">XV-XVI вв.</p>
+                        <p>Возрождение античных принципов, симметрия, пропорции. Собор Святого Петра, Флорентийский собор.</p>
+                    </div>
+                    
+                    <!-- Барокко -->
+                    <div class="style-period">
+                        <div class="period-header">
+                            <div class="period-icon">💎</div>
+                            <h3 style="color: var(--renaissance-red);">Барокко</h3>
+                        </div>
+                        <p style="color: var(--renaissance-red); font-weight: bold; margin-bottom: 0.5rem;">XVII-XVIII вв.</p>
+                        <p>Пышность, динамика, сложные формы, богатый декор. Версаль, Зимний дворец.</p>
+                    </div>
+                    
+                    <!-- Модерн -->
+                    <div class="style-period">
+                        <div class="period-header">
+                            <div class="period-icon">🌿</div>
+                            <h3 style="color: var(--modern-blue);">Модерн</h3>
+                        </div>
+                        <p style="color: var(--modern-blue); font-weight: bold; margin-bottom: 0.5rem;">Конец XIX - начало XX вв.</p>
+                        <p>Плавные линии, природные формы, асимметрия. Дом Гауди, метро Парижа.</p>
+                    </div>
+                    
+                    <!-- Хай-тек -->
+                    <div class="style-period">
+                        <div class="period-header">
+                            <div class="period-icon">🏙️</div>
+                            <h3 style="color: var(--glass-teal);">Хай-тек</h3>
+                        </div>
+                        <p style="color: var(--glass-teal); font-weight: bold; margin-bottom: 0.5rem;">С 1970-х</p>
+                        <p>Стекло, сталь, высокие технологии, функциональность. Центр Помпиду, небоскребы.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Галерея шедевров -->
+        <section id="gallery" class="modern-section">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--modern-blue);">
+                    Архитектурные шедевры
+                </h2>
+                <div class="architecture-gallery">
+                    
+                    <!-- Шедевр 1 -->
+                    <div class="building-card">
+                        <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=400&q=80" 
+                             alt="Парфенон в Афинах" class="building-image">
+                        <div class="building-info">
+                            <span class="building-style" style="background: var(--classic-gold);">Античность</span>
+                            <h3 style="margin-bottom: 0.5rem;">Парфенон</h3>
+                            <p style="color: #666; font-size: 0.9rem;">Афины, Греция (447-438 до н.э.)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Шедевр 2 -->
+                    <div class="building-card">
+                        <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?auto=format&fit=crop&w=400&q=80" 
+                             alt="Собор Парижской Богоматери" class="building-image">
+                        <div class="building-info">
+                            <span class="building-style" style="background: var(--gothic-purple);">Готика</span>
+                            <h3 style="margin-bottom: 0.5rem;">Нотр-Дам де Пари</h3>
+                            <p style="color: #666; font-size: 0.9rem;">Париж, Франция (1163-1345)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Шедевр 3 -->
+                    <div class="building-card">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=400&q=80" 
+                             alt="Тадж-Махал" class="building-image">
+                        <div class="building-info">
+                            <span class="building-style" style="background: var(--renaissance-red);">Могольская архитектура</span>
+                            <h3 style="margin-bottom: 0.5rem;">Тадж-Махал</h3>
+                            <p style="color: #666; font-size: 0.9rem;">Агра, Индия (1632-1653)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Шедевр 4 -->
+                    <div class="building-card">
+                        <img src="https://images.unsplash.com/photo-1541336032412-2048a678540d?auto=format&fit=crop&w=400&q=80" 
+                             alt="Сиднейский оперный театр" class="building-image">
+                        <div class="building-info">
+                            <span class="building-style" style="background: var(--modern-blue);">Экспрессионизм</span>
+                            <h3 style="margin-bottom: 0.5rem;">Сиднейская опера</h3>
+                            <p style="color: #666; font-size: 0.9rem;">Сидней, Австралия (1973)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Шедевр 5 -->
+                    <div class="building-card">
+                        <img src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?auto=format&fit=crop&w=400&q=80" 
+                             alt="Бурдж-Халифа" class="building-image">
+                        <div class="building-info">
+                            <span class="building-style" style="background: var(--glass-teal);">Хай-тек</span>
+                            <h3 style="margin-bottom: 0.5rem;">Бурдж-Халифа</h3>
+                            <p style="color: #666; font-size: 0.9rem;">Дубай, ОАЭ (2010)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Характеристики стилей -->
+        <section>
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--classic-gold);">
+                    Ключевые характеристики стилей
+                </h2>
+                <div class="style-features">
+                    
+                    <!-- Характеристика 1 -->
+                    <div class="feature-item">
+                        <div class="feature-icon">🏺</div>
+                        <h3>Пропорции</h3>
+                        <p>Золотое сечение, гармония частей, математическая точность.</p>
+                    </div>
+                    
+                    <!-- Характеристика 2 -->
+                    <div class="feature-item">
+                        <div class="feature-icon">🧱</div>
+                        <h3>Материалы</h3>
+                        <p>Камень, мрамор, стекло, сталь, бетон - эволюция строительных материалов.</p>
+                    </div>
+                    
+                    <!-- Характеристика 3 -->
+                    <div class="feature-item">
+                        <div class="feature-icon">📐</div>
+                        <h3>Конструкции</h3>
+                        <p>Арки, своды, купола, фермы, каркасы - развитие инженерной мысли.</p>
+                    </div>
+                    
+                    <!-- Характеристика 4 -->
+                    <div class="feature-item">
+                        <div class="feature-icon">🎭</div>
+                        <h3>Декор</h3>
+                        <p>Скульптура, мозаика, витражи, орнамент - художественное выражение.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Современная архитектура -->
+        <section style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white;">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--glass-teal);">
+                    Архитектура XXI века
+                </h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <h3 style="color: var(--glass-teal); margin-bottom: 1rem;">Устойчивая архитектура</h3>
+                            <p>Экологичные материалы, энергоэффективность, зеленые технологии.</p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <h3 style="color: var(--glass-teal); margin-bottom: 1rem;">Параметрический дизайн</h3>
+                            <p>Сложные криволинейные формы, созданные с помощью компьютерного моделирования.</p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <h3 style="color: var(--glass-teal); margin-bottom: 1rem;">Умные здания</h3>
+                            <p>Интеграция технологий IoT для автоматизации и оптимизации.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Источники -->
+        <section>
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--classic-gold);">Рекомендуемая литература</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h4>Всеобщая история архитектуры (12 томов)</h4>
+                        <p>Наиболее полное исследование мировой архитектуры от древности до современности.</p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h4>Витрувий - Десять книг об архитектуре</h4>
+                        <p>Классический труд по архитектуре, написанный в I веке до н.э.</p>
+                    </div>
+                    <div style="padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h4>GreatBuildings.com</h4>
+                        <p>Онлайн-база данных архитектурных сооружений с 3D-моделями.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer style="background: #1c1917; color: white; padding: 3rem 1.5rem; text-align: center;">
+        <div class="container">
+            <p>© 2023 Архитектурный образовательный проект</p>
+            <p style="opacity: 0.7; margin-top: 1rem; font-size: 0.9rem;">
+                Все изображения защищены авторским правом соответствующих организаций
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Функция плавной прокрутки
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        
+        // Анимация появления карточек
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.style-period').forEach(el => observer.observe(el));
+        
+        // Параллакс-эффект для сетки
+        window.addEventListener('scroll', () => {
+            const grid = document.querySelector('.architecture-grid');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.3;
+            grid.style.backgroundPosition = `${rate}px ${rate}px`;
+        });
+        
+        // Интерактивные карточки зданий
+        document.querySelectorAll('.building-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            });
+        });
+        
+        // Автоматическая прокрутка таймлайна
+        const timeline = document.querySelector('.style-timeline');
+        let isScrolling = false;
+        
+        function autoScrollTimeline() {
+            if (!isScrolling && timeline) {
+                timeline.scrollBy({ left: 1, behavior: 'smooth' });
+                
+                // Если достигли конца, начинаем сначала
+                if (timeline.scrollLeft + timeline.clientWidth >= timeline.scrollWidth - 10) {
+                    setTimeout(() => {
+                        timeline.scrollTo({ left: 0, behavior: 'smooth' });
+                    }, 3000);
+                }
+            }
+        }
+        
+        // Запускаем автопрокрутку
+        let scrollInterval = setInterval(autoScrollTimeline, 50);
+        
+        // Останавливаем при взаимодействии пользователя
+        timeline.addEventListener('mouseenter', () => {
+            isScrolling = true;
+            clearInterval(scrollInterval);
+        });
+        
+        timeline.addEventListener('mouseleave', () => {
+            isScrolling = false;
+            scrollInterval = setInterval(autoScrollTimeline, 50);
+        });
+        
+        // Эффект печатающего текста для заголовка
+        const heroTitle = document.querySelector('.hero-title');
+        const originalTitle = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        function typeTitle() {
+            if (i < originalTitle.length) {
+                heroTitle.textContent += originalTitle.charAt(i);
+                i++;
+                setTimeout(typeTitle, 100);
+            }
+        }
+        
+        // Запускаем через секунду после загрузки
+        setTimeout(typeTitle, 1000);
+        
+        console.log('Архитектурный сайт загружен! 🏛️');
+    </script>
+</body>
+</html>

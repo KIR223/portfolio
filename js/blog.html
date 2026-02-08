@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блог о веб-разработке и дизайне - DigitalStudio</title>
+<meta name="description" content="Статьи о веб-разработке, дизайне, SEO и digital-маркетинге. Советы, кейсы и новости отрасли.">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+<header class="header" role="banner">
+<div class="container">
+<div class="header__inner">
+<a href="sas.html" class="logo" aria-label="DigitalStudio - вернуться на главную">
+<svg class="logo__icon" width="40" height="40" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+
+<nav class="nav" aria-label="Основная навигация">
+<button class="nav__toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+</button>
+
+<ul class="nav__list" id="nav-menu" role="menu">
+<li class="nav__item" role="none">
+<a href="sas.html" class="nav__link" role="menuitem">Главная</a>
+</li>
+<li class="nav__item" role="none">
+<a href="about.html" class="nav__link" role="menuitem">О нас</a>
+</li>
+<li class="nav__item" role="none">
+<a href="portfolio.html" class="nav__link" role="menuitem">Портфолио</a>
+</li>
+<li class="nav__item" role="none">
+<a href="services.html" class="nav__link" role="menuitem">Услуги</a></li>
+<li class="nav__item" role="none">
+<a href="blog.html" class="nav__link nav__link--active" role="menuitem" aria-current="page">Блог</a>
+</li>
+<li class="nav__item" role="none">
+<a href="contacts.html" class="nav__link" role="menuitem">Контакты</a>
+</li>
+</ul>
+</nav>
+
+<!-- Поиск (для десктопов) -->
+<form class="search-form" role="search">
+<label for="search" class="visually-hidden">Поиск по блогу</label>
+<input type="search" id="search" placeholder="Поиск статей..." aria-label="Введите поисковый запрос">
+<button type="submit" aria-label="Найти">🔍</button>
+</form>
+</div>
+</div>
+</header>
+
+<main id="main-content" class="main" role="main">
+<!-- Хлебные крошки -->
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<div class="container">
+<ol class="breadcrumbs__list">
+<li class="breadcrumbs__item">
+<a href="sas.html" class="breadcrumbs__link">Главная</a>
+</li>
+<li class="breadcrumbs__item" aria-current="page">
+<span class="breadcrumbs__current">Блог</span>
+</li>
+</ol>
+</div>
+</nav>
+
+<!-- Герой-секция -->
+<section class="page-hero" aria-labelledby="page-title">
+<div class="container">
+<h1 id="page-title" class="page-hero__title">Блог</h1>
+<p class="page-hero__subtitle">Статьи о веб-разработке, дизайне, SEO и digital-маркетинге</p>
+</div>
+</section>
+
+<!-- Поиск и фильтры -->
+<section class="blog-filters" aria-label="Фильтры блога">
+<div class="container">
+<div class="blog-filters__wrapper">
+<!-- Поиск (для мобильных) -->
+<form class="search-form search-form--mobile" role="search">
+<label for="mobile-search" class="visually-hidden">Поиск по блогу</label>
+<input type="search" id="mobile-search" placeholder="Поиск статей..." aria-label="Введите поисковый запрос">
+<button type="submit" aria-label="Найти">🔍</button>
+</form>
+
+<!-- Фильтры по категориям -->
+<div class="category-filters">
+<h2 class="visually-hidden">Категории статей</h2>
+<div class="category-filters__list">
+<button class="category-filter active" data-category="all" aria-pressed="true">
+Все статьи
+</button>
+<button class="category-filter" data-category="development" aria-pressed="false">
+Разработка
+</button>
+<button class="category-filter" data-category="design" aria-pressed="false">
+Дизайн
+</button>
+<button class="category-filter" data-category="seo" aria-pressed="false">
+SEO
+</button>
+<button class="category-filter" data-category="marketing" aria-pressed="false">
+Маркетинг
+</button>
+<button class="category-filter" data-category="tips" aria-pressed="false">
+Советы
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Сетка статей -->
+<section class="blog-grid" aria-label="Список статей">
+<div class="container">
+<div class="blog-grid__wrapper">
+<!-- Основной контент -->
+<div class="blog-articles" data-blog>
+<!-- Статья 1 -->
+<article class="blog-article" data-category="development tips">
+<div class="blog-article__image">
+<a href="article-1.html">
+<picture>
+<source srcset="article-1-cover.webp" type="image/webp">
+<img src="article-1-cover.jpg" alt="Современные тенденции веб-разработки в 2024 году" width="400" height="250" loading="lazy">
+</picture>
+</a>
+</div>
+<div class="blog-article__content">
+<div class="blog-article__meta">
+<time datetime="2024-01-15">15 января 2024</time>
+<span class="blog-article__category">Разработка</span>
+<span class="blog-article__read-time">5 мин</span>
+</div>
+<h2 class="blog-article__title">
+<a href="article-1.html">Тенденции веб-разработки в 2024 году</a>
+</h2>
+<p class="blog-article__excerpt">Какие технологии и подходы будут доминировать в веб-разработке в новом году. Обзор главных трендов от экспертов индустрии.</p>
+<div class="blog-article__footer">
+<a href="article-1.html" class="blog-article__link">Читать статью →</a>
+</div>
+</div>
+</article>
+
+<!-- Статья 2 -->
+<article class="blog-article" data-category="design">
+<div class="blog-article__image">
+<a href="article-2.html">
+<picture>
+<source srcset="article-2-cover.webp" type="image/webp">
+<img src="article-2-cover.jpg" alt="Принципы доступного дизайна интерфейсов" width="400" height="250" loading="lazy">
+</picture>
+</a>
+</div>
+<div class="blog-article__content">
+<div class="blog-article__meta">
+<time datetime="2024-01-10">10 января 2024</time>
+<span class="blog-article__category">Дизайн</span>
+<span class="blog-article__read-time">7 мин</span>
+</div>
+<h2 class="blog-article__title">
+<a href="article-2.html">Доступный дизайн: как создавать интерфейсы для всех</a>
+</h2>
+<p class="blog-article__excerpt">Практические советы по созданию доступных интерфейсов. Разбираем принципы WCAG и показываем примеры реализации.</p>
+<div class="blog-article__footer">
+<a href="article-2.html" class="blog-article__link">Читать статью →</a>
+</div>
+</div>
+</article>
+
+<!-- Статья 3 -->
+<article class="blog-article" data-category="seo">
+<div class="blog-article__image">
+<a href="article-3.html">
+<picture>
+<source srcset="article-3-cover.webp" type="image/webp">
+<img src="article-3-cover.jpg" alt="Core Web Vitals и влияние на SEO" width="400" height="250" loading="lazy">
+</picture>
+</a>
+</div>
+<div class="blog-article__content">
+<div class="blog-article__meta">
+<time datetime="2024-01-05">5 января 2024</time>
+<span class="blog-article__category">SEO</span>
+<span class="blog-article__read-time">8 мин</span>
+</div>
+<h2 class="blog-article__title">
+<a href="article-3.html">Core Web Vitals: как метрики скорости влияют на SEO</a>
+</h2>
+<p class="blog-article__excerpt">Подробный разбор метрик Core Web Vitals от Google. Как измерять и улучшать показатели для лучшего ранжирования.</p>
+<div class="blog-article__footer">
+<a href="article-3.html" class="blog-article__link">Читать статью →</a>
+</div>
+</div>
+</article>
+
+<!-- Статья 4 -->
+<article class="blog-article" data-category="development">
+<div class="blog-article__image">
+<a href="article-4.html">
+<picture>
+<source srcset="article-4-cover.webp" type="image/webp">
+<img src="article-4-cover.jpg" alt="Оптимизация производительности веб-сайтов" width="400" height="250" loading="lazy">
+</picture>
+</a>
+</div>
+<div class="blog-article__content">
+<div class="blog-article__meta">
+<time datetime="2023-12-20">20 декабря 2023</time>
+<span class="blog-article__category">Разработка</span>
+<span class="blog-article__read-time">10 мин</span>
+</div>
+<h2 class="blog-article__title">
+<a href="article-4.html">Практическое руководство по оптимизации скорости сайта</a>
+</h2>
+<p class="blog-article__excerpt">Конкретные техники и инструменты для ускорения загрузки сайта. От оптимизации изображений до кэширования.</p>
+<div class="blog-article__footer">
+<a href="article-4.html" class="blog-article__link">Читать статью →</a>
+</div>
+</div>
+</article>
+
+<!-- Статья 5 -->
+<article class="blog-article" data-category="marketing">
+<div class="blog-article__image">
+<a href="article-5.html">
+<picture>
+<source srcset="article-5-cover.webp" type="image/webp">
+<img src="article-5-cover.jpg" alt="Контент-маркетинг для B2B компаний" width="400" height="250" loading="lazy">
+</picture>
+</a>
+</div>
+<div class="blog-article__content">
+<div class="blog-article__meta">
+<time datetime="2023-12-15">15 декабря 2023</time>
+<span class="blog-article__category">Маркетинг</span>
+<span class="blog-article__read-time">6 мин</span>
+</div>
+<h2 class="blog-article__title">
+<a href="article-5.html">Контент-маркетинг для B2B: стратегии, которые работают</a>
+</h2>
+<p class="blog-article__excerpt">Как создавать контент, который привлекает корпоративных клиентов и генерирует лиды для B2B-компаний.</p>
+<div class="blog-article__footer">
+<a href="article-5.html" class="blog-article__link">Читать статью →</a>
+</div>
+</div>
+</article>
+
+<!-- Статья 6 -->
+<article class="blog-article" data-category="tips">
+<div class="blog-article__image">
+<a href="article-6.html">
+<picture>
+<source srcset="article-6-cover.webp" type="image/webp">
+<img src="article-6-cover.jpg" alt="Выбор технологии для вашего проекта" width="400" height="250" loading="lazy">
+</picture>
+</a>
+</div>
+<div class="blog-article__content">
+<div class="blog-article__meta">
+<time datetime="2023-12-10">10 декабря 2023</time>
+<span class="blog-article__category">Советы</span>
+<span class="blog-article__read-time">9 мин</span>
+</div>
+<h2 class="blog-article__title">
+<a href="article-6.html">Как выбрать технологический стек для вашего проекта</a>
+</h2>
+<p class="blog-article__excerpt">Руководство по выбору технологий в зависимости от масштаба проекта, требований и бюджета.</p>
+<div class="blog-article__footer">
+<a href="article-6.html" class="blog-article__link">Читать статью →</a>
+</div>
+</div>
+</article>
+</div>
+
+<!-- Сайдбар -->
+<aside class="blog-sidebar" aria-label="Дополнительная информация">
+<!-- Популярные статьи -->
+<div class="sidebar-widget">
+<h3 class="sidebar-widget__title">Популярные статьи</h3>
+<ul class="popular-articles">
+<li class="popular-article">
+<a href="article-1.html" class="popular-article__link">
+<span class="popular-article__title">Тенденции веб-разработки в 2024 году</span>
+<span class="popular-article__views">1.2K просмотров</span>
+</a>
+</li>
+<li class="popular-article">
+<a href="article-3.html" class="popular-article__link">
+<span class="popular-article__title">Core Web Vitals и влияние на SEO</span>
+<span class="popular-article__views">980 просмотров</span>
+</a>
+</li>
+<li class="popular-article">
+<a href="article-4.html" class="popular-article__link">
+<span class="popular-article__title">Оптимизация скорости сайта</span>
+<span class="popular-article__views">850 просмотров</span>
+</a>
+</li>
+<li class="popular-article">
+<a href="article-2.html" class="popular-article__link">
+<span class="popular-article__title">Доступный дизайн интерфейсов</span>
+<span class="popular-article__views">720 просмотров</span>
+</a>
+</li>
+</ul>
+</div>
+
+<!-- Теги -->
+<div class="sidebar-widget">
+<h3 class="sidebar-widget__title">Теги</h3>
+<div class="tag-cloud">
+<a href="#" class="tag">JavaScript</a>
+<a href="#" class="tag">React</a>
+<a href="#" class="tag">CSS</a>
+<a href="#" class="tag">UI/UX</a>
+<a href="#" class="tag">SEO</a>
+<a href="#" class="tag">Производительность</a>
+<a href="#" class="tag">Доступность</a>
+<a href="#" class="tag">Мобильная разработка</a>
+</div>
+</div>
+
+<!-- Подписка -->
+<div class="sidebar-widget">
+<h3 class="sidebar-widget__title">Подписаться на рассылку</h3>
+<p class="sidebar-widget__description">Получайте новые статьи на email</p>
+<form class="subscribe-form" novalidate>
+<label for="blog-email" class="visually-hidden">Email для подписки</label>
+<input type="email" id="blog-email" placeholder="Ваш email" required>
+<button type="submit" class="btn btn--small" aria-label="Подписаться">Подписаться</button>
+</form>
+</div>
+</aside>
+</div>
+
+<!-- Пагинация -->
+<nav class="pagination" aria-label="Навигация по страницам блога">
+<ol class="pagination__list">
+<li class="pagination__item pagination__item--active">
+<span class="pagination__link" aria-current="page">1</span>
+</li>
+<li class="pagination__item">
+<a href="blog-page-2.html" class="pagination__link">2</a>
+</li>
+<li class="pagination__item">
+<a href="blog-page-3.html" class="pagination__link">3</a>
+</li>
+<li class="pagination__item pagination__item--next">
+<a href="blog-page-2.html" class="pagination__link">Следующая →</a>
+</li>
+</ol>
+</nav>
+</div>
+</section>
+</main>
+
+<footer class="footer" role="contentinfo">
+<div class="container">
+<div class="footer__grid">
+<div class="footer__brand">
+<a href="sas.html" class="logo logo--footer">
+<svg class="logo__icon" width="32" height="32" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+<p class="footer__description">Эксперты в веб-разработке и дизайне</p>
+</div>
+
+<div class="footer__nav">
+<h3 class="footer__title">Навигация</h3>
+<ul class="footer__list">
+<li><a href="sas.html">Главная</a></li>
+<li><a href="about.html">О нас</a></li>
+<li><a href="portfolio.html">Портфолио</a></li>
+<li><a href="services.html">Услуги</a></li>
+<li><a href="blog.html">Блог</a></li>
+<li><a href="contacts.html">Контакты</a></li>
+</ul>
+</div>
+
+<div class="footer__social">
+<h3 class="footer__title">Соцсети</h3>
+<div class="social-links">
+<a href="#" class="social-link" aria-label="Telegram">
+<svg width="24" height="24" aria-hidden="true">
+<use href="#icon-telegram"></use>
+</svg>
+</a>
+<a href="#" class="social-link" aria-label="VK">
+<svg width="24" height="24" aria-hidden="true">
+<use href="#icon-vk"></use>
+</svg>
+</a>
+<a href="#" class="social-link" aria-label="GitHub">
+<svg width="24" height="24" aria-hidden="true">
+<use href="#icon-github"></use>
+</svg>
+</a>
+</div>
+</div>
+</div>
+
+<div class="footer__bottom">
+<p class="footer__copyright">&copy; 2024 DigitalStudio. Все права защищены.</p>
+<nav class="footer__legal" aria-label="Юридическая информация">
+<a href="privacy.html">Политика конфиденциальности</a>
+<a href="terms.html">Условия использования</a>
+</nav>
+</div>
+</div>
+</footer>
+
+<!-- SVG спрайт -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<!-- Иконки из предыдущих файлов -->
+</svg>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Самурайские Катаны | Магазин японского оружия</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="samurai.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Самурайский декор верхний -->
+<div class="samurai-border top">
+<div class="mon">家</div>
+<div class="mon">侍</div>
+<div class="mon">刀</div>
+</div>
+
+<!-- Главный контейнер -->
+<div class="container">
+<!-- Хедер с навигацией -->
+<header class="main-header">
+<div class="logo">
+<h1><i class="fas fa-gem"></i> 刀屋</h1>
+<p class="subtitle">Katana House | 侍の魂</p>
+</div>
+
+<nav class="main-nav">
+<ul>
+<li><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
+<li><a href="catalog.html"><i class="fas fa-swords"></i> Каталог</a></li>
+<li><a href="about.html"><i class="fas fa-landmark"></i> О нас</a></li>
+<li><a href="contacts.html"><i class="fas fa-map-marked-alt"></i> Контакты</a></li>
+<li><a href="cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Корзина <span class="cart-count">0</span></a></li>
+</ul>
+</nav>
+
+<button class="menu-toggle" aria-label="Меню">
+<i class="fas fa-bars"></i>
+</button>
+</header>
+
+<!-- Герой-секция -->
+<section class="hero">
+<div class="hero-content">
+<h2>Искусство <span class="highlight">самурая</span> в каждой катане</h2>
+<p>Подлинные японские катаны ручной работы. Традиционные техники изготовления, современное качество.</p>
+<a href="catalog.html" class="btn btn-primary">Смотреть коллекцию <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="hero-image">
+<div class="katana-display">
+<img src="https://via.placeholder.com/600x400/2c3e50/c0392b?text=Катана+Премиум" alt="Премиум катана" class="featured-katana">
+<div class="stand"></div>
+</div>
+</div>
+</section>
+
+<!-- Популярные товары -->
+<section class="featured-products">
+<div class="section-header">
+<h2><i class="fas fa-fire"></i> Популярные катаны</h2>
+<p>Самые востребованные модели</p>
+</div>
+
+<div class="products-grid" id="featured-products">
+<!-- Товары будут загружены через JS -->
+<div class="loading">
+<div class="spinner"></div>
+<p>Загружаем катаны...</p>
+</div>
+</div>
+
+<div class="section-footer">
+<a href="catalog.html" class="btn btn-secondary">Весь каталог (120+ моделей) <i class="fas fa-chevron-right"></i></a>
+</div>
+</section>
+
+<!-- Преимущества -->
+<section class="features">
+<div class="feature">
+<div class="feature-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h3>Гарантия подлинности</h3>
+<p>Все катаны сертифицированы, имеют документы о происхождении.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">
+<i class="fas fa-shipping-fast"></i>
+</div>
+<h3>Быстрая доставка</h3>
+<p>Доставка по всей России за 3-7 дней. Самовывоз в 120 городах.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">
+<i class="fas fa-award"></i>
+</div>
+<h3>Ручная работа</h3>
+<p>Каждая катана изготавливается мастерами с 20+ летним опытом.</p>
+</div>
+</section>
+
+<!-- Футер -->
+<footer class="main-footer">
+<div class="footer-content">
+<div class="footer-section">
+<h4>刀屋 Katana House</h4>
+<p>Магазин японских катан с 2010 года. Член ассоциации "Ниппон-то".</p>
+<div class="social-links">
+<a href="#"><i class="fab fa-vk"></i></a>
+<a href="#"><i class="fab fa-telegram"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+</div>
+</div>
+
+<div class="footer-section">
+<h4>Категории</h4>
+<ul>
+<li><a href="#">Боевые катаны</a></li>
+<li><a href="#">Декоративные</a></li>
+<li><a href="#">Коллекционные</a></li>
+<li><a href="#">Аксессуары</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h4>Контакты</h4>
+<p><i class="fas fa-phone"></i> 8 (800) 555-35-35</p>
+<p><i class="fas fa-envelope"></i> info@katanahouse.ru</p>
+<p><i class="fas fa-map-marker-alt"></i> Москва, ул. Самурайская, 47</p>
+</div>
+</div>
+
+<div class="footer-bottom">
+<p>&copy; 2025 Katana House. Все права защищены. | <a href="#">Политика конфиденциальности</a></p>
+<p class="japanese-text">侍の道は誠実さと忠誠にある</p>
+</div>
+</footer>
+</div>
+
+<!-- Самурайский декор нижний -->
+<div class="samurai-border bottom">
+<div class="mon">武</div>
+<div class="mon">勇</div>
+<div class="mon">誠</div>
+</div>
+
+<!-- Мобильная навигация -->
+<div class="mobile-nav" id="mobileNav">
+<button class="close-nav"><i class="fas fa-times"></i></button>
+<nav>
+<ul>
+<li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+<li><a href="catalog.html"><i class="fas fa-swords"></i> Каталог</a></li>
+<li><a href="about.html"><i class="fas fa-landmark"></i> О нас</a></li>
+<li><a href="contacts.html"><i class="fas fa-map-marked-alt"></i> Контакты</a></li>
+<li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Корзина</a></li>
+</ul>
+</nav>
+</div>
+
+<script src="products.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

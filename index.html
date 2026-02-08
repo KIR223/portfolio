@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Келипченко Кирилл | Архитектор цифровых систем</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== NEON NOIR COLOR SYSTEM ===== */
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --neon-red: #FF003C;
+    --laser-blue: #00F3FF;
+    --electric-purple: #9D00FF;
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --bg-overlay: rgba(0, 0, 0, 0.8);
+    --grid-size: 60px;
+    --transition-bezier: cubic-bezier(0.77, 0, 0.175, 1);
+    --transition-duration: 0.6s;
+}
+
+/* ===== BASE RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background: var(--black);
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--black);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    cursor: none;
+    min-height: 100vh;
+}
+
+/* ===== CUSTOM CURSOR ===== */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s, width 0.3s, height 0.3s;
+    mix-blend-mode: difference;
+}
+
+.cursor.hover {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 0, 60, 0.1);
+}
+
+.cursor.click {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: var(--laser-blue);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+
+/* ===== KINETIC GRID BACKGROUND ===== */
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 0, 60, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 60, 0.03) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    z-index: -3;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: var(--grid-size) var(--grid-size); }
+}
+
+/* ===== LOADER ===== */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--black);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-text {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.loader-text::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--neon-red), var(--laser-blue));
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: loaderLine 2s var(--transition-bezier) infinite;
+}
+
+@keyframes loaderLine {
+    0%, 100% { transform: scaleX(0); }
+    50% { transform: scaleX(1); }
+}
+
+.loader-progress {
+    width: 300px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(90deg, var(--neon-red), var(--laser-blue));
+    animation: loaderProgress 2s var(--transition-bezier) infinite;
+}
+
+@keyframes loaderProgress {
+    0% { left: -30%; }
+    100% { left: 100%; }
+}
+
+/* ===== NAVIGATION ===== */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--black);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s var(--transition-bezier), visibility 0.8s;
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-item {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.nav-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--neon-red);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.nav-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+}
+
+.nav-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--laser-blue);
+    transition: width 0.6s var(--transition-bezier);
+}
+
+.nav-title:hover::after {
+    width: 100%;
+}
+
+.nav-close {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-close::before,
+.nav-close::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 2px;
+    background: var(--white);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.nav-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.nav-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--neon-red);
+    border-radius: 50%;
+    z-index: 1000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.6s var(--transition-bezier);
+    backdrop-filter: blur(10px);
+}
+
+.nav-toggle:hover {
+    background: rgba(255, 0, 60, 0.2);
+    transform: rotate(90deg);
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    position: relative;
+    transition: all 0.3s;
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    left: 0;
+    transition: all 0.3s;
+}
+
+.nav-toggle span::before {
+    top: -8px;
+}
+
+.nav-toggle span::after {
+    top: 8px;
+}
+
+.nav-toggle.active span {
+    background: transparent;
+}
+
+.nav-toggle.active span::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.nav-toggle.active span::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+/* ===== QUICK NAVIGATION ===== */
+.quick-nav {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-end;
+}
+
+.quick-dot {
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--text-muted);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.6s var(--transition-bezier);
+    position: relative;
+}
+
+.quick-dot.active {
+    border-color: var(--neon-red);
+    background: var(--neon-red);
+    transform: scale(1.5);
+}
+
+.quick-dot::before {
+    content: attr(data-number);
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.6s;
+}
+
+.quick-dot:hover::before {
+    opacity: 1;
+}
+
+.quick-dot:hover {
+    border-color: var(--laser-blue);
+    background: var(--laser-blue);
+}
+
+/* ===== PROGRESS INDICATOR ===== */
+.progress-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-red), var(--laser-blue));
+    z-index: 999;
+    transition: width 0.1s;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    min-height: 100vh;
+    padding: 8rem 4rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s var(--transition-bezier), transform 1.2s var(--transition-bezier);
+}
+
+section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== HERO SECTION ===== */
+#hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-name {
+    font-size: 8rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-name span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: nameReveal 1.2s var(--transition-bezier) forwards;
+}
+
+.hero-name span:nth-child(1) { animation-delay: 0.1s; }
+.hero-name span:nth-child(2) { animation-delay: 0.2s; }
+.hero-name span:nth-child(3) { animation-delay: 0.3s; }
+.hero-name span:nth-child(4) { animation-delay: 0.4s; }
+.hero-name span:nth-child(5) { animation-delay: 0.5s; }
+.hero-name span:nth-child(6) { animation-delay: 0.6s; }
+.hero-name span:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes nameReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 4rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s var(--transition-bezier) 1.5s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 60px;
+    border: 2px solid var(--neon-red);
+    border-radius: 20px;
+    opacity: 0;
+    animation: fadeIn 1s var(--transition-bezier) 2s forwards;
+}
+
+.hero-scroll::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 12px;
+    background: var(--laser-blue);
+    border-radius: 2px;
+    animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0; }
+    50% { transform: translateX(-50%) translateY(10px); opacity: 1; }
+}
+
+/* ===== PROJECTS SECTION ===== */
+#projects {
+    position: relative;
+}
+
+.projects-header {
+    margin-bottom: 6rem;
+}
+
+.section-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    color: var(--neon-red);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.section-title {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--neon-red), transparent);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.project-card {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.8s var(--transition-bezier);
+    background: var(--black);
+}
+
+.project-card:hover {
+    border-color: var(--neon-red);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(255, 0, 60, 0.2);
+}
+
+.project-number {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--neon-red);
+    z-index: 2;
+    transition: all 0.6s var(--transition-bezier);
+}
+
+.project-card:hover .project-number {
+    transform: translateY(-10px);
+    opacity: 0;
+}
+
+.project-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    transition: all 0.8s var(--transition-bezier);
+}
+
+.project-card:hover .project-image {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s var(--transition-bezier);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+}
+
+.project-category {
+    font-size: 0.875rem;
+    color: var(--laser-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.project-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.project-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: var(--neon-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: all 0.6s var(--transition-bezier);
+}
+
+.project-card:hover .project-link {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.project-link:hover {
+    background: var(--laser-blue);
+    transform: translate(-50%, -50%) scale(1.1) rotate(45deg);
+}
+
+/* ===== ABOUT SECTION ===== */
+#about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+}
+
+.about-visual {
+    position: relative;
+}
+
+.about-image {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(120%);
+    transition: all 0.8s var(--transition-bezier);
+    position: relative;
+}
+
+.about-image:hover {
+    filter: grayscale(0%) contrast(100%);
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--neon-red), transparent);
+    mix-blend-mode: overlay;
+    opacity: 0.3;
+    transition: opacity 0.8s;
+}
+
+.about-image:hover::after {
+    opacity: 0;
+}
+
+.about-content {
+    position: relative;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.6s var(--transition-bezier);
+}
+
+.stat-item:hover {
+    border-color: var(--laser-blue);
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--neon-red);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.skill-tag {
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.6s var(--transition-bezier);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
+    transition: left 0.8s;
+}
+
+.skill-tag:hover::before {
+    left: 100%;
+}
+
+.skill-tag:hover {
+    background: rgba(0, 243, 255, 0.1);
+    border-color: var(--laser-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* ===== DINO GAME SECTION ===== */
+#dino-game {
+    text-align: center;
+}
+
+.game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--laser-blue);
+}
+
+.game-score {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.5rem;
+    color: var(--neon-red);
+    font-weight: 700;
+}
+
+#dino-canvas {
+    width: 100%;
+    height: 300px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--neon-red);
+    margin-bottom: 2rem;
+    image-rendering: pixelated;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.game-btn {
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 2px solid var(--laser-blue);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.6s var(--transition-bezier);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.3), transparent);
+    transition: left 0.8s;
+}
+
+.game-btn:hover::before {
+    left: 100%;
+}
+
+.game-btn:hover {
+    background: rgba(0, 243, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
+}
+
+/* ===== CONTACT SECTION ===== */
+#contact {
+    text-align: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 4rem auto;
+}
+
+.contact-item {
+    padding: 3rem 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.6s var(--transition-bezier);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-item:hover {
+    border-color: var(--electric-purple);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(157, 0, 255, 0.2);
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    color: var(--electric-purple);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    transition: all 0.6s var(--transition-bezier);
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.2) rotate(10deg);
+    color: var(--laser-blue);
+}
+
+.contact-link {
+    display: block;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    transition: all 0.6s var(--transition-bezier);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--laser-blue);
+    transition: width 0.6s var(--transition-bezier);
+}
+
+.contact-link:hover {
+    color: var(--white);
+    padding-left: 1rem;
+}
+
+.contact-link:hover::after {
+    width: 100%;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    padding: 4rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 2rem;
+    letter-spacing: -2px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--neon-red), var(--laser-blue), var(--electric-purple));
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.6s var(--transition-bezier);
+}
+
+.social-link:hover {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+    transform: translateY(-5px) rotate(15deg);
+    box-shadow: 0 10px 30px rgba(255, 0, 60, 0.3);
+}
+
+.copyright {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .hero-name {
+        font-size: 6rem;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+    
+    #about {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 4rem 2rem;
+    }
+    
+    .hero-name {
+        font-size: 4rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    
+    .nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+    
+    .quick-nav {
+        display: none;
+    }
+    
+    body {
+        cursor: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 3rem 1rem;
+    }
+    
+    .hero-name {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .nav-title {
+        font-size: 2rem;
+    }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-gradient {
+    background: linear-gradient(90deg, var(--neon-red), var(--laser-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.border-gradient {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--black), var(--black)) padding-box,
+                linear-gradient(45deg, var(--neon-red), var(--laser-blue)) border-box;
+}
+
+.glow-text {
+    text-shadow: 0 0 30px rgba(255, 0, 60, 0.5);
+}
+
+.pixel-grid {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor"></div>
+<div class="cursor-trail"></div>
+
+<!-- GRID BACKGROUND -->
+<div class="grid-background"></div>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+    <div class="loader-content">
+        <div class="loader-text">KIRILL</div>
+        <div class="loader-progress"></div>
+    </div>
+</div>
+
+<!-- PROGRESS LINE -->
+<div class="progress-line"></div>
+
+<!-- QUICK NAVIGATION -->
+<div class="quick-nav">
+    <div class="quick-dot active" data-number="01" data-target="hero"></div>
+    <div class="quick-dot" data-number="02" data-target="projects"></div>
+    <div class="quick-dot" data-number="03" data-target="about"></div>
+    <div class="quick-dot" data-number="04" data-target="dino-game"></div>
+    <div class="quick-dot" data-number="05" data-target="contact"></div>
+</div>
+
+<!-- NAVIGATION TOGGLE -->
+<div class="nav-toggle">
+    <span></span>
+</div>
+
+<!-- NAVIGATION OVERLAY -->
+<div class="nav-overlay">
+    <button class="nav-close"></button>
+    <div class="nav-grid">
+        <div class="nav-item">
+            <div class="nav-number">01</div>
+            <a href="#hero" class="nav-title">Главная</a>
+        </div>
+        <div class="nav-item">
+            <div class="nav-number">02</div>
+            <a href="#projects" class="nav-title">Проекты</a>
+        </div>
+        <div class="nav-item">
+            <div class="nav-number">03</div>
+            <a href="#about" class="nav-title">Обо мне</a>
+        </div>
+        <div class="nav-item">
+            <div class="nav-number">04</div>
+            <a href="#dino-game" class="nav-title">Игра</a>
+        </div>
+        <div class="nav-item">
+            <div class="nav-number">05</div>
+            <a href="#contact" class="nav-title">Контакты</a>
+        </div>
+        <div class="nav-item">
+            <div class="nav-number">06</div>
+            <a href="https://t.me/qxxwsd" class="nav-title" target="_blank">Telegram</a>
+        </div>
+        <div class="nav-item">
+            <div class="nav-number">07</div>
+            <a href="https://github.com/KIR223" class="nav-title" target="_blank">GitHub</a>
+        </div>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<section id="hero">
+    <div class="hero-content">
+        <h1 class="hero-name">
+            <span>К</span><span>И</span><span>Р</span><span>И</span><span>Л</span><span>Л</span>
+        </h1>
+        <div class="hero-title">Архитектор цифровых систем</div>
+        <div class="hero-scroll"></div>
+    </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects">
+    <div class="projects-header">
+        <div class="section-number">02 / 19 ПРОЕКТОВ</div>
+        <h2 class="section-title">ПОРТФОЛИО</h2>
+        <p class="section-subtitle">19 инженерных решений enterprise-уровня</p>
+    </div>
+    
+    <div class="projects-grid" id="projectsContainer">
+        <!-- Проекты будут добавлены через JavaScript -->
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+    <div class="about-visual">
+        <img src="photo_2025-09-07_14-17-47.jpg" alt="Келипченко Кирилл" class="about-image">
+    </div>
+    
+    <div class="about-content">
+        <div class="section-number">03 / БИОГРАФИЯ</div>
+        <h2 class="section-title">Архитектор систем</h2>
+        
+        <p style="margin-bottom: 2rem; line-height: 1.8; color: var(--text-secondary);">
+            Создаю высоконагруженные системы и архитектуры enterprise-уровня. 
+            Специализируюсь на распределенных системах, микросервисных архитектурах 
+            и real-time приложениях. Каждый проект — инженерный вызов.
+        </p>
+        
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">17</span>
+                <span class="stat-label">Возраст</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Года опыта</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">19</span>
+                <span class="stat-label">Проекта</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Технологий</span>
+            </div>
+        </div>
+        
+        <div class="skills-list">
+            <a href="japa.html" class="skill-tag" target="_blank">React</a>
+            <a href="traid.html" class="skill-tag" target="_blank">Node.js</a>
+            <a href="j.html" class="skill-tag" target="_blank">Three.js</a>
+            <a href="mafia.html" class="skill-tag" target="_blank">Python</a>
+            <a href="gre.html" class="skill-tag" target="_blank">WebGL</a>
+            <a href="rus.html" class="skill-tag" target="_blank">WebXR</a>
+            <a href="vpn.html" class="skill-tag" target="_blank">Docker</a>
+            <a href="m.html" class="skill-tag" target="_blank">PostgreSQL</a>
+            <a href="mv.html" class="skill-tag" target="_blank">TypeScript</a>
+            <a href="jp.html" class="skill-tag" target="_blank">MongoDB</a>
+            <a href="js/sas.html" class="skill-tag" target="_blank">Vue.js</a>
+            <a href="thai.html" class="skill-tag" target="_blank">WebSocket</a>
+            <a href="thai2.html" class="skill-tag" target="_blank">C++</a>
+            <a href="mars.html" class="skill-tag" target="_blank">AWS</a>
+            <a href="comp.html" class="skill-tag" target="_blank">Kubernetes</a>
+        </div>
+    </div>
+</section>
+
+<!-- DINO GAME SECTION -->
+<section id="dino-game">
+    <div class="game-container">
+        <div class="game-header">
+            <div class="game-title">CHROME DINO RUNNER</div>
+            <div class="game-score">SCORE: <span id="score">0</span></div>
+        </div>
+        
+        <canvas id="dino-canvas" width="800" height="300"></canvas>
+        
+        <div class="game-controls">
+            <button class="game-btn" id="startBtn">СТАРТ</button>
+            <button class="game-btn" id="jumpBtn">ПРЫЖОК</button>
+            <button class="game-btn" id="resetBtn">СБРОС</button>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <div class="section-number">05 / КОНТАКТЫ</div>
+    <h2 class="section-title">СОТРУДНИЧЕСТВО</h2>
+    <p class="section-subtitle" style="margin-bottom: 4rem;">Для обсуждения проектов и архитектурных решений</p>
+    
+    <div class="contact-grid">
+        <div class="contact-item">
+            <div class="contact-icon">
+                <i class="fab fa-telegram"></i>
+            </div>
+            <h3 style="margin-bottom: 1rem; color: var(--white);">Telegram</h3>
+            <a href="https://t.me/qxxwsd" class="contact-link" target="_blank">@qxxwsd</a>
+            <p style="color: var(--text-muted); margin-top: 1rem;">Основной канал коммуникации</p>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">
+                <i class="fab fa-github"></i>
+            </div>
+            <h3 style="margin-bottom: 1rem; color: var(--white);">GitHub</h3>
+            <a href="https://github.com/KIR223" class="contact-link" target="_blank">github.com/KIR223</a>
+            <p style="color: var(--text-muted); margin-top: 1rem;">Исходный код проектов</p>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h3 style="margin-bottom: 1rem; color: var(--white);">Email</h3>
+            <a href="mailto:kirill.kelipchenko@example.com" class="contact-link">kirill.kelipchenko@example.com</a>
+            <p style="color: var(--text-muted); margin-top: 1rem;">Для формальных запросов</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">KIRILL</div>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">
+            Full-Stack Developer • System Architect • Cybersecurity Specialist
+        </p>
+        
+        <div class="footer-social">
+            <a href="https://github.com/KIR223" class="social-link" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://t.me/qxxwsd" class="social-link" target="_blank">
+                <i class="fab fa-telegram"></i>
+            </a>
+            <a href="mailto:kirill.kelipchenko@example.com" class="social-link">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        
+        <div class="copyright">
+            © 2026 Кирилл . Архитектор цифровых систем.<br>
+            Все проекты защищены. Enterprise-решения.
+        </div>
+    </div>
+</footer>
+
+<script>
+// ===== PROJECTS DATA =====
+const projects = [
+    {
+        number: "01",
+        name: "F1 Racing Analytics",
+        category: "Real-time • 3D • React",
+        year: "2025",
+        image: "sa.png",
+        link: "japa.html",
+        tags: ["React", "WebSocket", "Three.js", "Python ML", "Redis"]
+    },
+    {
+        number: "02",
+        name: "Crypto Trading Terminal",
+        category: "Blockchain • Trading • Vue.js",
+        year: "2025",
+        image: "trading.png",
+        link: "traid.html",
+        tags: ["Vue.js", "Node.js", "WebSocket", "PostgreSQL", "Redis"]
+    },
+    {
+        number: "03",
+        name: "Japan Cultural VR",
+        category: "VR • WebXR • Education",
+        year: "2025",
+        image: "japan.png",
+        link: "j.html",
+        tags: ["WebXR", "Three.js", "WebGL", "WebRTC", "TensorFlow.js"]
+    },
+    {
+        number: "04",
+        name: "Organized Crime Archive",
+        category: "Data Visualization • Analytics",
+        year: "2025",
+        image: "mafia.jpeg",
+        link: "mafia.html",
+        tags: ["D3.js", "Canvas", "Python", "Neo4j", "Mapbox"]
+    },
+    {
+        number: "05",
+        name: "Ancient Greece 3D",
+        category: "Education • 3D • WebGL",
+        year: "2025",
+        image: "gre.png",
+        link: "gre.html",
+        tags: ["Three.js", "React", "WebGL 2.0", "ARCore", "WebXR"]
+    },
+    {
+        number: "06",
+        name: "Russian Aviation VR",
+        category: "VR • Simulation • 3D",
+        year: "2025",
+        image: "rus.png",
+        link: "rus.html",
+        tags: ["WebXR", "A-Frame", "WebGL", "WebSocket", "Physics Engine"]
+    },
+    {
+        number: "07",
+        name: "Enterprise VPN Suite",
+        category: "Security • DevOps • Enterprise",
+        year: "2025",
+        image: "vpn.png",
+        link: "vpn.html",
+        tags: ["React", "Express.js", "WebSocket", "Docker", "Kubernetes"]
+    },
+    {
+        number: "08",
+        name: "Defense Contract System",
+        category: "Security • Enterprise • Real-time",
+        year: "2025",
+        image: "m.png",
+        link: "m.html",
+        tags: ["Vue.js", "Node.js", "PostgreSQL", "WebRTC", "AES-256"]
+    },
+    {
+        number: "09",
+        name: "Government Portal",
+        category: "TypeScript • Security • Enterprise",
+        year: "2025",
+        image: "mv.png",
+        link: "mv.html",
+        tags: ["TypeScript", "React", "Node.js", "OAuth 2.0", "PKI"]
+    },
+    {
+        number: "10",
+        name: "Katana E-Commerce",
+        category: "E-commerce • 3D • Next.js",
+        year: "2025",
+        image: "jp.png",
+        link: "jp.html",
+        tags: ["Next.js", "Stripe", "MongoDB", "Three.js", "TensorFlow.js"]
+    },
+    {
+        number: "11",
+        name: "Creative Portfolio Engine",
+        category: "Creative • GSAP • Animation",
+        year: "2025",
+        image: "thai.png",
+        link: "js/sas.html",
+        tags: ["GSAP", "Canvas", "CSS Grid", "Web Workers", "Service Workers"]
+    },
+    {
+        number: "12",
+        name: "Thailand Timeline",
+        category: "History • Interactive • Data Viz",
+        year: "2025",
+        image: "a.png",
+        link: "thai.html",
+        tags: ["D3.js", "SVG", "Canvas", "Web Audio API", "IndexedDB"]
+    },
+    {
+        number: "13",
+        name: "Thailand 3D Reconstruction",
+        category: "3D • WebGL • GIS",
+        year: "2025",
+        image: "a2.png",
+        link: "thai2.html",
+        tags: ["Three.js", "WebGL 2.0", "GIS", "Blender API", "Web Workers"]
+    },
+    {
+        number: "14",
+        name: "Mars 3D Explorer",
+        category: "NASA • 3D • Data Visualization",
+        year: "2025",
+        image: "mars.png",
+        link: "mars.html",
+        tags: ["Cesium.js", "WebGL", "NASA API", "Data Visualization", "WebSocket"]
+    },
+    {
+        number: "15",
+        name: "Computer Evolution 3D",
+        category: "History • 3D • Education",
+        year: "2025",
+        image: "comp.png",
+        link: "comp.html",
+        tags: ["Three.js", "React", "WebAssembly", "Emulator Core", "WebGL"]
+    },
+    {
+        number: "16",
+        name: "Medical History 3D",
+        category: "Education • 3D • WebXR",
+        year: "2025",
+        image: "me.png",
+        link: "me.html",
+        tags: ["WebGL", "Three.js", "WebXR", "Quiz Engine", "SCORM API"]
+    },
+    {
+        number: "17",
+        name: "Transport Evolution 3D",
+        category: "3D • Simulation • Physics",
+        year: "2025",
+        image: "t.png",
+        link: "t.html",
+        tags: ["Three.js", "Ammo.js", "Physics Engine", "WebGL", "Data Visualization"]
+    },
+    {
+        number: "18",
+        name: "Architecture VR Museum",
+        category: "VR • WebXR • 3D",
+        year: "2025",
+        image: "ar.png",
+        link: "ar.html",
+        tags: ["WebXR", "Three.js", "GLTF", "WebVR", "Spatial Audio"]
+    },
+    {
+        number: "19",
+        name: "Penetration Testing Lab",
+        category: "Security • Cybersecurity • Education",
+        year: "2025",
+        image: "hackpen.png",
+        link: "hackpen.html",
+        tags: ["Docker", "WebSocket", "Virtualization", "Security Tools", "Education API"]
+    }
+];
+
+// ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', () => {
+    // Load projects
+    const container = document.getElementById('projectsContainer');
+    projects.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.innerHTML = `
+            <div class="project-number">${project.number}</div>
+            <img src="${project.image}" alt="${project.name}" class="project-image">
+            <div class="project-overlay">
+                <div class="project-name">${project.name}</div>
+                <div class="project-category">${project.category}</div>
+                <div class="project-year">${project.year}</div>
+            </div>
+            <a href="${project.link}" class="project-link" target="_blank">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        `;
+        container.appendChild(card);
+    });
+
+    // Initialize systems
+    initLoader();
+    initCursor();
+    initNavigation();
+    initScrollAnimations();
+    initDinoGame();
+    initQuickNav();
+});
+
+// ===== LOADER =====
+function initLoader() {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('active');
+            });
+        }, 600);
+    }, 2000);
+}
+
+// ===== CUSTOM CURSOR =====
+function initCursor() {
+    const cursor = document.querySelector('.cursor');
+    const trail = document.querySelector('.cursor-trail');
+    
+    if (window.innerWidth > 768) {
+        let mouseX = 0, mouseY = 0;
+        let trailX = 0, trailY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        // Interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, .game-btn, .social-link, .nav-toggle');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+        
+        // Animation loop
+        function animateCursor() {
+            // Main cursor
+            cursor.style.left = `${mouseX}px`;
+            cursor.style.top = `${mouseY}px`;
+            
+            // Trail with delay
+            trailX += (mouseX - trailX) * 0.1;
+            trailY += (mouseY - trailY) * 0.1;
+            
+            trail.style.left = `${trailX}px`;
+            trail.style.top = `${trailY}px`;
+            trail.style.opacity = '0.5';
+            
+            // Fade out trail
+            setTimeout(() => {
+                trail.style.opacity = '0';
+            }, 100);
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        animateCursor();
+    }
+}
+
+// ===== NAVIGATION =====
+function initNavigation() {
+    const toggle = document.querySelector('.nav-toggle');
+    const overlay = document.querySelector('.nav-overlay');
+    const closeBtn = document.querySelector('.nav-close');
+    const navItems = document.querySelectorAll('.nav-item');
+    
+    // Toggle navigation
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        overlay.classList.toggle('active');
+        
+        // Animate nav items
+        if (overlay.classList.contains('active')) {
+            navItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        } else {
+            navItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+            });
+        }
+    });
+    
+    // Close navigation
+    closeBtn.addEventListener('click', () => {
+        toggle.classList.remove('active');
+        overlay.classList.remove('active');
+        navItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+        });
+    });
+    
+    // Close on link click
+    document.querySelectorAll('.nav-title').forEach(link => {
+        link.addEventListener('click', () => {
+            toggle.classList.remove('active');
+            overlay.classList.remove('active');
+            navItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+            });
+        });
+    });
+}
+
+// ===== SCROLL ANIMATIONS =====
+function initScrollAnimations() {
+    // Progress line
+    const progressLine = document.querySelector('.progress-line');
+    
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressLine.style.width = scrolled + '%';
+        
+        // Section activation
+        document.querySelectorAll('section').forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.75) {
+                section.classList.add('active');
+            }
+        });
+    });
+}
+
+// ===== QUICK NAVIGATION =====
+function initQuickNav() {
+    const dots = document.querySelectorAll('.quick-dot');
+    const sections = document.querySelectorAll('section');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+            if (dot.getAttribute('data-target') === current) {
+                dot.classList.add('active');
+            }
+        });
+    });
+    
+    // Click to scroll
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const targetId = dot.getAttribute('data-target');
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ===== DINO GAME =====
+function initDinoGame() {
+    const canvas = document.getElementById('dino-canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreElement = document.getElementById('score');
+    const startBtn = document.getElementById('startBtn');
+    const jumpBtn = document.getElementById('jumpBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    
+    // Game state
+    const game = {
+        running: false,
+        score: 0,
+        speed: 5,
+        dino: {
+            x: 50,
+            y: canvas.height - 60,
+            width: 40,
+            height: 60,
+            jumping: false,
+            velocity: 0,
+            gravity: 0.8,
+            jumpPower: -15
+        },
+        cacti: [],
+        lastCactus: 0,
+        gameOver: false,
+        obstacles: [
+            { width: 20, height: 40 },
+            { width: 30, height: 50 },
+            { width: 40, height: 30 }
+        ]
+    };
+    
+    // Resize canvas
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        const containerWidth = container.clientWidth;
+        canvas.width = containerWidth;
+        canvas.height = (containerWidth * 300) / 800;
+        game.dino.y = canvas.height - 60;
+    }
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Draw functions
+    function drawDino() {
+        ctx.fillStyle = game.gameOver ? '#FF003C' : '#00F3FF';
+        ctx.fillRect(game.dino.x, game.dino.y, game.dino.width, game.dino.height);
+        
+        // Eyes
+        ctx.fillStyle = '#000';
+        ctx.fillRect(game.dino.x + game.dino.width - 15, game.dino.y + 10, 8, 8);
+    }
+    
+    function drawCacti() {
+        ctx.fillStyle = '#9D00FF';
+        game.cacti.forEach(cactus => {
+            ctx.fillRect(cactus.x, cactus.y, cactus.width, cactus.height);
+        });
+    }
+    
+    function drawGround() {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.fillRect(0, canvas.height - 5, canvas.width, 5);
+        
+        // Ground pattern
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.setLineDash([10, 10]);
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height - 5);
+        ctx.lineTo(canvas.width, canvas.height - 5);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+    
+    function drawScore() {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '24px "IBM Plex Mono"';
+        ctx.textAlign = 'right';
+        ctx.fillText(`SCORE: ${game.score}`, canvas.width - 20, 40);
+        
+        if (game.gameOver) {
+            ctx.fillStyle = '#FF003C';
+            ctx.font = '48px "Space Grotesk"';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
+            
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '20px "Space Grotesk"';
+            ctx.fillText('Press RESET to play again', canvas.width / 2, canvas.height / 2 + 40);
+        }
+    }
+    
+    // Game logic
+    function updateDino() {
+        if (game.dino.jumping) {
+            game.dino.y += game.dino.velocity;
+            game.dino.velocity += game.dino.gravity;
+            
+            if (game.dino.y >= canvas.height - 60) {
+                game.dino.y = canvas.height - 60;
+                game.dino.jumping = false;
+                game.dino.velocity = 0;
+            }
+        }
+    }
+    
+    function updateCacti() {
+        if (!game.running) return;
+        
+        // Move cacti
+        game.cacti.forEach((cactus, index) => {
+            cactus.x -= game.speed;
+            
+            // Remove off-screen cacti
+            if (cactus.x + cactus.width < 0) {
+                game.cacti.splice(index, 1);
+                game.score += 10;
+                scoreElement.textContent = game.score;
+            }
+            
+            // Collision detection
+            if (game.dino.x < cactus.x + cactus.width &&
+                game.dino.x + game.dino.width > cactus.x &&
+                game.dino.y < cactus.y + cactus.height &&
+                game.dino.y + game.dino.height > cactus.y) {
+                game.gameOver = true;
+                game.running = false;
+            }
+        });
+        
+        // Generate new cacti
+        const now = Date.now();
+        if (now - game.lastCactus > 1500 + Math.random() * 1000) {
+            const obstacle = game.obstacles[Math.floor(Math.random() * game.obstacles.length)];
+            game.cacti.push({
+                x: canvas.width,
+                y: canvas.height - obstacle.height - 5,
+                width: obstacle.width,
+                height: obstacle.height
+            });
+            game.lastCactus = now;
+        }
+    }
+    
+    function updateGame() {
+        if (!game.running || game.gameOver) return;
+        
+        updateDino();
+        updateCacti();
+        
+        // Increase speed gradually
+        if (game.score % 100 === 0 && game.score > 0) {
+            game.speed = 5 + Math.floor(game.score / 100);
+        }
+    }
+    
+    function drawGame() {
+        // Clear canvas with gradient
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, 'rgba(0, 0, 0, 0.9)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0.7)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        drawGround();
+        drawCacti();
+        drawDino();
+        drawScore();
+    }
+    
+    function gameLoop() {
+        updateGame();
+        drawGame();
+        requestAnimationFrame(gameLoop);
+    }
+    
+    // Controls
+    function jump() {
+        if (!game.dino.jumping && !game.gameOver) {
+            game.dino.jumping = true;
+            game.dino.velocity = game.dino.jumpPower;
+        }
+    }
+    
+    function startGame() {
+        if (!game.running && !game.gameOver) {
+            game.running = true;
+            startBtn.textContent = 'PAUSE';
+        } else if (game.running) {
+            game.running = false;
+            startBtn.textContent = 'RESUME';
+        }
+    }
+    
+    function resetGame() {
+        game.running = false;
+        game.gameOver = false;
+        game.score = 0;
+        game.speed = 5;
+        game.cacti = [];
+        game.dino.y = canvas.height - 60;
+        game.dino.jumping = false;
+        game.dino.velocity = 0;
+        scoreElement.textContent = '0';
+        startBtn.textContent = 'START';
+    }
+    
+    // Event listeners
+    startBtn.addEventListener('click', startGame);
+    jumpBtn.addEventListener('click', jump);
+    resetBtn.addEventListener('click', resetGame);
+    
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            jump();
+        }
+        if (e.key === 'Enter') {
+            startGame();
+        }
+        if (e.key === 'Escape') {
+            resetGame();
+        }
+    });
+    
+    // Start game loop
+    gameLoop();
+}
+
+// ===== ADDITIONAL EFFECTS =====
+// Particle system for cursor trail
+function createParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.style.cssText = `
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        background: var(--laser-blue);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9997;
+        left: ${x}px;
+        top: ${y}px;
+    `;
+    document.body.appendChild(particle);
+    
+    // Animate particle
+    let opacity = 0.5;
+    const interval = setInterval(() => {
+        opacity -= 0.05;
+        particle.style.opacity = opacity;
+        particle.style.transform = `scale(${opacity})`;
+        
+        if (opacity <= 0) {
+            clearInterval(interval);
+            particle.remove();
+        }
+    }, 30);
+}
+
+// Enhanced cursor trail
+let lastX = 0, lastY = 0;
+document.addEventListener('mousemove', (e) => {
+    const distance = Math.sqrt(Math.pow(e.clientX - lastX, 2) + Math.pow(e.clientY - lastY, 2));
+    
+    if (distance > 10) {
+        createParticle(e.clientX, e.clientY);
+        lastX = e.clientX;
+        lastY = e.clientY;
+    }
+});
+
+// Audio context for sound effects (optional)
+let audioContext;
+function initAudio() {
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+}
+
+// Click sound effect
+document.addEventListener('click', () => {
+    if (!audioContext) initAudio();
+    
+    if (audioContext) {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = 800;
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.1);
+    }
+});
+
+// ===== PERFORMANCE OPTIMIZATION =====
+// Debounce resize events
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        resizeCanvas();
+    }, 250);
+});
+
+// Intersection Observer for lazy loading
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target.querySelector('.project-image');
+            if (img) {
+                img.src = img.dataset.src || img.src;
+            }
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.project-card').forEach(card => {
+    observer.observe(card);
+});
+</script>
+</body>
+</html>

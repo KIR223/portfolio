@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<!-- Мета-информация -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Основные мета-теги -->
+<title>DigitalStudio - Современные цифровые решения</title>
+<meta name="description" content="Создаем современные, быстрые и доступные веб-решения для вашего бизнеса. Профессиональная разработка, дизайн и поддержка.">
+<meta name="keywords" content="веб-разработка, дизайн, сайты, SEO, digital-агентство">
+
+<!-- Open Graph -->
+<meta property="og:title" content="DigitalStudio - Современные цифровые решения">
+<meta property="og:description" content="Создаем современные, быстрые и доступные веб-решения для вашего бизнеса">
+<meta property="og:image" content="hero-image.webp">
+<meta property="og:url" content="https://digitalstudio.example.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DigitalStudio - Современные цифровые решения">
+<meta name="twitter:description" content="Создаем современные, быстрые и доступные веб-решения">
+<meta name="twitter:image" content="hero-image.webp">
+
+<!-- Favicon и манифест -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+
+<!-- Preload критических ресурсов -->
+<link rel="preload" href="style.css" as="style">
+<link rel="preload" href="script.js" as="script">
+
+<!-- Основные стили -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Schema.org разметка (JSON-LD) -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Organization",
+"name": "DigitalStudio",
+"url": "https://digitalstudio.example.com",
+"logo": "https://digitalstudio.example.com/logo.svg",
+"description": "Современные цифровые решения для бизнеса",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "ул. Примерная, д. 123",
+"addressLocality": "Москва",
+"postalCode": "123456",
+"addressCountry": "RU"
+},
+"contactPoint": {
+"@type": "ContactPoint",
+"telephone": "+7-999-123-45-67",
+"contactType": "Служба поддержки"
+}
+}
+</script>
+</head>
+<body>
+<!-- Пропустить к контенту (доступность) -->
+<a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+<!-- Шапка сайта -->
+<header class="header" role="banner">
+<div class="container">
+<div class="header__inner">
+<!-- Логотип -->
+<a href="index.html" class="logo" aria-label="DigitalStudio - вернуться на главную">
+<svg class="logo__icon" width="40" height="40" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+
+<!-- Основная навигация -->
+<nav class="nav" aria-label="Основная навигация">
+<button class="nav__toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+<span class="nav__toggle-line" aria-hidden="true"></span>
+</button>
+
+<ul class="nav__list" id="nav-menu" role="menu">
+<li class="nav__item" role="none">
+<a href="index.html" class="nav__link nav__link--active" role="menuitem" aria-current="page">Главная</a>
+</li>
+<li class="nav__item" role="none">
+<a href="about.html" class="nav__link" role="menuitem">О нас</a>
+</li>
+<li class="nav__item" role="none">
+<a href="portfolio.html" class="nav__link" role="menuitem">Портфолио</a>
+</li>
+<li class="nav__item" role="none">
+<a href="services.html" class="nav__link" role="menuitem">Услуги</a>
+</li>
+<li class="nav__item" role="none">
+<a href="blog.html" class="nav__link" role="menuitem">Блог</a>
+</li>
+<li class="nav__item" role="none">
+<a href="contacts.html" class="nav__link" role="menuitem">Контакты</a>
+</li>
+</ul>
+</nav>
+
+<!-- Кнопка CTA в шапке -->
+<a href="contacts.html#contact-form" class="btn btn--primary btn--small">Связаться с нами</a>
+</div>
+</div>
+</header>
+
+<!-- Основной контент -->
+<main id="main-content" class="main" role="main">
+<!-- Герой-секция -->
+<section class="hero" aria-labelledby="hero-title">
+<div class="container">
+<div class="hero__content">
+<h1 id="hero-title" class="hero__title">Современные цифровые решения для вашего бизнеса</h1>
+<p class="hero__subtitle">Создаем быстрые, доступные и SEO-оптимизированные веб-сайты, которые работают на результат</p>
+
+<div class="hero__actions">
+<a href="portfolio.html" class="btn btn--primary btn--large">Смотреть работы</a>
+<a href="contacts.html" class="btn btn--secondary btn--large">Обсудить проект</a>
+</div>
+</div>
+
+<!-- Декоративное изображение -->
+<div class="hero__image">
+<picture>
+<source srcset="hero-image.webp" type="image/webp">
+<img src="hero-image.jpg" alt="Рабочее пространство с современным оборудованием" width="800" height="600" loading="eager">
+</picture>
+</div>
+</div>
+</section>
+
+<!-- Преимущества -->
+<section class="features" aria-labelledby="features-title">
+<div class="container">
+<div class="section-header">
+<h2 id="features-title" class="section-header__title">Почему выбирают нас</h2>
+<p class="section-header__subtitle">Наши принципы работы обеспечивают качественный результат</p>
+</div>
+
+<div class="features__grid">
+<article class="feature-card">
+<div class="feature-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-speed"></use>
+</svg>
+</div>
+<h3 class="feature-card__title">Скорость</h3>
+<p class="feature-card__description">Оптимизированные сайты, которые загружаются менее чем за 2 секунды</p>
+</article>
+
+<article class="feature-card">
+<div class="feature-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-seo"></use>
+</svg>
+</div>
+<h3 class="feature-card__title">SEO-оптимизация</h3>
+<p class="feature-card__description">Продвижение в поисковых системах с первого дня разработки</p>
+</article>
+
+<article class="feature-card">
+<div class="feature-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-accessibility"></use>
+</svg>
+</div>
+<h3 class="feature-card__title">Доступность</h3>
+<p class="feature-card__description">Сайты для всех пользователей, включая людей с ограниченными возможностями</p>
+</article>
+
+<article class="feature-card">
+<div class="feature-card__icon" aria-hidden="true">
+<svg width="48" height="48">
+<use href="#icon-responsive"></use>
+</svg>
+</div>
+<h3 class="feature-card__title">Адаптивность</h3>
+<p class="feature-card__description">Идеальное отображение на всех устройствах и разрешениях экрана</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- Последние проекты -->
+<section class="projects-preview" aria-labelledby="projects-title">
+<div class="container">
+<div class="section-header">
+<h2 id="projects-title" class="section-header__title">Последние проекты</h2>
+<p class="section-header__subtitle">Примеры наших работ в различных сферах бизнеса</p>
+</div>
+
+<div class="projects-preview__grid">
+<article class="project-card">
+<div class="project-card__image">
+<picture>
+<source srcset="project-1-cover.webp" type="image/webp">
+<img src="project-1-cover.jpg" alt="Интернет-магазин электроники" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="project-card__content">
+<h3 class="project-card__title">
+<a href="project-1.html">Интернет-магазин электроники</a>
+</h3>
+<p class="project-card__description">Разработка современного интернет-магазина с каталогом на 5000+ товаров</p>
+<div class="project-card__meta">
+<span class="project-card__category">E-commerce</span>
+<span class="project-card__year">2024</span>
+</div>
+</div>
+</article>
+
+<article class="project-card">
+<div class="project-card__image">
+<picture>
+<source srcset="project-2-cover.webp" type="image/webp">
+<img src="project-2-cover.jpg" alt="Корпоративный портал" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="project-card__content">
+<h3 class="project-card__title">
+<a href="project-2.html">Корпоративный портал</a>
+</h3>
+<p class="project-card__description">Внутренняя система управления для крупной производственной компании</p>
+<div class="project-card__meta">
+<span class="project-card__category">Корпоративные решения</span>
+<span class="project-card__year">2024</span>
+</div>
+</div>
+</article>
+
+<article class="project-card">
+<div class="project-card__image">
+<picture>
+<source srcset="project-3-cover.webp" type="image/webp">
+<img src="project-3-cover.jpg" alt="Образовательная платформа" width="400" height="300" loading="lazy">
+</picture>
+</div>
+<div class="project-card__content">
+<h3 class="project-card__title">
+<a href="project-3.html">Образовательная платформа</a>
+</h3>
+<p class="project-card__description">Платформа для онлайн-обучения с видеокурсами и тестированием</p>
+<div class="project-card__meta">
+<span class="project-card__category">Образование</span>
+<span class="project-card__year">2023</span>
+</div>
+</div>
+</article>
+</div>
+
+<div class="projects-preview__footer">
+<a href="portfolio.html" class="btn btn--secondary">Все проекты</a>
+</div>
+</div>
+</section>
+
+<!-- Отзывы -->
+<section class="testimonials" aria-labelledby="testimonials-title">
+<div class="container">
+<div class="section-header">
+<h2 id="testimonials-title" class="section-header__title">Что говорят клиенты</h2>
+<p class="section-header__subtitle">Более 50 довольных клиентов по всей стране</p>
+</div>
+
+<div class="testimonials__grid">
+<blockquote class="testimonial">
+<div class="testimonial__content">
+<p>DigitalStudio создали для нас сайт, который не только красивый, но и действительно работает на бизнес. Рост трафика на 40% за 3 месяца.</p>
+</div>
+<footer class="testimonial__author">
+<div class="testimonial__avatar" aria-hidden="true">
+<img src="client-1.jpg" alt="" width="60" height="60">
+</div>
+<div class="testimonial__info">
+<cite class="testimonial__name">Анна Смирнова</cite>
+<p class="testimonial__position">Директор по маркетингу, TechCorp</p>
+</div>
+</footer>
+</blockquote>
+
+<blockquote class="testimonial">
+<div class="testimonial__content">
+<p>Работали с командой над сложным проектом. Профессионализм, внимание к деталям и соблюдение сроков впечатляют.</p>
+</div>
+<footer class="testimonial__author">
+<div class="testimonial__avatar" aria-hidden="true">
+<img src="client-2.jpg" alt="" width="60" height="60">
+</div>
+<div class="testimonial__info">
+<cite class="testimonial__name">Дмитрий Иванов</cite>
+<p class="testimonial__position">Основатель, StartUpLab</p>
+</div>
+</footer>
+</blockquote>
+</div>
+</div>
+</section>
+
+<!-- Команда -->
+<section class="team-preview" aria-labelledby="team-title">
+<div class="container">
+<div class="section-header">
+<h2 id="team-title" class="section-header__title">Наша команда</h2>
+<p class="section-header__subtitle">Профессионалы с опытом в digital-разработке</p>
+</div>
+
+<div class="team-preview__grid">
+<article class="team-member">
+<div class="team-member__photo">
+<img src="author-photo.jpg" alt="Александр Петров, ведущий разработчик" width="200" height="200" loading="lazy">
+</div>
+<div class="team-member__info">
+<h3 class="team-member__name">Александр Петров</h3>
+<p class="team-member__position">Ведущий разработчик</p>
+<p class="team-member__bio">10+ лет опыта в веб-разработке. Специализация: фронтенд, доступность, производительность.</p>
+</div>
+</article>
+</div>
+
+<div class="team-preview__footer">
+<a href="about.html#team" class="btn btn--text">Вся команда</a>
+</div>
+</div>
+</section>
+
+<!-- Контактная форма -->
+<section class="contact-preview" aria-labelledby="contact-title">
+<div class="container">
+<div class="contact-preview__grid">
+<div class="contact-preview__content">
+<h2 id="contact-title" class="contact-preview__title">Готовы обсудить ваш проект?</h2>
+<p class="contact-preview__description">Оставьте заявку и мы свяжемся с вами в течение 24 часов для бесплатной консультации</p>
+
+<form id="contact-form-preview" class="form" novalidate>
+<div class="form__group">
+<label for="name-preview" class="form__label">Имя</label>
+<input type="text" id="name-preview" name="name" class="form__input" required minlength="2" maxlength="50">
+<div class="form__error" id="name-error-preview" aria-live="polite"></div>
+</div>
+
+<div class="form__group">
+<label for="email-preview" class="form__label">Email</label>
+<input type="email" id="email-preview" name="email" class="form__input" required>
+<div class="form__error" id="email-error-preview" aria-live="polite"></div>
+</div>
+
+<div class="form__group">
+<label for="message-preview" class="form__label">Сообщение</label>
+<textarea id="message-preview" name="message" class="form__textarea" rows="4" required minlength="10" maxlength="500"></textarea>
+<div class="form__error" id="message-error-preview" aria-live="polite"></div>
+</div>
+
+<!-- Honeypot поле для защиты от спама -->
+<div class="form__group form__group--hidden" aria-hidden="true">
+<label for="website-preview">Не заполняйте это поле</label>
+<input type="text" id="website-preview" name="website" tabindex="-1" autocomplete="off">
+</div>
+
+<div class="form__group">
+<div class="form__checkbox">
+<input type="checkbox" id="consent-preview" name="consent" required>
+<label for="consent-preview">
+Я соглашаюсь с <a href="privacy.html">Политикой конфиденциальности</a>
+</label>
+</div>
+<div class="form__error" id="consent-error-preview" aria-live="polite"></div>
+</div>
+
+<button type="submit" class="btn btn--primary">Отправить сообщение</button>
+</form>
+</div>
+
+<div class="contact-preview__info">
+<h3 class="contact-preview__subtitle">Контакты</h3>
+
+<address class="contact-info">
+<div class="contact-info__item">
+<svg class="contact-info__icon" width="24" height="24" aria-hidden="true">
+<use href="#icon-phone"></use>
+</svg>
+<a href="tel:+79991234567" class="contact-info__link">+7 (999) 123-45-67</a>
+</div>
+
+<div class="contact-info__item">
+<svg class="contact-info__icon" width="24" height="24" aria-hidden="true">
+<use href="#icon-email"></use>
+</svg>
+<a href="mailto:info@digitalstudio.example.com" class="contact-info__link">info@digitalstudio.example.com</a>
+</div>
+
+<div class="contact-info__item">
+<svg class="contact-info__icon" width="24" height="24" aria-hidden="true">
+<use href="#icon-location"></use>
+</svg>
+<span class="contact-info__text">Москва, ул. Примерная, д. 123</span>
+</div>
+
+<div class="contact-info__item">
+<svg class="contact-info__icon" width="24" height="24" aria-hidden="true">
+<use href="#icon-clock"></use>
+</svg>
+<span class="contact-info__text">Пн-Пт: 9:00-18:00</span>
+</div>
+</address>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<!-- Подвал -->
+<footer class="footer" role="contentinfo">
+<div class="container">
+<div class="footer__grid">
+<div class="footer__brand">
+<a href="index.html" class="logo logo--footer">
+<svg class="logo__icon" width="32" height="32" aria-hidden="true">
+<use href="#logo-symbol"></use>
+</svg>
+<span class="logo__text">DigitalStudio</span>
+</a>
+<p class="footer__description">Современные цифровые решения для бизнеса. Создаем сайты, которые работают на результат.</p>
+</div>
+
+<div class="footer__nav">
+<h3 class="footer__title">Навигация</h3>
+<ul class="footer__list">
+<li><a href="index.html">Главная</a></li>
+<li><a href="about.html">О нас</a></li>
+<li><a href="portfolio.html">Портфолио</a></li>
+<li><a href="services.html">Услуги</a></li>
+<li><a href="blog.html">Блог</a></li>
+<li><a href="contacts.html">Контакты</a></li>
+</ul>
+</div>
+
+<div class="footer__services">
+<h3 class="footer__title">Услуги</h3>
+<ul class="footer__list">
+<li><a href="service-1.html">Веб-разработка</a></li>
+<li><a href="service-2.html">Дизайн интерфейсов</a></li>
+<li><a href="service-3.html">SEO-оптимизация</a></li>
+<li><a href="service-4.html">Техническая поддержка</a></li>
+</ul>
+</div>
+
+<div class="footer__social">
+<h3 class="footer__title">Мы в соцсетях</h3>
+<div class="social-links">
+<a href="#" class="social-link" aria-label="Telegram">
+<svg width="24" height="24" aria-hidden="true">
+<use href="#icon-telegram"></use>
+</svg>
+</a>
+<a href="#" class="social-link" aria-label="VK">
+<svg width="24" height="24" aria-hidden="true">
+<use href="#icon-vk"></use>
+</svg>
+</a>
+<a href="#" class="social-link" aria-label="GitHub">
+<svg width="24" height="24" aria-hidden="true">
+<use href="#icon-github"></use>
+</svg>
+</a>
+</div>
+
+<div class="footer__subscribe">
+<h4 class="footer__subtitle">Подписка на новости</h4>
+<form class="subscribe-form" novalidate>
+<label for="subscribe-email" class="visually-hidden">Email для подписки</label>
+<input type="email" id="subscribe-email" placeholder="Ваш email" required>
+<button type="submit" class="btn btn--small" aria-label="Подписаться">→</button>
+</form>
+</div>
+</div>
+</div>
+
+<div class="footer__bottom">
+<p class="footer__copyright">&copy; 2024 DigitalStudio. Все права защищены.</p>
+<nav class="footer__legal" aria-label="Юридическая информация">
+<a href="privacy.html">Политика конфиденциальности</a>
+<a href="terms.html">Условия использования</a>
+</nav>
+</div>
+</div>
+</footer>
+
+<!-- SVG-спрайт с иконками -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<symbol id="logo-symbol" viewBox="0 0 40 40">
+<path d="M20 0L40 20L20 40L0 20L20 0Z" fill="currentColor"/>
+<circle cx="20" cy="20" r="8" fill="white"/>
+</symbol>
+
+<symbol id="icon-speed" viewBox="0 0 48 48">
+<path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-4 29l-8-8 2.83-2.83L20 28.34l13.17-13.17L36 18 20 34z"/>
+</symbol>
+
+<symbol id="icon-seo" viewBox="0 0 48 48">
+<path d="M38 6H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zM24 34c-5.52 0-10-4.48-10-10s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10zm0-16c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
+</symbol>
+
+<symbol id="icon-accessibility" viewBox="0 0 48 48">
+<path d="M24 4c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm18 14H30v26h-4V30h-4v14h-4V18H6v-4h36v4z"/>
+</symbol>
+
+<symbol id="icon-responsive" viewBox="0 0 48 48">
+<path d="M42 6H6c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h36c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zM16 38H8v-4h8v4zm0-8H8v-4h8v4zm0-8H8v-4h8v4zm24 16H22V14h18v24z"/>
+</symbol>
+
+<symbol id="icon-phone" viewBox="0 0 48 48">
+<path d="M39 33c-2.49 0-4.9-.4-7.14-1.14-.69-.22-1.48-.06-2.03.49l-4.4 4.41c-5.68-2.88-10.29-7.51-13.18-13.18l4.4-4.41c.55-.55.71-1.34.49-2.03C15.4 13.9 15 11.49 15 9c0-1.11-.89-2-2-2H9c-1.11 0-2 .89-2 2 0 18.78 15.22 34 34 34 1.11 0 2-.89 2-2v-4c0-1.11-.89-2-2-2z"/>
+</symbol>
+
+<symbol id="icon-email" viewBox="0 0 48 48">
+<path d="M40 8H8c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 8L24 26 8 16v-4l16 10 16-10v4z"/>
+</symbol>
+
+<symbol id="icon-location" viewBox="0 0 48 48">
+<path d="M24 4c-7.73 0-14 6.27-14 14 0 10.5 14 26 14 26s14-15.5 14-26c0-7.73-6.27-14-14-14zm0 19c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+</symbol>
+
+<symbol id="icon-clock" viewBox="0 0 48 48">
+<path d="M23.99 4C12.94 4 4 12.95 4 24s8.94 20 19.99 20C35.04 44 44 35.05 44 24S35.04 4 23.99 4zM24 40c-8.84 0-16-7.16-16-16S15.16 8 24 8s16 7.16 16 16-7.16 16-16 16zm1-26h-3v12l10.49 6.3L34 29.84l-9-5.34V14z"/>
+</symbol>
+
+<symbol id="icon-telegram" viewBox="0 0 48 48">
+<path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm10.66 13.63l-4.87 22.94c-.36 1.62-1.32 2.02-2.67 1.26l-7.36-5.42-3.54 3.41c-.39.39-.72.72-1.47.72l.53-7.57 13.66-12.34c.59-.52-.13-.81-.91-.29l-16.9 10.86-7.28-2.28c-1.58-.49-1.61-1.56.33-2.31l28.56-11.02c1.31-.52 2.46.31 2.03 2.23z"/>
+</symbol>
+
+<symbol id="icon-vk" viewBox="0 0 48 48">
+<path d="M43.2 33.9c-1.4 3.7-6.1 6.3-7.8 6.3-3.7 0-6.3-2.6-11.9-2.6-5.6 0-8.3 2.6-11.9 2.6-1.7 0-6.4-2.6-7.8-6.3C3.1 31.6 4.7 26 8.2 23c2.6-2.1 5.9-2.1 7.8-2.1h.3c1.1 0 2.1-.6 2.1-2.1 0-4.2 0-9.1 2.6-11.9 3.1-3.1 7.8-3.4 10.4-3.4h.3v4.2c0 2.6-1.4 5.2-2.6 5.9-1.7.9-3.4 1.4-3.4 3.4 0 1.7 1.7 3.4 3.4 3.4h8.3c2.6 0 4.2 1.7 4.2 4.2 0 2.6-1.7 4.2-4.2 4.2h-4.2c-2.6 0-4.2 1.7-4.2 4.2 0 2.6 1.7 4.2 4.2 4.2h1.1c2.1 0 4.2 1.1 5.2 2.6 1.1 1.7 1.4 3.7.6 5.6z"/>
+</symbol>
+
+<symbol id="icon-github" viewBox="0 0 48 48">
+<path d="M24 4C12.95 4 4 12.95 4 24c0 8.84 5.74 16.33 13.69 18.98 1 .18 1.37-.43 1.37-.96 0-.47-.02-1.71-.03-3.36-5.58 1.21-6.76-2.69-6.76-2.69-.91-2.31-2.22-2.93-2.22-2.93-1.81-1.24.14-1.22.14-1.22 2.01.14 3.07 2.06 3.07 2.06 1.78 3.05 4.68 2.17 5.82 1.66.18-1.29.7-2.17 1.27-2.67-4.45-.51-9.13-2.22-9.13-9.88 0-2.18.78-3.97 2.06-5.37-.21-.51-.89-2.55.19-5.32 0 0 1.68-.54 5.5 2.05 1.6-.44 3.31-.67 5.01-.68 1.7.01 3.41.24 5.01.68 3.82-2.59 5.5-2.05 5.5-2.05 1.08 2.77.41 4.81.2 5.32 1.28 1.4 2.06 3.19 2.06 5.37 0 7.68-4.69 9.37-9.16 9.86.72.62 1.36 1.84 1.36 3.71 0 2.68-.02 4.84-.02 5.5 0 .53.36 1.15 1.38.96C38.26 40.33 44 32.84 44 24c0-11.05-8.95-20-20-20z"/>
+</symbol>
+</svg>
+
+<!-- Основной JavaScript -->
+<script src="script.js" defer></script>
+</body>
+</html>
